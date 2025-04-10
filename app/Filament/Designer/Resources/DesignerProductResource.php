@@ -19,6 +19,10 @@ class DesignerProductResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationLabel = 'My Products';
+
+    protected static ?string $label = 'Product';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -51,6 +55,11 @@ class DesignerProductResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\Action::make('Design')
+                    ->button()
+                    ->color('success')
+                    ->url(Pages\DesignTool::getUrl())
+                    ->icon('heroicon-o-sparkles'),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
@@ -65,6 +74,7 @@ class DesignerProductResource extends Resource
     {
         return [
             'index' => Pages\ManageDesignerProducts::route('/'),
+            'design' => Pages\DesignTool::route('/design'),
         ];
     }
 }
