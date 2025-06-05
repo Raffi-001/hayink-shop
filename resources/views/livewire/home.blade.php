@@ -3,10 +3,11 @@
 
 
 
+    <div class="pt-16">
     @if (data_get($this, 'frontPageCollections'))
         @foreach($this->frontPageCollections as $collection)
             <section class="bg-white">
-                <div class="px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+                <div class="px-4 sm:px-6 lg:px-8 pb-16">
                     <div class="sm:flex sm:items-baseline sm:justify-between">
                         <h2 class="text-2xl font-bold tracking-tight text-gray-900">
                             {{ $collection->translateAttribute('name') }}
@@ -33,6 +34,7 @@
             </section>
         @endforeach
     @endif
+    </div>
 
 
 

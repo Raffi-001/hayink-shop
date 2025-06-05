@@ -28,8 +28,18 @@ class Navigation extends Component
      */
     public function getCollectionsProperty()
     {
-        return CollectionGroup::where('handle', 'main')->first()->collections->toTree();
-        // return Collection::with(['defaultUrl'])->get()->toTree();
+        $group = CollectionGroup::where('handle', 'main')->first();
+
+        if (!$group) {
+            return collect(); // fallback in case group doesn't exist
+        }
+
+        // Filter collections that have at least one product
+        return $group->collections()
+            ->whereHas('products') // Only collections with products
+            ->with('defaultUrl', 'products') // Eager load if needed
+            ->get()
+            ->toTree();
     }
 
     public function render(): View

@@ -8,6 +8,7 @@ use Illuminate\View\View;
 use Livewire\Component;
 use Lunar\Models\Product;
 use Lunar\Models\ProductVariant;
+use PhpParser\Node\Scalar\String_;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class ProductPage extends Component
@@ -106,6 +107,32 @@ class ProductPage extends Component
         }
 
         return $this->images->first();
+    }
+
+    public function getLatestProductsProperty(): ?Collection
+    {
+        return \App\Models\Product::orderBy('id', 'desc')->limit(3)->get();
+    }
+
+    public function getRelatedProductsProperty(): ?Collection
+    {
+        $products = Product::whereHas('variants', function ($query) {
+            $query->where('sku', 'like', 't-%');
+        })->get();
+
+        return $products;
+    }
+
+    public function getComparisonPriceProperty(): ?int
+    {
+        $prices = $this->variant->basePrices;
+
+        // Assuming "comparison" prices are stored with a specific type or tag
+        $comparisonPrice = $prices->first(function ($price) {
+            return $price->price_type == 'compare_at'; // adjust key if necessary
+        });
+
+        return $comparisonPrice?->price;
     }
 
     public function render(): View
