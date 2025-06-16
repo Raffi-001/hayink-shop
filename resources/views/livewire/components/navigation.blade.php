@@ -23,6 +23,15 @@
         </div>
 
         <div class="flex items-center justify-between flex-1 ml-4 lg:justify-end">
+
+            <a href="{{ route('apply-as-an-artist.view') }}" type="submit" class="px-4 py-2 text-sm font-medium text-center text-white bg-primary-500 hover:bg-primary-600 mr-4">
+                Apply as an Artist
+            </a>
+
+            <a href="{{ route('create-your-own.view') }}" type="submit" class="px-4 py-2 text-sm font-medium text-center text-white bg-primary-500 hover:bg-primary-600 mr-4">
+                Create Your Own Product
+            </a>
+
             <x-header.search class="max-w-sm mr-4" />
 
             <div class="flex items-center -mr-4 sm:-mr-6 lg:mr-0">

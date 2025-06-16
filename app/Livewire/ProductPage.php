@@ -123,6 +123,21 @@ class ProductPage extends Component
         return $products;
     }
 
+    public function getDesignersProductsProperty(): ?Collection
+    {
+        $products = Product::all();
+
+        $designersProducts = [];
+
+        foreach($products as $product) {
+            if($product->translateAttribute('designer-name') === (string) $this->designerInfo['name']) {
+                $designersProducts[] = $product;
+            }
+        }
+
+        return collect($designersProducts);
+    }
+
     public function getComparisonPriceProperty(): ?int
     {
         $prices = $this->variant->basePrices;
@@ -133,6 +148,23 @@ class ProductPage extends Component
         });
 
         return $comparisonPrice?->price;
+    }
+
+    public function getDesignerInfoProperty(): array
+    {
+        $imageUrl = (string) data_get($this, 'product.attribute_data.designer-image');
+        $name = data_get($this, 'product.attribute_data.designer-name');
+        $description = data_get($this, 'product.attribute_data.about-the-designer');
+        $collectionLabel = data_get($this, 'product.attribute_data.collection');
+        $collectionUrl = data_get($this, 'product.attribute_data.collection-url');
+
+        return [
+            'name' => $name,
+            'image' => config('app.url') . '/' . $imageUrl,
+            'description' => $description,
+            'collectionLabel' => $collectionLabel,
+            'collectionUrl' => config('app.url') . '/collections/' . $collectionUrl,
+        ];
     }
 
     public function render(): View

@@ -1,7 +1,8 @@
 <?php
 
+use App\Livewire\ApplyAsAnArtistPage;
 use App\Livewire\CheckoutPage;
-use App\Livewire\CheckoutSuccessPage;
+use App\Livewire\CreateYourOwnPage;
 use App\Livewire\CollectionPage;
 use App\Livewire\Home;
 use App\Livewire\ProductPage;
@@ -29,4 +30,8 @@ Route::get('search', SearchPage::class)->name('search.view');
 
 Route::get('checkout', CheckoutPage::class)->name('checkout.view');
 
-Route::get('checkout/success', CheckoutSuccessPage::class)->name('checkout-success.view');
+Route::get('checkout/success', CreateYourOwnPage::class)->name('checkout-success.view');
+
+Route::get('create-your-own', CreateYourOwnPage::class)->name('create-your-own.view');
+
+Route::get('apply-as-an-artist', ApplyAsAnArtistPage::class)->name('apply-as-an-artist.view');

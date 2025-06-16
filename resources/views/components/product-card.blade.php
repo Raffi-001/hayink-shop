@@ -2,7 +2,6 @@
 
 <div class="group relative ">
 
-
     <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden relative">
         <!-- <img src="images/men-1.jpg" alt="Model wearing" class="h-full w-full object-cover object-center group-hover:opacity-75" /> -->
         <a class="relative" href="{{ route('product.view', $product->defaultUrl->slug) }}" wire:navigate>
@@ -29,6 +28,16 @@
         <h3 class="mt-4 text-base font-semibold text-gray-900">
             {{ $product->translateAttribute('name') }}
         </h3>
+        <p class="mt-1">
+            By:
+            <a href="/collections/{{ $product->translateAttribute('collection-url') }}" class="hover:underline text-secondary-500">
+            <span class="sr-only">
+                Designer Name
+            </span>
+
+            {{ $product->translateAttribute('designer-name') }}
+            </a>
+        </p>
         <p class="mt-1 text-sm text-gray-600">
             <span class="sr-only">
                 Price
