@@ -7,7 +7,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1"
     >
-    <title>Demo Storefront</title>
+    <title>HayInk</title>
     <meta
         name="description"
         content="Example of an ecommerce storefront built with Lunar."
@@ -16,32 +16,23 @@
         href="{{ asset('css/app.css') }}"
         rel="stylesheet"
     >
+
     <link
         rel="icon"
         href="{{ asset('favicon.svg') }}"
     >
     @livewireStyles
-    @stripeScripts
+    @vite('resources/css/app.css')
 </head>
 
 <body class="antialiased text-gray-900">
-    <header class="relative border-b border-gray-100">
-        <div class="flex items-center h-16 px-4 mx-auto max-w-screen-2xl sm:px-6 lg:px-8">
-            <a
-                class="flex items-center flex-shrink-0"
-                href="{{ url('/') }}"
-            >
-                <span class="sr-only">Home</span>
-
-            </a>
-        </div>
-    </header>
-
+    @livewire('components.navigation')
 
     <main>
-        {{ $slot }}
+        @yield('content')
     </main>
 
+    <x-footer />
 
     @livewireScripts
 </body>

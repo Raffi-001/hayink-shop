@@ -8,14 +8,22 @@
     @if ($currentStep >= $step)
         <div class="p-6 space-y-4">
             <div class="flex gap-4">
-                <button @class([
-                    'px-5 py-2 text-sm border font-medium rounded-lg',
-                    'text-green-700 border-green-600 bg-green-50' => $paymentType === 'card',
-                    'text-gray-500 hover:text-gray-700' => $paymentType !== 'card',
-                ])
-                        type="button"
-                        wire:click.prevent="$set('paymentType', 'card')">
-                    Pay by card
+                @php
+                    $route = route('ameria-pay');
+                @endphp
+
+                <button
+                    @class([
+                        'px-5 py-2 text-sm border font-medium rounded-lg flex gap-2 items-center bg-black text-white',
+                        'text-green-700 border-green-600 bg-green-50' => $paymentType === 'card',
+                        'text-gray-500 hover:text-white' => $paymentType !== 'card',
+                    ])
+                    type="button"
+                    x-data
+                    @click="window.location.href = '{{ $route }}'"
+                >
+                    <img src="/images/ambank.png" class="w-8 h-auto"/>
+                    <span>Ameria Bank</span>
                 </button>
 
                 <button @class([

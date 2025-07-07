@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "19eab6f1c4426751a9738eba18edcfbb",
+    "content-hash": "b657666790b5f2b83311693ed1519fd5",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1169,6 +1169,69 @@
                 "source": "https://github.com/aws/aws-sdk-php/tree/3.342.2"
             },
             "time": "2025-03-07T19:12:43+00:00"
+        },
+        {
+            "name": "ayvazyan10/ameriabankvpos",
+            "version": "v2.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ayvazyan10/AmeriaBankvpos.git",
+                "reference": "3c135318a4efe671000af7ee42bfe1578cd9f1b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ayvazyan10/AmeriaBankvpos/zipball/3c135318a4efe671000af7ee42bfe1578cd9f1b4",
+                "reference": "3c135318a4efe671000af7ee42bfe1578cd9f1b4",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.0|^6.0|^7.0|^8.0|^9.0",
+                "phpunit/phpunit": "^8.0|^9.0|^10.0|^10.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "AmeriaBankVPOS": "Ayvazyan10\\AmeriaBankVPOS\\Facades\\AmeriaBankVPOS"
+                    },
+                    "providers": [
+                        "Ayvazyan10\\AmeriaBankVPOS\\AmeriaBankVPOSServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ayvazyan10\\AmeriaBankVPOS\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Razmik Ayvazyan",
+                    "email": "ayvazyan403@gmail.com",
+                    "homepage": "https://ayvazyan.pro"
+                }
+            ],
+            "description": "AmeriaBank VPOS service for Laravel",
+            "homepage": "https://github.com/ayvazyan10/ameriabankvpos",
+            "keywords": [
+                "AmeriaBank",
+                "laravel",
+                "payments",
+                "vpos"
+            ],
+            "support": {
+                "issues": "https://github.com/ayvazyan10/AmeriaBankvpos/issues",
+                "source": "https://github.com/ayvazyan10/AmeriaBankvpos/tree/v2.1.1"
+            },
+            "time": "2025-03-26T11:19:30+00:00"
         },
         {
             "name": "barryvdh/laravel-dompdf",

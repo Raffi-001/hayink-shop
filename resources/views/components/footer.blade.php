@@ -1,4 +1,4 @@
-<footer aria-labelledby="footer-heading" class="bg-gray-50">
+<footer aria-labelledby="footer-heading" class="bg-gray-50 mt-8">
     <h2 id="footer-heading" class="sr-only">Footer</h2>
     <div class="px-4 sm:px-6 lg:px-8">
         <div class="border-t border-gray-200">
@@ -13,19 +13,10 @@
                                 <h3 class="text-sm font-medium text-gray-900">Products</h3>
                                 <ul role="list" class="mt-6 space-y-6">
                                     <li class="text-sm">
-                                        <a href="#" class="text-gray-500 hover:text-gray-600">Bags</a>
+                                        <a href="/collections/men" class="text-gray-500 hover:text-gray-600">Men</a>
                                     </li>
                                     <li class="text-sm">
-                                        <a href="#" class="text-gray-500 hover:text-gray-600">Tees</a>
-                                    </li>
-                                    <li class="text-sm">
-                                        <a href="#" class="text-gray-500 hover:text-gray-600">Objects</a>
-                                    </li>
-                                    <li class="text-sm">
-                                        <a href="#" class="text-gray-500 hover:text-gray-600">Home Goods</a>
-                                    </li>
-                                    <li class="text-sm">
-                                        <a href="#" class="text-gray-500 hover:text-gray-600">Accessories</a>
+                                        <a href="/collections/women" class="text-gray-500 hover:text-gray-600">Women</a>
                                     </li>
                                 </ul>
                             </div>
@@ -41,18 +32,6 @@
                                     <li class="text-sm">
                                         <a href="#" class="text-gray-500 hover:text-gray-600">Returns</a>
                                     </li>
-                                    <li class="text-sm">
-                                        <a href="#" class="text-gray-500 hover:text-gray-600">Warranty</a>
-                                    </li>
-                                    <li class="text-sm">
-                                        <a href="#" class="text-gray-500 hover:text-gray-600">Secure Payments</a>
-                                    </li>
-                                    <li class="text-sm">
-                                        <a href="#" class="text-gray-500 hover:text-gray-600">FAQ</a>
-                                    </li>
-                                    <li class="text-sm">
-                                        <a href="#" class="text-gray-500 hover:text-gray-600">Find a store</a>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -61,22 +40,7 @@
                                 <h3 class="text-sm font-medium text-gray-900">Company</h3>
                                 <ul role="list" class="mt-6 space-y-6">
                                     <li class="text-sm">
-                                        <a href="#" class="text-gray-500 hover:text-gray-600">Who we are</a>
-                                    </li>
-                                    <li class="text-sm">
-                                        <a href="#" class="text-gray-500 hover:text-gray-600">Sustainability</a>
-                                    </li>
-                                    <li class="text-sm">
-                                        <a href="#" class="text-gray-500 hover:text-gray-600">Press</a>
-                                    </li>
-                                    <li class="text-sm">
-                                        <a href="#" class="text-gray-500 hover:text-gray-600">Careers</a>
-                                    </li>
-                                    <li class="text-sm">
-                                        <a href="#" class="text-gray-500 hover:text-gray-600">Terms &amp; Conditions</a>
-                                    </li>
-                                    <li class="text-sm">
-                                        <a href="#" class="text-gray-500 hover:text-gray-600">Privacy</a>
+                                        <a href="/about" class="text-gray-500 hover:text-gray-600">About Us</a>
                                     </li>
                                 </ul>
                             </div>
@@ -85,15 +49,6 @@
                                 <ul role="list" class="mt-6 space-y-6">
                                     <li class="text-sm">
                                         <a href="#" class="text-gray-500 hover:text-gray-600">Terms of Service</a>
-                                    </li>
-                                    <li class="text-sm">
-                                        <a href="#" class="text-gray-500 hover:text-gray-600">Return Policy</a>
-                                    </li>
-                                    <li class="text-sm">
-                                        <a href="#" class="text-gray-500 hover:text-gray-600">Privacy Policy</a>
-                                    </li>
-                                    <li class="text-sm">
-                                        <a href="#" class="text-gray-500 hover:text-gray-600">Shipping Policy</a>
                                     </li>
                                 </ul>
                             </div>
@@ -153,17 +108,8 @@
 
             <div class="mt-4 flex items-center justify-center md:mt-0">
                 <div class="flex space-x-8">
-                    <a href="#" class="text-sm text-gray-500 hover:text-gray-600">Accessibility</a>
                     <a href="#" class="text-sm text-gray-500 hover:text-gray-600">Privacy</a>
                     <a href="#" class="text-sm text-gray-500 hover:text-gray-600">Terms</a>
-                </div>
-
-                <div class="ml-6 border-l border-gray-200 pl-6">
-                    <a href="#" class="flex items-center text-gray-500 hover:text-gray-600">
-                        <img src="https://tailwindui.com/img/flags/flag-canada.svg" alt="" class="h-auto w-5 flex-shrink-0" />
-                        <span class="ml-3 text-sm">Change</span>
-                        <span class="sr-only">location and currency</span>
-                    </a>
                 </div>
             </div>
         </div>

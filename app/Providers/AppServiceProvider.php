@@ -10,6 +10,7 @@ use Illuminate\Support\ServiceProvider;
 use Lunar\Admin\Support\Facades\LunarPanel;
 use Lunar\Base\ShippingModifiers;
 use Lunar\Shipping\ShippingPlugin;
+use Lunar\Facades\Payments;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,10 @@ class AppServiceProvider extends ServiceProvider
             ])
         )
             ->register();
+
+        Payments::extend('custom', function ($app) {
+            return $app->make(CustomPayment::class);
+        });
     }
 
     /**
@@ -47,5 +52,7 @@ class AppServiceProvider extends ServiceProvider
             // Js::make('fancyproductdesigner', __DIR__ . '/../../resources/fpd-js/dist/js/FancyProductDesigner.js'),
             // Js::make('fpdinit', __DIR__ . '/../../resources/fpd-js/dist/js/fpdinit.js'),
         ]);
+
+
     }
 }
