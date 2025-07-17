@@ -52,6 +52,7 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1" for="description">Tell Us About Yourself as an Artist</label>
                     <textarea id="description" name="description" rows="4"
                               class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"></textarea>
+                    <p class="text-xs text-gray-500 mt-1">This text will be used publicly as your Artist biography.</p>
                 </div>
 
                 <div>

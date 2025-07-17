@@ -32,7 +32,9 @@
                 Create Your Own Product
             </a>
 
+            @if(false)
             <x-header.search class="max-w-sm mr-4" />
+            @endif
 
             <div class="flex items-center -mr-4 sm:-mr-6 lg:mr-0">
                 @livewire('components.cart')
