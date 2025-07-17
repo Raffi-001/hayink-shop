@@ -2,53 +2,77 @@
 
 namespace App\Livewire;
 
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Wizard;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Form;
 use Illuminate\View\View;
 use Livewire\Component;
-use Lunar\Facades\CartSession;
-use Lunar\Models\Cart;
-use Lunar\Models\Order;
+use Illuminate\Support\HtmlString;
 
-class ApplyAsAnArtistPage extends Component
+class ApplyAsAnArtistPage extends Component implements HasForms
 {
-    public $positions = [
-        'medium-back' => [
-            'img' => 'images/positioning-1.png',
-        ],
-        'full-front' => [
-            'img' => 'images/positioning-2.png',
-        ],
-        'left-chest' => [
-            'img' => 'images/positioning-3.png',
-        ],
-        'left-sleeve' => [
-            'img' => 'images/positioning-4.png',
-        ],
-        'right-sleeve' => [
-            'img' => 'images/positioning-5.png',
-        ],
-        'full-back' => [
-            'img' => 'images/positioning-6.png',
-        ],
-    ];
+    use InteractsWithForms;
 
-    public $selectedPositions = [];
+    public array $data = [];
 
-    public function togglePosition($key)
+    public function mount(): void
     {
-        if (in_array($key, $this->selectedPositions)) {
-            // Unselect it
-            $this->selectedPositions = array_filter(
-                $this->selectedPositions,
-                fn ($selected) => $selected !== $key
-            );
-        } else {
-            // Select it
-            $this->selectedPositions[] = $key;
-        }
+        $this->form->fill();
+    }
+
+    public function submit()
+    {
+        //
     }
 
     public function render(): View
     {
         return view('livewire.apply-as-an-artist-page');
+    }
+
+    public function form(Form $form): Form
+    {
+        return $form->schema([
+            Wizard::make([
+                Wizard\Step::make('Personal Information')
+                    ->schema([
+                        TextInput::make('name')
+                            ->required(),
+                        TextInput::make('email')
+                            ->email()
+                            ->required(),
+                        TextInput::make('phone_number')
+                            ->required(),
+                        TextInput::make('country')
+                            ->label('Country of residency')
+                            ->required(),
+                    ]),
+                Wizard\Step::make('Delivery')
+                    ->schema([
+                        TextInput::make('portfolio_url')
+                            ->helperText('Behance, Instagram, personal site, etc.'),
+                        SpatieMediaLibraryFileUpload::make('porfolio_samples')
+                            ->image()
+                            ->previewable()
+                            ->multiple(),
+                    ]),
+                Wizard\Step::make('Billing')
+                    ->schema([
+                        Textarea::make('about_myself')
+                            ->label('Tell Us About Yourself as an Artist'),
+                        Textarea::make('type_of_design')
+                            ->label('What Kind of Designs Do You Create?'),
+                        Textarea::make('how_did_you_hear')
+                            ->label('How did you hear about us?'),
+                    ]),
+            ])->submitAction(new HtmlString('<button type="submit">Submit</button>'))
+                ->nextAction(fn ($action) => $action->label('Next')->color('gray'))
+                ->previousAction(fn ($action) => $action->label('Back')->color('gray')),
+
+        ])->statePath('data');
     }
 }

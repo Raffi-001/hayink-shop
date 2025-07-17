@@ -22,6 +22,7 @@
         href="{{ asset('favicon.svg') }}"
     >
     @livewireStyles
+    @filamentStyles
     @vite('resources/css/app.css')
 </head>
 
@@ -35,6 +36,7 @@
     <x-footer />
 
     @livewireScripts
+    @filamentScripts
 </body>
 
 </html>

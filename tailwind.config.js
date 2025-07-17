@@ -1,16 +1,22 @@
 /** @type {import('tailwindcss').Config} */
+import preset from './vendor/filament/support/tailwind.config.preset'
+
 module.exports = {
+    presets: [preset],
     content: [
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
         "./resources/**/*.vue",
         "./vendor/lunarphp/**/*.blade.php",
-        "./vendor/lunarphp/**/*.vue"
+        "./vendor/lunarphp/**/*.vue",
+        './app/Filament/**/*.php',
+        './resources/views/filament/**/*.blade.php',
+        './vendor/filament/**/*.blade.php',
     ],
     theme: {
         extend: {
             colors: {
-                primary: {
+                secondary: {
                     DEFAULT: '#00aea8', // Base color
                     50: '#e0f8f8', // Lightest
                     100: '#b3eded',
@@ -23,18 +29,18 @@ module.exports = {
                     800: '#005b57',
                     900: '#003d3b', // Darkest
                 },
-                secondary: {
-                    DEFAULT: '#dc163e', // Base color
-                    50: '#fde7ec', // Lightest
-                    100: '#f9beca',
-                    200: '#f4939e',
-                    300: '#ef6873',
-                    400: '#eb3e51',
-                    500: '#dc163e', // Base
-                    600: '#b21031', // Darker
-                    700: '#880b24',
-                    800: '#5e0618',
-                    900: '#35030e', // Darkest
+                primary: {
+                    DEFAULT: '#333', // Base gray
+                    50:  '#f9f9f9',      // Lightest
+                    100: '#e6e6e6',
+                    200: '#cccccc',
+                    300: '#b3b3b3',
+                    400: '#999999',
+                    500: '#333',      // Base
+                    600: '#666666',      // Darker
+                    700: '#4d4d4d',
+                    800: '#333333',
+                    900: '#1a1a1a',      // Darkest
                 },
             },
         },
