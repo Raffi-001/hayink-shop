@@ -57,7 +57,7 @@
                 </div>
             </div>
 
-            <div class="lg:grid lg:grid-cols-2 lg:gap-x-6 xl:gap-x-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-x-6 xl:gap-x-8" style="display: none">
                 <div class="flex items-center rounded-lg bg-gray-100 p-6 sm:p-10">
                     <div class="mx-auto max-w-sm">
                         <h3 class="font-semibold text-gray-900">Sign up for our newsletter</h3>
@@ -85,6 +85,7 @@
 
                 <div class="relative mt-6 flex items-center px-6 py-12 sm:px-10 sm:py-16 lg:mt-0">
                     <div class="absolute inset-0 overflow-hidden rounded-lg">
+
                         <img src="https://tailwindui.com/img/ecommerce-images/footer-02-exclusive-sale.jpg" alt="" class="h-full w-full object-cover object-center saturate-0 filter" />
                         <div class="absolute inset-0 bg-indigo-600 bg-opacity-90"></div>
                     </div>

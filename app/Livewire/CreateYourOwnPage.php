@@ -2,8 +2,10 @@
 
 namespace App\Livewire;
 
+use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -84,6 +86,18 @@ class CreateYourOwnPage extends Component implements HasForms
                                         'full_back' => 'Full Back',
                                     ])
                                     ->required(),
+                                Radio::make('tshirt_type')
+                                    ->options([
+                                        'regular' => 'Regular',
+                                        'oversize' => 'Oversize',
+                                    ]),
+                                ColorPicker::make('color'),
+                                Select::make('delivery_period')
+                                    ->options([
+                                        '24_hours' => '24 Hours',
+                                        'same_day' => 'Same Day',
+                                        '36_hours' => 'Within 36 Hours',
+                                    ]),
                                 Textarea::make('notes'),
                             ])->defaultItems(2),
                     ]),

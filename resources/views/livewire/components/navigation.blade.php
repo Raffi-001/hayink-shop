@@ -12,13 +12,26 @@
 
             <nav class="hidden lg:gap-4 lg:flex lg:ml-8">
                 @foreach ($this->collections as $collection)
-                    <a class="text-sm font-medium transition hover:opacity-75"
+                    <a class="text-sm font-medium transition hover:opacity-75 uppercase hover:bg-primary-200 p-3"
                        href="{{ route('collection.view', $collection->defaultUrl->slug) }}"
                        wire:navigate
                     >
                         {{ $collection->translateAttribute('name') }}
                     </a>
                 @endforeach
+                    <a class="text-sm font-medium transition hover:opacity-75 uppercase hover:bg-primary-200 p-3"
+                       href="{{ route('pages.artists') }}"
+                       wire:navigate
+                    >
+                        Meet the Artists
+                    </a>
+                    <a class="text-sm font-medium transition hover:opacity-75 uppercase hover:bg-primary-200 p-3"
+                       href="{{ route('pages.services') }}"
+                       wire:navigate
+                    >
+                        Services
+                    </a>
+
             </nav>
         </div>
 
