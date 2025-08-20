@@ -94,6 +94,7 @@
                 <div class="mx-auto bg-white my-10" x-data="{ open: null }">
 
                     <!-- Section 1 -->
+                    @if(data_get($this, 'sizeChart'))
                     <div class="border-b">
                         <button @click="open === 1 ? open = null : open = 1" class="w-full text-left flex justify-between items-center py-4">
                             <span class="text-lg font-medium">Size Chart</span>
@@ -102,90 +103,31 @@
                             </svg>
                         </button>
                         <div x-show="open === 1" x-collapse class="text-gray-700">
-                            <div class="bg-white rounded-xl">
-
-                                <div class="overflow-x-auto">
-                                    <table class="min-w-full text-left text-sm border border-gray-200">
-                                        <thead>
-                                        <tr class="bg-gray-100 text-gray-700">
-                                            <th class="py-3 px-4 border-b">Size</th>
-                                            <th class="py-3 px-4 border-b">Chest (in)</th>
-                                            <th class="py-3 px-4 border-b">Length (in)</th>
-                                            <th class="py-3 px-4 border-b">Sleeve (in)</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody class="text-gray-600">
-                                        <tr>
-                                            <td class="py-2 px-4 border-b">S</td>
-                                            <td class="py-2 px-4 border-b">34–36</td>
-                                            <td class="py-2 px-4 border-b">27</td>
-                                            <td class="py-2 px-4 border-b">8</td>
-                                        </tr>
-                                        <tr class="bg-gray-50">
-                                            <td class="py-2 px-4 border-b">M</td>
-                                            <td class="py-2 px-4 border-b">38–40</td>
-                                            <td class="py-2 px-4 border-b">28</td>
-                                            <td class="py-2 px-4 border-b">8.5</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="py-2 px-4 border-b">L</td>
-                                            <td class="py-2 px-4 border-b">42–44</td>
-                                            <td class="py-2 px-4 border-b">29</td>
-                                            <td class="py-2 px-4 border-b">9</td>
-                                        </tr>
-                                        <tr class="bg-gray-50">
-                                            <td class="py-2 px-4 border-b">XL</td>
-                                            <td class="py-2 px-4 border-b">46–48</td>
-                                            <td class="py-2 px-4 border-b">30</td>
-                                            <td class="py-2 px-4 border-b">9.5</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="py-2 px-4">XXL</td>
-                                            <td class="py-2 px-4">50–52</td>
-                                            <td class="py-2 px-4">31</td>
-                                            <td class="py-2 px-4">10</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <p class="text-xs text-gray-500 mt-4">* Measurements may vary slightly due to manual measurement and fabric properties.</p>
-                            </div>
+                            {!! data_get($this, 'sizeChart') !!}
 
                         </div>
                     </div>
+                    @endif
 
                     <!-- Section 2 -->
-                    <div class="border-b">
-                        <button @click="open === 2 ? open = null : open = 2" class="w-full text-left flex justify-between items-center py-4">
-                            <span class="text-lg font-medium">Materia &amp; Care</span>
-                            <svg :class="{'rotate-180': open === 2}" class="w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                        <div x-show="open === 2" x-collapse class="text-gray-700">
-                            <div class="max-w-xl mx-auto bg-white">
+                    @if(data_get($this, 'care'))
+                        <div class="border-b">
+                            <button @click="open === 2 ? open = null : open = 2" class="w-full text-left flex justify-between items-center py-4">
+                                <span class="text-lg font-medium">Material &amp; Care</span>
+                                <svg :class="{'rotate-180': open === 2}" class="w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div x-show="open === 2" x-collapse class="text-gray-700">
+                                {!! data_get($this, 'care') !!}
 
-                                <ul class="space-y-2 text-gray-700 text-sm leading-relaxed list-disc list-inside">
-                                    <li><strong>Material:</strong> 100% Organic Cotton</li>
-                                    <li><strong>Fabric Weight:</strong> 180 GSM (lightweight and breathable)</li>
-                                    <li><strong>Texture:</strong> Soft-touch, pre-shrunk, enzyme-washed</li>
-                                </ul>
-
-                                <div class="mt-4">
-                                    <h3 class="text-lg font-medium mb-2">Care Instructions</h3>
-                                    <ul class="space-y-1 text-gray-700 text-sm list-disc list-inside">
-                                        <li>Machine wash cold with like colors</li>
-                                        <li>Do not bleach</li>
-                                        <li>Tumble dry low or hang dry</li>
-                                        <li>Iron on reverse side if needed</li>
-                                        <li>Do not dry clean</li>
-                                    </ul>
-                                </div>
                             </div>
-
                         </div>
-                    </div>
+                    @endif
+
+
+
+
                 </div>
 
             </div>

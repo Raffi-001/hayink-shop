@@ -27,6 +27,7 @@
 
     <section class="py-8 flex gap-8 bg-white max-w-7xl mx-auto">
         @foreach ($collections as $collection)
+            <div>
             <a href="/collections/{{ $collection->translateAttribute('name') }}">
             <div class="flex flex-col gap-4 border border-primary-200 p-4">
                 <div>
@@ -42,6 +43,7 @@
                 </div>
             </div>
             </a>
+            </div>
         @endforeach
     </section>
 

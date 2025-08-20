@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-2 mt-8 lg:grid-cols-4 gap-x-1 gap-y-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 mt-8 lg:grid-cols-3 xl:grid-cols-4 gap-x-1 gap-y-8">
             @forelse($this->collection->products as $product)
                 <x-product-card :product="$product" />
             @empty

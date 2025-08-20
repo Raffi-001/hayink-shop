@@ -33,64 +33,64 @@
         </div>
     </section>
 
-    <section class="py-24 flex flex-col items-center gap-8 bg-white">
-        <div class="max-w-7xl grid grid-cols-3 gap-8">
+    <section class="py-8 lg:py-24 flex flex-col items-center gap-8 bg-white">
+        <div class="max-w-7xl md:grid md:grid-cols-3 gap-8 px-8">
             <div class="">
                 <img src="/images/services-1.png" />
             </div>
             <div class="col-span-2">
                 <div class="">
-                    <h1 class="mt-3 text-[2rem] font-bold tracking-tight text-black">01.Durable Prints Premium Fabrics</h1>
-                    <p class="mt-3 text-2xl leading-relaxed text-slate-400">We understand time matters — that’s why we offer quick turnaround times, even for custom and bulk orders. From first sketch to delivery, we move fast without compromising on quality. Perfect for events, campaigns, and seasonal drops.</p>
+                    <h1 class="mt-3 text-[1.5rem] lg:text-[2rem] font-bold tracking-tight text-black">01.Durable Prints Premium Fabrics</h1>
+                    <p class="mt-3 text-xl lg:text-2xl leading-relaxed text-slate-400">We understand time matters — that’s why we offer quick turnaround times, even for custom and bulk orders. From first sketch to delivery, we move fast without compromising on quality. Perfect for events, campaigns, and seasonal drops.</p>
                 </div>
             </div>
         </div>
-        <div class="max-w-7xl grid grid-cols-3 gap-8">
+        <div class="max-w-7xl md:grid md:grid-cols-3 gap-8 px-8">
             <div class="">
                 <img src="/images/services-2.png" />
             </div>
             <div class="col-span-2">
                 <div class="">
-                    <h1 class="mt-3 text-[2rem] font-bold tracking-tight text-black">02. Fast turnaround, no hassle.</h1>
-                    <p class="mt-3 text-2xl leading-relaxed text-slate-400">We understand time matters — that’s why we offer quick turnaround times, even for custom and bulk orders. From first sketch to delivery, we move fast without compromising on quality. Perfect for events, campaigns, and seasonal drops.</p>
+                    <h1 class="mt-3 text-[1.5rem] lg:text-[2rem] font-bold tracking-tight text-black">02. Fast turnaround, no hassle.</h1>
+                    <p class="mt-3 text-xl lg:text-2xl leading-relaxed text-slate-400">We understand time matters — that’s why we offer quick turnaround times, even for custom and bulk orders. From first sketch to delivery, we move fast without compromising on quality. Perfect for events, campaigns, and seasonal drops.</p>
                 </div>
             </div>
         </div>
-        <div class="max-w-7xl grid grid-cols-3 gap-8">
+        <div class="max-w-7xl md:grid md:grid-cols-3 gap-8 px-8">
             <div class="">
                 <img src="/images/services-3.png" />
             </div>
             <div class="col-span-2">
                 <div class="">
-                    <h1 class="mt-3 text-[2rem] font-bold tracking-tight text-black">03. Small Runs to Big Drops</h1>
-                    <p class="mt-3 text-2xl leading-relaxed text-slate-400">
+                    <h1 class="mt-3 text-[1.5rem] lg:text-[2rem] font-bold tracking-tight text-black">03. Small Runs to Big Drops</h1>
+                    <p class="mt-3 text-xl lg:text-2xl leading-relaxed text-slate-400">
 
                         Whether you need 10 custom pieces or 500+, we’ve got you. No minimums, scalable printing options, and flexible delivery make Hay Ink the right partner for both grassroots campaigns and growing brands.</p>
                 </div>
             </div>
         </div>
-        <div class="max-w-7xl grid grid-cols-3 gap-8">
+        <div class="max-w-7xl md:grid md:grid-cols-3 gap-8 px-8">
             <div class="">
                 <img src="/images/services-4.png" />
             </div>
             <div class="col-span-2">
                 <div class="">
-                    <h1 class="mt-3 text-[2rem] font-bold tracking-tight text-black">04. Local Expertise, Personal Support</h1>
-                    <p class="mt-3 text-2xl leading-relaxed text-slate-400">From the first idea to final delivery, you’ll work directly with a team based in Armenia that understands your market. Whether you’re a museum, NGO, or local brand, we guide you every step of the way.</p>
+                    <h1 class="mt-3 text-[1.5rem] lg:text-[2rem] font-bold tracking-tight text-black">04. Local Expertise, Personal Support</h1>
+                    <p class="mt-3 text-xl lg:text-2xl leading-relaxed text-slate-400">From the first idea to final delivery, you’ll work directly with a team based in Armenia that understands your market. Whether you’re a museum, NGO, or local brand, we guide you every step of the way.</p>
                 </div>
             </div>
         </div>
 
     </section>
 
-    <section class="py-24 flex flex-col items-center gap-8 bg-white max-w-7xl mx-auto">
+    <section class="py-8 lg:py-24 flex flex-col items-center gap-8 bg-white max-w-7xl mx-auto px-8">
 
         <h1 class="mt-3 text-[2rem] font-bold tracking-tight text-black">Discover our range</h1>
 
 
 
-        <div class="grid grid-cols-2 gap-8 w-full">
-            <div class="max-w-7xl grid grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
+            <div class="max-w-7xl md:grid md:grid-cols-3 gap-8">
                 <div class="col-span-2">
                     <div class="">
                         <h1 class="mt-3 text-[2rem] font-bold tracking-tight text-black">01. Garments</h1>
@@ -101,7 +101,7 @@
                     <img src="/images/services-2-1.png" />
                 </div>
             </div>
-            <div class="max-w-7xl grid grid-cols-3 gap-8">
+            <div class="max-w-7xl md:grid md:grid-cols-3 gap-8">
                 <div class="col-span-2">
                     <div class="">
                         <h1 class="mt-3 text-[2rem] font-bold tracking-tight text-black">02. Silk & accessories</h1>
@@ -112,7 +112,7 @@
                     <img src="/images/services-2-2.png" />
                 </div>
             </div>
-            <div class="max-w-7xl grid grid-cols-3 gap-8">
+            <div class="max-w-7xl md:grid md:grid-cols-3 gap-8">
                 <div class="col-span-2">
                     <div class="">
                         <h1 class="mt-3 text-[2rem] font-bold tracking-tight text-black">03. Home & Lifestyle</h1>
@@ -123,7 +123,7 @@
                     <img src="/images/services-2-3.png" />
                 </div>
             </div>
-            <div class="max-w-7xl grid grid-cols-3 gap-8">
+            <div class="max-w-7xl md:grid md:grid-cols-3 gap-8">
                 <div class="col-span-2">
                     <div class="">
                         <h1 class="mt-3 text-[2rem] font-bold tracking-tight text-black">04. Flat Fabric Printing</h1>
@@ -141,13 +141,13 @@
 
     </section>
 
-    <section class="py-24 flex flex-col items-center gap-8 bg-white max-w-7xl mx-auto">
+    <section class="py-8 lg:py-24 flex flex-col items-center gap-8 bg-white max-w-7xl mx-auto px-8">
 
         <h1 class="mt-3 text-[2rem] font-bold tracking-tight text-black">An Easy, Stress-Free Process</h1>
 
 
 
-        <div class="grid grid-cols-2 gap-8 w-full">
+        <div class="md:grid md:grid-cols-2 gap-8 w-full">
             <div class="">
                 <div class="">
                     <div class="">
@@ -190,7 +190,7 @@
     </section>
 
 
-    <section class="py-24 flex flex-col items-center gap-8 bg-white max-w-7xl mx-auto">
+    <section class="py-8 lg:py-24 flex flex-col items-center gap-8 bg-white max-w-7xl mx-auto px-8">
 
         <h1 class="mt-3 text-[2rem] font-bold tracking-tight text-black">Let’s Go</h1>
 
@@ -231,7 +231,7 @@
                             x-transition:leave-start="max-h-40 opacity-100"
                             x-transition:leave-end="max-h-0 opacity-0"
                             class="px-6 pb-4 text-gray-600 text-sm overflow-hidden"
-                            style="max-height: 0;">
+                            style="">
                             Browse our full range of garments, accessories, and fabric options. Whether you need branded uniforms, workshop-ready blanks, or printed items for events — we’ve got the options ready.
                         </div>
                     </div>
@@ -260,7 +260,7 @@
                             x-transition:leave-start="max-h-40 opacity-100"
                             x-transition:leave-end="max-h-0 opacity-0"
                             class="px-6 pb-4 text-gray-600 text-sm overflow-hidden"
-                            style="max-height: 0;">
+                            style="">
                             Send us your requirements and receive a clear, transparent quote tailored to your needs. Our team will support you with advice on materials, print options, and pricing that fits your goals.
                         </div>
                     </div>
@@ -290,7 +290,7 @@
                             x-transition:leave-start="max-h-40 opacity-100"
                             x-transition:leave-end="max-h-0 opacity-0"
                             class="px-6 pb-4 text-gray-600 text-sm overflow-hidden"
-                            style="max-height: 0;">
+                            style="">
                             Once your order is confirmed, we begin printing using high-quality, reliable methods. Orders are delivered to your office or workshop — on time and ready to use.
                         </div>
                     </div>
@@ -318,7 +318,7 @@
                             x-transition:leave-start="max-h-40 opacity-100"
                             x-transition:leave-end="max-h-0 opacity-0"
                             class="px-6 pb-4 text-gray-600 text-sm overflow-hidden pb-8"
-                            style="max-height: 0;">
+                            style="">
                             Distribute to your team, partners, or event attendees with confidence. Whether it’s internal use or public giveaways, our merch holds up — and reflects your organization’s quality.
                         </div>
                     </div>

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\ProductInfoBlock;
 use App\Traits\FetchesUrls;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
@@ -165,6 +166,41 @@ class ProductPage extends Component
             'collectionLabel' => $collectionLabel,
             'collectionUrl' => config('app.url') . '/collections/' . $collectionUrl,
         ];
+    }
+
+    public function getSizeChartProperty(): string|null
+    {
+        $sizeChart = data_get($this, 'product.attribute_data.size-chart');
+
+        if($sizeChart) {
+            $sizeChartValue = $sizeChart->getValue();
+
+            $block = ProductInfoBlock::where('type', 'size_chart')->where('title', $sizeChartValue)->first();
+
+            if($block) {
+                return $block->body;
+            }
+        }
+
+        return null;
+    }
+
+    public function getCareProperty(): string|null
+    {
+
+        $care = data_get($this, 'product.attribute_data.material-and-care');
+
+        if($care) {
+            $careValue = $care->getValue();
+
+            $block = ProductInfoBlock::where('type', 'size_chart')->where('title', $careValue)->first();
+
+            if($block) {
+                return $block->body;
+            }
+        }
+
+        return null;
     }
 
     public function render(): View

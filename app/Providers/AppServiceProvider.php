@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Filament\Resources\ProductInfoBlockResource;
 use App\Modifiers\ShippingModifier;
 use Filament\Support\Assets\Css;
 use Filament\Support\Assets\Js;
@@ -19,12 +20,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        LunarPanel::panel(
-            fn ($panel) => $panel->plugins([
-                new ShippingPlugin,
-            ])
-        )
-            ->register();
+        LunarPanel::panel(function ($panel) {
+            return $panel
+                ->plugins([
+                    new ShippingPlugin,
+                ])
+                ->resources([
+                    ProductInfoBlockResource::class,
+                ]);
+        })->register();
 
         Payments::extend('custom', function ($app) {
             return $app->make(CustomPayment::class);

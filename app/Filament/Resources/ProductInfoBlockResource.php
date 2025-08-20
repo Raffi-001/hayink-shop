@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Filament\Designer\Resources;
+namespace App\Filament\Resources;
 
-use App\Filament\Designer\Resources\DesignerProductResource\Pages;
-use App\Filament\Designer\Resources\DesignerProductResource\RelationManagers;
-use App\Models\DesignerProduct;
+use App\Enums\ProductInfoType;
+use App\Filament\Resources\ProductInfoBlockResource\Pages;
+use App\Filament\Resources\ProductInfoBlockResource\RelationManagers;
+use App\Models\ProductInfoBlock;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,35 +14,35 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class DesignerProductResource extends Resource
+class ProductInfoBlockResource extends Resource
 {
-    protected static ?string $model = DesignerProduct::class;
+    protected static ?string $model = ProductInfoBlock::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    protected static ?string $navigationLabel = 'My Products';
-
-    protected static ?string $label = 'Product';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Forms\Components\Select::make('type')
+                    ->options(ProductInfoType::class),
+                Forms\Components\TextInput::make('title')
+                    ->label('handle')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Textarea::make('description'),
-            ])->columns(1);
+                Forms\Components\Textarea::make('body')
+                    ->required()
+                    ->columnSpanFull(),
+            ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\TextColumn::make('type')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('status')
-                    ->badge()
+                Tables\Columns\TextColumn::make('title')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -56,13 +57,7 @@ class DesignerProductResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\Action::make('Design')
-                    ->button()
-                    ->color('success')
-                    ->url(Pages\DesignTool::getUrl())
-                    ->icon('heroicon-o-sparkles'),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -71,11 +66,29 @@ class DesignerProductResource extends Resource
             ]);
     }
 
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageDesignerProducts::route('/'),
-            'design' => Pages\DesignTool::route('/design'),
+            'index' => Pages\ListProductInfoBlocks::route('/'),
+            'create' => Pages\CreateProductInfoBlock::route('/create'),
+            'edit' => Pages\EditProductInfoBlock::route('/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Settings';
+    }
+
+    public static function getNavigationSort(): ?int
+    {
+        return 10;
     }
 }

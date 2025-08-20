@@ -41,4 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function designImage()
+    {
+        return $this->hasMany(DesignImage::class);
+    }
 }

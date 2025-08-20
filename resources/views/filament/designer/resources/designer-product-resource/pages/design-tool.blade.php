@@ -15,19 +15,19 @@
                     // on the page...
                     const appOptions = {
                         productsJSON: 'http://hi.test/fpd-js/data/products/product-categories.json',
-                        designsJSON: 'http://hi.test/fpd-js/data/designs/design-categories.json',
+                        designsJSON: 'http://hi.test/designs-catalog',
                         layouts: 'http://hi.test/fpd-js/data/layouts/data.json',
                         langJSON: 'http://hi.test/fpd-js/data/langs/default.json',
                         initialActiveModule: 'products',
                         // modalMode: '#open-modal',
                         mainBarModules: [
                             'products',
-                            'images',
-                            'text',
-                            // 'designs',
-                            'manage-layers',
-                            'text-layers',
-                            'save-load'
+                            // 'images',
+                            // 'text',
+                            'designs',
+                            // 'manage-layers',
+                            // 'text-layers',
+                            // 'save-load'
                         ],
                         textTemplates: [
                             {
@@ -45,7 +45,7 @@
                                 }
                             }
                         ],
-                        fileServerURL: '', //enter the url to the file-handler.php, see https://github.com/radykal/fpd-js-server
+                        fileServerURL: 'http://hi.test/art/upload-design', //enter the url to the file-handler.php, see https://github.com/radykal/fpd-js-server
                         facebookAppId: '',
                         instagramClientId: '',
                         instagramRedirectUri: 'http://hi.test/fpd-js/data/html/instagram_auth.html',
@@ -62,7 +62,7 @@
                             draggable: true,
                             resizable: true,
                             autoCenter: true,
-                            price: 10,
+                            // price: 10,
                             maxSize: 10,
                             autoSelect: true,
                             advancedEditing: true
@@ -80,6 +80,8 @@
                     document.getElementById('fpd-target'),
                     appOptions
                 );
+
+                    console.log(fpd.getProduct());
 
                 })
 

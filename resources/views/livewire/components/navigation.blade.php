@@ -36,12 +36,13 @@
         </div>
 
         <div class="flex items-center justify-between flex-1 ml-4 lg:justify-end">
+            <div class="lg:hidden">&nbsp;</div>
 
-            <a href="{{ route('apply-as-an-artist.view') }}" type="submit" class="px-4 py-2 text-sm font-medium text-center text-white bg-primary-500 hover:bg-primary-600 mr-4">
+            <a href="{{ route('apply-as-an-artist.view') }}" type="submit" class="px-4 py-2 text-sm font-medium text-center text-white bg-primary-500 hover:bg-primary-600 mr-4 hidden lg:inline-block">
                 Apply as an Artist
             </a>
 
-            <a href="{{ route('create-your-own.view') }}" type="submit" class="px-4 py-2 text-sm font-medium text-center text-white bg-primary-500 hover:bg-primary-600 mr-4">
+            <a href="{{ route('create-your-own.view') }}" type="submit" class="px-4 py-2 text-sm font-medium text-center text-white bg-primary-500 hover:bg-primary-600 mr-4 hidden lg:inline-block">
                 Create Your Own Product
             </a>
 
@@ -89,7 +90,36 @@
                                     </a>
                                 </li>
                             @endforeach
+                                <li>
+                                    <a class="text-sm font-medium"
+                                       href="{{ route('pages.artists') }}"
+                                       wire:navigate
+                                    >
+                                        Meet the Artists
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="text-sm font-medium"
+                                       href="{{ route('pages.services') }}"
+                                       wire:navigate
+                                    >
+                                        Services
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ route('apply-as-an-artist.view') }}" type="submit" class="px-4 py-2 text-sm font-medium text-center text-white bg-primary-500 hover:bg-primary-600 mr-4">
+                                        Apply as an Artist
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ route('create-your-own.view') }}" type="submit" class="px-4 py-2 text-sm font-medium text-center text-white bg-primary-500 hover:bg-primary-600 mr-4">
+                                        Create Your Own Product
+                                    </a>
+                                </li>
                         </ul>
+
                     </div>
                 </div>
             </div>

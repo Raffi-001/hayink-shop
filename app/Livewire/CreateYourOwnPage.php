@@ -2,112 +2,73 @@
 
 namespace App\Livewire;
 
-use Filament\Forms\Components\ColorPicker;
-use Filament\Forms\Components\Radio;
-use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Wizard;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
-use Illuminate\View\View;
 use Livewire\Component;
-use Lunar\Facades\CartSession;
-use Lunar\Models\Cart;
-use Lunar\Models\Order;
+use Illuminate\View\View;
+use Filament\Forms\Form;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\CheckboxList;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\TextInput;
 
 class CreateYourOwnPage extends Component implements HasForms
 {
     use InteractsWithForms;
-
-    public $positions = [
-        'medium-back' => [
-            'img' => 'images/positioning-1.png',
-        ],
-        'full-front' => [
-            'img' => 'images/positioning-2.png',
-        ],
-        'left-chest' => [
-            'img' => 'images/positioning-3.png',
-        ],
-        'left-sleeve' => [
-            'img' => 'images/positioning-4.png',
-        ],
-        'right-sleeve' => [
-            'img' => 'images/positioning-5.png',
-        ],
-        'full-back' => [
-            'img' => 'images/positioning-6.png',
-        ],
-    ];
-
-    public $selectedPositions = [];
-
-    public function togglePosition($key)
-    {
-        if (in_array($key, $this->selectedPositions)) {
-            // Unselect it
-            $this->selectedPositions = array_filter(
-                $this->selectedPositions,
-                fn ($selected) => $selected !== $key
-            );
-        } else {
-            // Select it
-            $this->selectedPositions[] = $key;
-        }
-    }
 
     public function render(): View
     {
         return view('livewire.create-your-own-page');
     }
 
-    public function form(Form $form)
+    public function form(Form $form): Form
     {
         return $form->schema([
-            Wizard::make([
-                Wizard\Step::make('Product Specs')
-                    ->schema([
-                        Repeater::make('products')
-                            ->schema([
-                                TextInput::make('design_name')->required(),
-                                TextInput::make('quantity')->numeric()->required()->default(10),
-                                SpatieMediaLibraryFileUpload::make('design')->required(),
-                                Radio::make('position')
-                                    ->options([
-                                        'medium_back' => 'Medium Back',
-                                        'full_front' => 'Full Front',
-                                        'left_chest' => 'Left Chest',
-                                        'left_sleeve' => 'Left Sleeve',
-                                        'right_sleeve' => 'Right Sleeve',
-                                        'full_back' => 'Full Back',
-                                    ])
-                                    ->required(),
-                                Radio::make('tshirt_type')
-                                    ->options([
-                                        'regular' => 'Regular',
-                                        'oversize' => 'Oversize',
-                                    ]),
-                                ColorPicker::make('color'),
-                                Select::make('delivery_period')
-                                    ->options([
-                                        '24_hours' => '24 Hours',
-                                        'same_day' => 'Same Day',
-                                        '36_hours' => 'Within 36 Hours',
-                                    ]),
-                                Textarea::make('notes'),
-                            ])->defaultItems(2),
-                    ]),
-                Wizard\Step::make('Personal Info')
-                    ->schema([
-                        TextInput::make('name'),
-                        TextInput::make('email'),
-                        TextInput::make('phone_number'),
-                    ])
-            ])
+            FileUpload::make('design')
+                ->label('Upload Your Design')
+                ->image()
+                ->directory('designs')
+                ->required(),
+
+            CheckboxList::make('regions')
+                ->label('Select T-Shirt Region(s)')
+                ->options([
+                    'front' => 'Front',
+                    'back' => 'Back',
+                    'left_sleeve' => 'Left Sleeve',
+                    'right_sleeve' => 'Right Sleeve',
+                ])
+                ->required(),
+
+            Repeater::make('sizes')
+                ->label('Sizes & Quantities')
+                ->schema([
+                    TextInput::make('size')
+                        ->label('Size')
+                        ->disabled()
+                        ->dehydrated(),
+                    TextInput::make('qty')
+                        ->numeric()
+                        ->minValue(0)
+                        ->default(0)
+                        ->label('Quantity'),
+                ])
+                ->default(function () {
+                    return collect(['S','M','L','XL'])->map(fn ($size) => [
+                        'size' => $size,
+                        'qty' => 0,
+                    ])->toArray();
+                }),
         ]);
+    }
+
+    public function submit()
+    {
+        $data = $this->form->getState();
+
+        // Example: Save to DB or fire event
+        // TShirtOrder::create($data);
+
+        session()->flash('success', 'Your order has been submitted!');
     }
 }

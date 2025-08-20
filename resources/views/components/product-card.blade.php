@@ -16,7 +16,7 @@
             </div>
         </a>
 
-        <div  class="relative z-50">
+        <div  class="relative z-50 hidden">
             <button  class="border-0 focus:outline-none absolute left-0 bottom-0  text-white bg-secondary-500 uppercase justify-center font-medium w-full hidden group-hover:flex text-md py-2.5">
                 Quick Add
             </button>
