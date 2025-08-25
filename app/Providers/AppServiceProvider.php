@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Filament\Resources\ArtistApplicationResource;
+use App\Filament\Resources\CustomProductRequestResource;
 use App\Filament\Resources\ProductInfoBlockResource;
+use App\Models\CustomProductRequest;
 use App\Modifiers\ShippingModifier;
 use Filament\Support\Assets\Css;
 use Filament\Support\Assets\Js;
@@ -27,6 +30,8 @@ class AppServiceProvider extends ServiceProvider
                 ])
                 ->resources([
                     ProductInfoBlockResource::class,
+                    CustomProductRequestResource::class,
+                    ArtistApplicationResource::class,
                 ]);
         })->register();
 

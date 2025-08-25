@@ -76,7 +76,7 @@ class ApplyAsAnArtistPage extends Component implements HasForms
                         TextInput::make('portfolio_url')
                             ->helperText('Behance, Instagram, personal site, etc.'),
                         SpatieMediaLibraryFileUpload::make('porfolio_samples')
-                            ->collection('porfolio_samples')
+                            ->collection('porfolio-samples')
                             ->image()
                             ->previewable()
                             ->multiple(),

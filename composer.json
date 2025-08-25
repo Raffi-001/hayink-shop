@@ -25,6 +25,7 @@
         "lunarphp/stripe": "^1.0@beta",
         "lunarphp/table-rate-shipping": "^1.0@beta",
         "meilisearch/meilisearch-php": "^1.6",
+        "novadaemon/filament-pretty-json": "^2.7",
         "predis/predis": "^2.2"
     },
     "require-dev": {
