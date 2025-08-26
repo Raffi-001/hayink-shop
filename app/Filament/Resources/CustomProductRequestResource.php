@@ -7,6 +7,11 @@ use App\Filament\Resources\CustomProductRequestResource\RelationManagers;
 use App\Models\CustomProductRequest;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Infolists\Components\Grid;
+use Filament\Infolists\Components\RepeatableEntry;
+use Filament\Infolists\Components\SpatieMediaLibraryImageEntry;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -75,13 +80,36 @@ class CustomProductRequestResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                // Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                // Tables\Actions\BulkActionGroup::make([
+                //     Tables\Actions\DeleteBulkAction::make(),
+                // ]),
             ]);
+    }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist->schema([
+            SpatieMediaLibraryImageEntry::make('image')
+                ->collection('designs'),
+            Grid::make([
+               'sm' => 3,
+            ])->schema([
+                TextEntry::make('name'),
+                TextEntry::make('email'),
+                TextEntry::make('phone_number'),
+            ]),
+
+            RepeatableEntry::make('sizes')
+                ->schema([
+                    TextEntry::make('color'),
+                    TextEntry::make('size'),
+                    TextEntry::make('qty'),
+                ])
+                ->columns(3)
+        ])->columns(1);
     }
 
     public static function getRelations(): array
@@ -97,6 +125,7 @@ class CustomProductRequestResource extends Resource
             'index' => Pages\ListCustomProductRequests::route('/'),
             'create' => Pages\CreateCustomProductRequest::route('/create'),
             'edit' => Pages\EditCustomProductRequest::route('/{record}/edit'),
+            'view' => Pages\ViewCustomProductRequest::route('/{record}'),
         ];
     }
 }

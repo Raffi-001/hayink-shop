@@ -3,7 +3,10 @@
 namespace App\Livewire;
 
 use App\Models\CustomProductRequest;
+use Awcodes\Palette\Forms\Components\ColorPicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\ToggleButtons;
 use http\Env\Request;
 use IbrahimBougaoua\RadioButtonImage\Actions\RadioButtonImage;
 use Livewire\Component;
@@ -88,9 +91,20 @@ class CreateYourOwnPage extends Component implements HasForms
             // Sizes & quantities
             Repeater::make('sizes')
                 ->label('Sizes & Quantities')
+                ->columns(3)
                 ->schema([
-                    TextInput::make('size')
+                    ColorPicker::make('color')
+                        ->storeAsKey()
+                        ->colors([
+                            'black' => '#000000',
+                            'white' => '#ffffff',
+                            'offwhite' => '#F2F0EF',
+                        ]),
+                    Select::make('size')
                         ->label('Size')
+                        ->options([
+                            'XS', 'S', 'M', 'L', 'XL', 'XXL',
+                        ])
                         ->dehydrated(),
                     TextInput::make('qty')
                         ->numeric()
