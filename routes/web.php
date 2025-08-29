@@ -10,6 +10,7 @@ use App\Livewire\SearchPage;
 use App\Models\DesignImage;
 use Ayvazyan10\AmeriaBankVPOS\Facades\AmeriaBankVPOS;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,13 +28,15 @@ Route::get('/', Home::class);
 
 Route::get('/collections/{slug}', CollectionPage::class)->name('collection.view');
 
+Route::get('/products', [\App\Http\Controllers\PagesController::class, 'products'])->name('products.index');
+
 Route::get('/products/{slug}', ProductPage::class)->name('product.view');
 
 Route::get('search', SearchPage::class)->name('search.view');
 
 Route::get('checkout', CheckoutPage::class)->name('checkout.view');
 
-Route::get('checkout/success', CreateYourOwnPage::class)->name('checkout-success.view');
+Route::get('checkout/success', \App\Livewire\CheckoutSuccessPage::class)->name('checkout-success.view');
 
 Route::get('create-your-own', CreateYourOwnPage::class)->name('create-your-own.view');
 
@@ -44,19 +47,37 @@ Route::get('services', [\App\Http\Controllers\PagesController::class, 'services'
 Route::get('/artists', [\App\Http\Controllers\PagesController::class, 'artists'])->name('pages.artists');
 
 Route::get('/ameria-hook', function () {
-    return 'paid';
+    return redirect()->route('checkout-success.view');
 })->name('ameria-hook');
 
 Route::get('/ameria-pay', function () {
-    $initPayment = ameriabank()->pay(10, rand(3770001, 3771000), []);
+    $payload = [
+        "ClientID"    => "90d85bde-cc63-4ff2-b57d-1f2a6b4cdf22",
+        "Username"    => "3d19541048",
+        "Password"    => "lazY2k",
+        "Amount"      => 10.0,
+        "OrderID"     => 3770002,
+        // "BackURL"     => "http://hi.test",
+        "Description" => "abc",
+        "Currency"    => "051",
+    ];
 
-    if($initPayment['status'] === "SUCCESS") {
-        // If you need to store payment id in your database
-        // For get full response use: $initPayment['response'];
-        $paymentId = $initPayment['paymentId'];
-        // Redirect to AmeriaBank payment interface
-        return redirect($initPayment['redirectUrl']);
+    // Call AmeriaBank test InitPayment endpoint
+    $response = Http::withHeaders([
+        'Accept'       => 'application/json',
+        'Content-Type' => 'application/json',
+    ])->post('https://servicestest.ameriabank.am/VPOS/api/VPOS/InitPayment', $payload);
+
+    // Parse the response
+    $data = $response->json();
+
+    // Example: redirect user if success
+    if (isset($data['PaymentID']) && $data['ResponseCode'] == 1) {
+        return redirect()->away(
+            "https://servicestest.ameriabank.am/VPOS/Payments/Pay?id={$data['PaymentID']}&lang=en"
+        );
     }
+
 })->name('ameria-pay');
 
 Route::post('/art/upload-design', function (Request $request) {

@@ -3,14 +3,18 @@
 namespace App\Providers;
 
 use App\Filament\Resources\ArtistApplicationResource;
+use App\Filament\Resources\ArtistResource;
 use App\Filament\Resources\CustomProductRequestResource;
 use App\Filament\Resources\ProductInfoBlockResource;
+use App\Livewire\CustomFields\SelectArtistField;
+use App\Livewire\CustomFields\SelectArtistFieldType;
 use App\Models\CustomProductRequest;
 use App\Modifiers\ShippingModifier;
 use Filament\Support\Assets\Css;
 use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
 use Illuminate\Support\ServiceProvider;
+use Lunar\Admin\Support\Facades\AttributeData;
 use Lunar\Admin\Support\Facades\LunarPanel;
 use Lunar\Base\ShippingModifiers;
 use Lunar\Shipping\ShippingPlugin;
@@ -32,12 +36,15 @@ class AppServiceProvider extends ServiceProvider
                     ProductInfoBlockResource::class,
                     CustomProductRequestResource::class,
                     ArtistApplicationResource::class,
+                    ArtistResource::class,
                 ]);
         })->register();
 
         Payments::extend('custom', function ($app) {
             return $app->make(CustomPayment::class);
         });
+
+        AttributeData::registerFieldType(SelectArtistField::class, SelectArtistFieldType::class);
     }
 
     /**
