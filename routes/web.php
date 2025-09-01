@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', Home::class);
+Route::get('/', Home::class)->name('home');
 
 Route::get('/collections/{slug}', CollectionPage::class)->name('collection.view');
 
@@ -46,18 +46,26 @@ Route::get('about', [\App\Http\Controllers\PagesController::class, 'about'])->na
 Route::get('services', [\App\Http\Controllers\PagesController::class, 'services'])->name('pages.services');
 Route::get('/artists', [\App\Http\Controllers\PagesController::class, 'artists'])->name('pages.artists');
 
-Route::get('/ameria-hook', function () {
-    return redirect()->route('checkout-success.view');
+
+Route::get('/ameria-hook', function (Request $request) {
+
+	return redirect()->route('checkout-success.view');
+	// return redirect()->away(
+        //     "https://servicestest.ameriabank.am/VPOS/Payments/Pay?id={$request->paymentID}&lang=en"
+        // );
 })->name('ameria-hook');
 
 Route::get('/ameria-pay', function () {
+	$orderId = rand(3770005,3771000);
+
     $payload = [
         "ClientID"    => "90d85bde-cc63-4ff2-b57d-1f2a6b4cdf22",
         "Username"    => "3d19541048",
         "Password"    => "lazY2k",
         "Amount"      => 10.0,
-        "OrderID"     => 3770002,
-        // "BackURL"     => "http://hi.test",
+
+        "OrderID"     => $orderId,
+        "BackURL"     => "https://hayink.com/ameria-hook",
         "Description" => "abc",
         "Currency"    => "051",
     ];
