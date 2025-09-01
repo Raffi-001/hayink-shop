@@ -10,6 +10,7 @@ use App\Livewire\SearchPage;
 use App\Models\DesignImage;
 use Ayvazyan10\AmeriaBankVPOS\Facades\AmeriaBankVPOS;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,8 @@ Route::get('/', Home::class)->name('home');
 
 Route::get('/collections/{slug}', CollectionPage::class)->name('collection.view');
 
+Route::get('/products', [\App\Http\Controllers\PagesController::class, 'products'])->name('products.index');
+
 Route::get('/products/{slug}', ProductPage::class)->name('product.view');
 
 Route::get('search', SearchPage::class)->name('search.view');
@@ -43,6 +46,7 @@ Route::get('about', [\App\Http\Controllers\PagesController::class, 'about'])->na
 Route::get('services', [\App\Http\Controllers\PagesController::class, 'services'])->name('pages.services');
 Route::get('/artists', [\App\Http\Controllers\PagesController::class, 'artists'])->name('pages.artists');
 
+
 Route::get('/ameria-hook', function (Request $request) {
 
 	return redirect()->route('checkout-success.view');
@@ -53,11 +57,13 @@ Route::get('/ameria-hook', function (Request $request) {
 
 Route::get('/ameria-pay', function () {
 	$orderId = rand(3770005,3771000);
+
     $payload = [
         "ClientID"    => "90d85bde-cc63-4ff2-b57d-1f2a6b4cdf22",
         "Username"    => "3d19541048",
         "Password"    => "lazY2k",
         "Amount"      => 10.0,
+
         "OrderID"     => $orderId,
         "BackURL"     => "https://hayink.com/ameria-hook",
         "Description" => "abc",

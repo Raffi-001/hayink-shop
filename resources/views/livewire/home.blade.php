@@ -18,7 +18,7 @@
                         </a>
                     </div>
 
-                    <div class="grid grid-cols-2 mt-8 lg:grid-cols-4 gap-x-1 gap-y-8">
+                    <div class="grid grid-cols-2 mt-8 lg:grid-cols-5 gap-x-1 gap-y-8">
                         @foreach ($collection->products->take(4) as $product)
                             <x-product-card :product="$product" />
                         @endforeach

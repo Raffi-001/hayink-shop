@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 import preset from './vendor/filament/support/tailwind.config.preset'
+import defaultTheme from 'tailwindcss/defaultTheme'
 
 module.exports = {
     presets: [preset],
@@ -16,6 +17,10 @@ module.exports = {
     ],
     theme: {
         extend: {
+            fontFamily: {
+                primary: ['"Space Grotesk"', ...defaultTheme.fontFamily.sans],
+                accent: ['"Lexend Mega"', ...defaultTheme.fontFamily.sans],
+            },
             colors: {
                 secondary: {
                     DEFAULT: '#00aea8', // Base color

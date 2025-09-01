@@ -26,7 +26,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="antialiased text-gray-900">
+<body class="antialiased text-gray-900 font-primary">
     @livewire('components.navigation')
 
     <main>

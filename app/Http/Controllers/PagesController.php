@@ -16,6 +16,17 @@ class PagesController extends Controller
     {
         return view('services');
     }
+
+    public function products()
+    {
+        $products = \Lunar\Models\Product::paginate(50);
+
+        return view('products', [
+            'products' => $products,
+        ]);
+
+    }
+
     public function artists()
     {
         $artists = [
