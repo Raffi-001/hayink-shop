@@ -48,12 +48,37 @@ Route::get('/artists', [\App\Http\Controllers\PagesController::class, 'artists']
 
 
 Route::get('/ameria-hook', function (Request $request) {
+    $paymentId = $request->input('paymentID');
 
-	return redirect()->route('checkout-success.view');
-	// return redirect()->away(
-        //     "https://servicestest.ameriabank.am/VPOS/Payments/Pay?id={$request->paymentID}&lang=en"
-        // );
+    if (!$paymentId) {
+        return redirect()->route('checkout.view')->with('error', 'Payment ID missing.');
+    }
+
+    $payload = [
+        "ClientID"  => "90d85bde-cc63-4ff2-b57d-1f2a6b4cdf22",
+        "Username"  => "3d19541048",
+        "Password"  => "lazY2k",
+        "PaymentID" => $paymentId,
+    ];
+
+    $response = Http::withHeaders([
+        'Accept'       => 'application/json',
+        'Content-Type' => 'application/json',
+    ])->post('https://servicestest.ameriabank.am/VPOS/api/VPOS/ConfirmPayment', $payload);
+
+    $data = $response->json();
+
+    if (isset($data['ResponseCode']) && $data['ResponseCode'] == 1) {
+        // Here you’d normally update your Order in DB
+
+        return redirect()->route('checkout-success.view')
+            ->with('success', 'Your payment was successful!');
+    } else {
+        return redirect()->route('checkout.view')
+            ->with('error', 'Payment failed. Please try again.');
+    }
 })->name('ameria-hook');
+
 
 Route::get('/ameria-pay', function () {
 	$orderId = rand(3770005,3771000);
