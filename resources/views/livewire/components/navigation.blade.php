@@ -10,29 +10,49 @@
                 <x-brand.logo class="w-auto h-6 text-indigo-600" />
             </a>
 
-            <nav class="hidden lg:gap-4 lg:flex lg:ml-8">
-                @foreach ($this->collections as $collection)
-                    <a class="text-sm font-medium transition hover:opacity-75 uppercase hover:bg-primary-200 p-3"
-                       href="{{ route('collection.view', $collection->defaultUrl->slug) }}"
-                       wire:navigate
+            <nav class="hidden lg:flex lg:ml-8 lg:gap-4 relative">
+                <!-- Collections Dropdown -->
+                <div class="relative group">
+                    <button
+                        class="text-sm font-medium transition hover:opacity-75 uppercase hover:bg-primary-200 p-3 flex items-center gap-1"
                     >
-                        {{ $collection->translateAttribute('name') }}
-                    </a>
-                @endforeach
-                    <a class="text-sm font-medium transition hover:opacity-75 uppercase hover:bg-primary-200 p-3"
-                       href="{{ route('pages.artists') }}"
-                       wire:navigate
-                    >
-                        Meet the Artists
-                    </a>
-                    <a class="text-sm font-medium transition hover:opacity-75 uppercase hover:bg-primary-200 p-3"
-                       href="{{ route('pages.services') }}"
-                       wire:navigate
-                    >
-                        Services
-                    </a>
+                        Shop
+                        <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
 
+                    <!-- Dropdown Menu -->
+                    <div
+                        class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 z-50"
+                    >
+                        @foreach ($this->collections as $collection)
+                            <a href="{{ route('collection.view', $collection->defaultUrl->slug) }}"
+                               wire:navigate
+                               class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-200 uppercase"
+                            >
+                                {{ $collection->translateAttribute('name') }}
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+
+                <!-- Other links -->
+                <a class="text-sm font-medium transition hover:opacity-75 uppercase hover:bg-primary-200 p-3"
+                   href="{{ route('pages.artists') }}"
+                   wire:navigate
+                >
+                    Meet the Artists
+                </a>
+                <a class="text-sm font-medium transition hover:opacity-75 uppercase hover:bg-primary-200 p-3"
+                   href="{{ route('pages.services') }}"
+                   wire:navigate
+                >
+                    Services
+                </a>
             </nav>
+
         </div>
 
         <div class="flex items-center justify-between flex-1 ml-4 lg:justify-end">
