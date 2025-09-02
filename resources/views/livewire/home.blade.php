@@ -18,11 +18,33 @@
                         </a>
                     </div>
 
-                    <div class="grid grid-cols-2 mt-8 lg:grid-cols-5 gap-x-1 gap-y-8">
-                        @foreach ($collection->products->take(4) as $product)
-                            <x-product-card :product="$product" />
-                        @endforeach
+
+                    <div x-data="carousel({ total: {{ $collection->products->count() }}, perView: 5 })" class="relative mt-8">
+                        <!-- Carousel container -->
+                        <div class="overflow-hidden">
+                            <div class="flex transition-transform duration-300"
+                                 :style="'transform: translateX(-' + (currentIndex * (100 / perView)) + '%)'">
+                                @foreach ($collection->products as $product)
+                                    <div class="flex-shrink-0 w-1/2 lg:w-1/5 p-1">
+                                        <x-product-card :product="$product" />
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <!-- Previous button -->
+                        <button @click="prev"
+                                class="absolute top-1/2 left-0 -translate-y-1/2 bg-white rounded-full shadow p-2 hover:bg-gray-100">
+                            &#10094;
+                        </button>
+
+                        <!-- Next button -->
+                        <button @click="next"
+                                class="absolute top-1/2 right-0 -translate-y-1/2 bg-white rounded-full shadow p-2 hover:bg-gray-100">
+                            &#10095;
+                        </button>
                     </div>
+
 
                     <div class="mt-6 sm:hidden">
                         <a href="#" class="block text-sm font-semibold text-indigo-600 hover:text-indigo-500">
@@ -36,6 +58,39 @@
     @endif
     </div>
 
+    <div class="px-4 sm:px-6 lg:px-8 pb-16">
+        <div class="sm:flex sm:items-baseline sm:justify-between">
+            <h2 class="text-2xl font-bold tracking-tight text-gray-900">
+                Artists
+            </h2>
+            <a href="/artists" class="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block">
+                Browse all
+                <span aria-hidden="true"> &rarr;</span>
+            </a>
+        </div>
+
+    <section class="pt-8 flex gap-8 bg-white max-w-full mx-auto">
+        @foreach ($this->artists as $collection)
+            <div>
+                <a href="/collections/{{ $collection->translateAttribute('name') }}">
+                    <div class="flex flex-col gap-4 border border-primary-200 p-4">
+                        <div>
+                            <img src="/storage/{{ $collection->translateAttribute('profile-photo') }}" class="max-w-40 max-h-40 rounded-full"/>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <div class="text-center font-bold">
+                                {{ $collection->translateAttribute('name') }} <br />
+                            </div>
+                            <div class="text-center text-sm">
+                                {{ $collection->products->count() }} Designs
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        @endforeach
+    </section>
+    </div>
 
 
 
@@ -101,6 +156,22 @@
 
 
 
+
+    <script>
+        function carousel({ total, perView }) {
+            return {
+                currentIndex: 0,
+                total,
+                perView,
+                prev() {
+                    this.currentIndex = Math.max(this.currentIndex - 1, 0);
+                },
+                next() {
+                    this.currentIndex = Math.min(this.currentIndex + 1, this.total - this.perView);
+                },
+            }
+        }
+    </script>
 
 
 </div>

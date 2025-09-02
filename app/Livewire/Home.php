@@ -56,6 +56,11 @@ class Home extends Component
         return CollectionGroup::where('handle', 'front-page-collections')->first()->collections()->with(['defaultUrl'])->get();
     }
 
+    public function getArtistsProperty()
+    {
+        return CollectionGroup::where('handle', 'artists-collections')->first()->collections;
+    }
+
     public function render(): View
     {
         return view('livewire.home');
