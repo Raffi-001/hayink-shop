@@ -10,6 +10,7 @@ use App\Livewire\CustomFields\SelectArtistField;
 use App\Livewire\CustomFields\SelectArtistFieldType;
 use App\Models\CustomProductRequest;
 use App\Modifiers\ShippingModifier;
+use App\PaymentTypes\AmeriaPayment;
 use Filament\Support\Assets\Css;
 use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
@@ -41,7 +42,7 @@ class AppServiceProvider extends ServiceProvider
         })->register();
 
         Payments::extend('custom', function ($app) {
-            return $app->make(CustomPayment::class);
+            return $app->make(AmeriaPayment::class);
         });
 
         AttributeData::registerFieldType(SelectArtistField::class, SelectArtistFieldType::class);
