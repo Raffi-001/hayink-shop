@@ -26,6 +26,7 @@ class DesignerPanelProvider extends PanelProvider
         return $panel
             ->id('designer')
             ->path('designer')
+            ->renderHook('panels::head.start', fn () => view('filament.includes.assets'))
             ->brandLogo(new HtmlString('Hayink Designer Panel'))
             ->colors([
                 'primary' => Color::Gray,
@@ -33,7 +34,7 @@ class DesignerPanelProvider extends PanelProvider
             ->discoverResources(in: app_path('Filament/Designer/Resources'), for: 'App\\Filament\\Designer\\Resources')
             ->discoverPages(in: app_path('Filament/Designer/Pages'), for: 'App\\Filament\\Designer\\Pages')
             ->pages([
-                Pages\Dashboard::class,
+                // Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Designer/Widgets'), for: 'App\\Filament\\Designer\\Widgets')
             ->widgets([
@@ -52,6 +53,7 @@ class DesignerPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            ->topNavigation()
             ->authMiddleware([
                 Authenticate::class,
             ]);

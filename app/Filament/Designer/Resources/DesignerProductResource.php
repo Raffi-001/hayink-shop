@@ -31,7 +31,13 @@ class DesignerProductResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Textarea::make('description'),
-            ])->columns(1);
+                Forms\Components\Field::make('data')
+                    ->label('Designer')
+                    ->columnSpan('full')
+                    ->view('forms.components.fpd-designer')      // Blade below
+                    ->dehydrated(true)                            // send state on save
+                    ->default([]),
+        ])->columns(1);
     }
 
     public static function table(Table $table): Table
@@ -56,13 +62,15 @@ class DesignerProductResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\Action::make('Design')
-                    ->button()
+                // Tables\Actions\Action::make('Design')
+                //     ->button()
+                //     ->color('success')
+                //     ->url(Pages\DesignTool::getUrl())
+                //     ->icon('heroicon-o-sparkles'),
+                Tables\Actions\EditAction::make()
                     ->color('success')
-                    ->url(Pages\DesignTool::getUrl())
                     ->icon('heroicon-o-sparkles'),
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                // Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
