@@ -31,7 +31,7 @@ class DesignerProductResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Textarea::make('description'),
-                Forms\Components\Field::make('data')
+                Forms\Components\Field::make('fpd_design')
                     ->label('Designer')
                     ->columnSpan('full')
                     ->view('forms.components.fpd-designer')      // Blade below

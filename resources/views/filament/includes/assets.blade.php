@@ -1,14 +1,5 @@
 {{-- resources/views/filament/includes/fpd-assets.blade.php --}}
 
-{{-- ✅ Use the PRODUCTION CSS, not vendor.css --}}
-<link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/radykal/fpd-js@master/dist/css/FancyProductDesigner.min.css">
-
-{{-- ✅ Load Fabric BEFORE FPD (order matters) --}}
-<script src="{{ asset('vendor/fpd/dist/js/fabric-5.3.1.min.js') }}"></script>
-
-{{-- ✅ FPD core --}}
-<script src="https://cdn.jsdelivr.net/gh/radykal/fpd-js@master/dist/js/FancyProductDesigner.min.js"></script>
 
 <script>
     // Define Alpine helper BEFORE your field uses x-data

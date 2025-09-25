@@ -113,6 +113,29 @@ Route::get('/ameria-pay', function () {
 
 })->name('ameria-pay');
 
+function createImageFromFile(string $filePath)
+{
+    if (!file_exists($filePath)) {
+        throw new Exception("File not found: $filePath");
+    }
+
+    $imageType = exif_imagetype($filePath);
+
+    switch ($imageType) {
+        case IMAGETYPE_JPEG:
+            return imagecreatefromjpeg($filePath);
+        case IMAGETYPE_PNG:
+            return imagecreatefrompng($filePath);
+        case IMAGETYPE_GIF:
+            return imagecreatefromgif($filePath);
+        case IMAGETYPE_WEBP:
+            return imagecreatefromwebp($filePath);
+        default:
+            throw new Exception("Unsupported image type: $filePath");
+    }
+}
+
+
 Route::post('/art/upload-design', function (Request $request) {
     $design = new \App\Models\DesignImage();
     $design->user_id = 1;
@@ -123,7 +146,7 @@ Route::post('/art/upload-design', function (Request $request) {
         ->toMediaCollection('design-images');
 
     $imagePath = $design->getFirstMediaPath('design-images'); // This is the local file path
-    $image = imagecreatefromjpeg($imagePath);
+    $image = createImageFromFile($imagePath);
 
     header('Content-Type: image/jpeg');
     imagejpeg($image);
@@ -134,7 +157,7 @@ Route::post('/art/upload-design', function (Request $request) {
 Route::get('/designs-catalog', function (Request $request) {
     // Eager-load media to avoid N+1
     $designs = DesignImage::with('media')
-        ->when($request->user(), fn($q) => $q->where('user_id', $request->user()->id))
+        // ->when($request->user(), fn($q) => $q->where('user_id', $request->user()->id))
         ->orderByDesc('id')
         ->get();
 
