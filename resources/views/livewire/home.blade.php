@@ -59,6 +59,84 @@
     </div>
 
     <div class="px-4 sm:px-6 lg:px-8 pb-16">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="relative aspect-square overflow-hidden">
+                <img
+                    src="/images/front-sections-1.png"
+                    alt="Limited Edition Drops"
+                    class="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                />
+                <div class="absolute inset-0 bg-black/50"></div>
+                <div class="absolute bottom-0 left-0 z-10 text-white flex flex-col gap-4 p-8">
+                    <h2 class="text-5xl font-accent">Limited Edition Drops</h2>
+                    <p class="text-2xl">
+                        One-of-a-kind fashion pieces from silk scarves and linen shirts to bold kimonos...
+                    </p>
+                </div>
+            </div>
+
+            <!-- CTA 2 -->
+            <div class="relative aspect-square overflow-hidden">
+                <img
+                    src="/images/front-sections-2.png"
+                    alt="Premium Merch for Your Business"
+                    class="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                />
+                <div class="absolute inset-0 bg-black/50"></div>
+                <div class="absolute bottom-0 left-0 z-10 text-white flex flex-col gap-4 p-8">
+                    <h2 class="text-5xl font-accent">Premium Merch for Your Business</h2>
+                    <p class="text-2xl">
+                        Custom apparel your team will actually want to wear. High-quality prints, premium fabrics, and tailored designs for companies, studios, and organizations in Armenia.
+                    </p>
+                </div>
+            </div>
+
+            <!-- CTA 3 -->
+            <div class="relative aspect-square overflow-hidden">
+                <img
+                    src="/images/front-sections-3.png"
+                    alt="Make Your Own Design"
+                    class="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                />
+                <div class="absolute inset-0 bg-black/50"></div>
+                <div class="absolute bottom-0 left-0 z-10 text-white flex flex-col gap-4 p-8">
+                    <h2 class="text-5xl font-accent">Make Your Own Design</h2>
+                    <p class="text-2xl">
+                        Your idea, your print. Upload your design and we’ll craft it on premium t-shirts, hoodies, and more — made locally, just for you.
+                    </p>
+                </div>
+            </div>
+
+            <!-- CTA 4 -->
+            <div class="relative aspect-square overflow-hidden">
+                <img
+                    src="/images/front-sections-4.png"
+                    alt="Become a Creator with Us"
+                    class="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                />
+                <div class="absolute inset-0 bg-black/50"></div>
+                <div class="absolute bottom-0 left-0 z-10 text-white flex flex-col gap-4 p-8">
+                    <h2 class="text-5xl font-accent">Become a Creator with Us</h2>
+                    <p class="text-2xl">
+                        Turn your art into wearable merch. We partner with Armenian artists and creators, bringing their designs to life on premium apparel and helping them sell globally.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="px-4 sm:px-6 lg:px-8 pb-16">
         <div class="sm:flex sm:items-baseline sm:justify-between">
             <h2 class="text-2xl font-bold tracking-tight text-gray-900">
                 Artists
