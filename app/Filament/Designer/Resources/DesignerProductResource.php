@@ -4,6 +4,7 @@ namespace App\Filament\Designer\Resources;
 
 use App\Filament\Designer\Resources\DesignerProductResource\Pages;
 use App\Filament\Designer\Resources\DesignerProductResource\RelationManagers;
+use App\Filament\Forms\Components\TDesigner;
 use App\Models\DesignerProduct;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
@@ -25,72 +26,103 @@ class DesignerProductResource extends Resource
 
     protected static ?string $label = 'Product';
 
-
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                // Step 1: Always visible
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
 
-                Forms\Components\Textarea::make('description'),
+                Forms\Components\Select::make('tshirt_type')
+                    ->label('Product Type')
+                    ->options([
+                        'regular'   => 'Tshirt',
+                        'oversize'  => 'Tshirt Oversize',
+                        'hoodie'    => 'Hoodie',
+                        'hat'       => 'Hat',
+                    ])
+                    ->required()
+                    ->reactive(),
 
-                // ✅ FileUpload for design images
-                // FileUpload::make('design_uploads')
-                //     ->label('Upload Design Images')
-                //     ->image()
-                //     ->multiple()
-                //     ->directory('designs')
-                //     ->visibility('public')
-                //     ->reactive()
-                //     ->afterStateUpdated(function ($state, $livewire) {
-                //         if (!empty($state)) {
-                //             // $urls = collect($state)->map(fn ($path) => \Storage::url($path))->all();
-
-                //             $urls = collect($state)
-                //                 ->map(fn ($path) => \Storage::url($path))
-                //                 ->values() // 👈 reset keys so it's a clean array
-                //                 ->all();
-
-                //             // Emit Livewire event (NOT browser event)
-                //             $livewire->dispatch('fpd-add-images', urls: $urls);
-                //         }
-                //     }),
-
-                SpatieMediaLibraryFileUpload::make('design_uploads')
-                    ->label('Upload Design Images')
-                    ->collection('design_uploads')
-                    ->multiple()
-                    ->image()
+                // Step 2: Visible only after selecting a type
+                Forms\Components\CheckboxList::make('colors')
+                    ->label('Colors')
+                    ->options([
+                        'black'    => 'Black',
+                        'white'    => 'White',
+                        'offwhite' => 'Offwhite',
+                    ])
+                    ->columns(3)
                     ->reactive()
-                    ->afterStateUpdated(function ($state, $livewire, $record) {
-                        if (! $record) {
-                            dd('noooo');
-                            // No model yet (create form), skip here
-                            return;
+                    ->visible(fn (callable $get) => filled($get('tshirt_type'))),
+
+                // Step 3: Visible only when both type + colors are set
+                Forms\Components\Fieldset::make('mockup_designs')
+                    ->label('T-Shirt Designer(s)')
+                    ->schema(function (callable $get) {
+                        $schema = [];
+
+                        $type = $get('tshirt_type');
+                        $colors = $get('colors') ?? [];
+
+                        if (! $type || empty($colors)) {
+                            return $schema;
                         }
 
-                        // ✅ Get public URLs from Spatie Media Library
-                        $urls = $record->getMedia('design_uploads')
-                            ->map->getUrl()
-                            ->values()
-                            ->all();
+                        foreach ($colors as $color) {
+                            $front = match ([$type, $color]) {
+                                ['regular', 'black']    => 'http://hi.test/fpd-js/images/t-regular-black-front.png',
+                                ['regular', 'white']    => 'http://hi.test/fpd-js/images/t-regular-white-front.png',
+                                ['regular', 'offwhite'] => 'http://hi.test/fpd-js/images/t-regular-offwhite-front.png',
 
-                        if (! empty($urls)) {
-                            $livewire->dispatch('fpd-add-images', urls: $urls);
+                                ['oversize', 'black']    => 'http://hi.test/fpd-js/images/t-oversize-black-front.png',
+                                ['oversize', 'white']    => 'http://hi.test/fpd-js/images/t-oversized-white-front.png',
+                                ['oversize', 'offwhite'] => 'http://hi.test/fpd-js/images/t-oversized-offwhite-front.png',
+
+                                default => null,
+                            };
+
+                            $back = match ([$type, $color]) {
+                                ['regular', 'black']    => 'http://hi.test/fpd-js/images/t-regular-black-back.png',
+                                ['regular', 'white']    => 'http://hi.test/fpd-js/images/t-regular-white-back.png',
+                                ['regular', 'offwhite'] => 'http://hi.test/fpd-js/images/t-regular-offwhite-back.png',
+
+                                ['oversize', 'black']    => 'http://hi.test/fpd-js/images/t-oversize-black-back.png',
+                                ['oversize', 'white']    => 'http://hi.test/fpd-js/images/t-oversized-white-back.png',
+                                ['oversize', 'offwhite'] => 'http://hi.test/fpd-js/images/t-oversized-offwhite-back.png',
+
+                                default => null,
+                            };
+
+                            if ($front) {
+                                $schema[] = TDesigner::make("mockups.{$type}.{$color}.front")
+                                    ->label(ucfirst($type) . ' - ' . ucfirst($color) . ' (Front)')
+                                    ->background($front)
+                                    ->dehydrated(true)
+                                    ->default([]);
+                            }
+
+                            if ($back) {
+                                $schema[] = TDesigner::make("mockups.{$type}.{$color}.back")
+                                    ->label(ucfirst($type) . ' - ' . ucfirst($color) . ' (Back)')
+                                    ->background($back)
+                                    ->dehydrated(true)
+                                    ->default([]);
+                            }
                         }
-                    }),
 
+                        return $schema;
+                    })
+                    ->columns(1)
+                    ->visible(fn (callable $get) => filled($get('tshirt_type')) && filled($get('colors'))),
 
-
-                // ✅ Your custom FPD field
-                Forms\Components\Field::make('fpd_design')
-                    ->label('Designer')
-                    ->columnSpan('full')
-                    ->view('forms.components.fpd-designer') // Blade you showed earlier
-                    ->dehydrated(true)                       // send state on save
-                    ->default([]),
+                // Step 4: Upload, only after everything else is ready
+                Forms\Components\SpatieMediaLibraryFileUpload::make('design')
+                    ->collection('design-images')
+                    ->required()
+                    ->visible(fn (callable $get) => filled($get('tshirt_type')) && filled($get('colors'))),
             ])
             ->columns(1);
     }
@@ -139,7 +171,7 @@ class DesignerProductResource extends Resource
     {
         return [
             'index' => Pages\ManageDesignerProducts::route('/'),
-            'design' => Pages\DesignTool::route('/design'),
+            // 'design' => Pages\DesignTool::route('/design'),
         ];
     }
 }

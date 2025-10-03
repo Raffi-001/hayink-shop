@@ -4,6 +4,7 @@ namespace App\Filament\Designer\Resources;
 
 use App\Filament\Designer\Resources\DesignImageResource\Pages;
 use App\Filament\Designer\Resources\DesignImageResource\RelationManagers;
+use App\Filament\Forms\Components\TDesigner;
 use App\Models\DesignImage;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -28,6 +29,12 @@ class DesignImageResource extends Resource
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
+
+                TDesigner::make('mockup_design')
+                    ->label('T-Shirt Designer')
+                    ->dehydrated(true)
+                    ->default([]),
+
                 Forms\Components\SpatieMediaLibraryFileUpload::make('design')
                     ->collection('design-images')
                     ->required(),

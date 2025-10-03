@@ -13,10 +13,10 @@
                                 <h3 class="text-sm font-medium text-gray-900">Products</h3>
                                 <ul role="list" class="mt-6 space-y-6">
                                     <li class="text-sm">
-                                        <a href="/collections/men" class="text-gray-500 hover:text-gray-600">Men</a>
+                                        <a href="/collections/t-shirts" class="text-gray-500 hover:text-gray-600">T-Shirts</a>
                                     </li>
                                     <li class="text-sm">
-                                        <a href="/collections/women" class="text-gray-500 hover:text-gray-600">Women</a>
+                                        <a href="/collections/scarves" class="text-gray-500 hover:text-gray-600">Scarves</a>
                                     </li>
                                 </ul>
                             </div>
@@ -24,7 +24,7 @@
                                 <h3 class="text-sm font-medium text-gray-900">Customer Service</h3>
                                 <ul role="list" class="mt-6 space-y-6">
                                     <li class="text-sm">
-                                        <a href="#" class="text-gray-500 hover:text-gray-600">Contact</a>
+                                        <a href="{{ route('contact-us.view') }}" class="text-gray-500 hover:text-gray-600">Contact</a>
                                     </li>
                                     <li class="text-sm">
                                         <a href="#" class="text-gray-500 hover:text-gray-600">Shipping</a>

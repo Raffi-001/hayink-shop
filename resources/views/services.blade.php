@@ -19,7 +19,7 @@
     <section class="py-24 flex items-center justify-center bg-primary-100" style="background: linear-gradient(
           rgba(0, 0, 0, 0.7),
           rgba(0, 0, 0, 0.7)
-        ), url('/images/services-header.png'); background-size: contain;">
+        ), url('/images/services-header.png'); background-size: cover; background-position-y: center;">
         <div class="mx-auto max-w-[58rem]">
             <div class="text-center">
                 <p class="text-lg font-medium leading-8 text-slate-200">About HayInk</p>
@@ -196,6 +196,8 @@
 
         <div class="text-xl text-slate-400 leading-relaxed text-center">It's time to simplify your merch process. With clear pricing, fast production, and dedicated support, Hay Ink helps you get high-quality custom merch — without the stress.</div>
 
+        <a href="{{ route('contact-us.view') }}" class="transform rounded-md bg-primary-500 px-5 py-3 font-medium text-white transition-colors hover:bg-primary-600">Request a quote</a>
+
     </section>
 
     <section class="py-24 flex flex-col items-center gap-8 bg-white max-w-7xl mx-auto">
@@ -328,5 +330,22 @@
 
 
     </section>
+<div class="bg-primary-400">
+    <section class="py-24 flex flex-col items-center gap-8 max-w-7xl mx-auto text-white">
+        <div class="font-accent text-5xl max-w-4xl text-center">We Don’t Just Print. <br />We Deliver.</div>
+        <div class="text-2xl text-center max-w-4xl">
+            <p>
+                With over 30 years of industry experience, we’ve worked with hundreds of teams, NGOs, companies, and studios that care about quality, deadlines, and getting things done right.  This isn’t just a slick website — it’s backed by decades of real production, real clients, and real results.
+            </p>
+            <p>
+                From uniforms and event merch to branded fabric and custom partnerships, Hay Ink is built to last — and built to serve.
+            </p>
+        </div>
+
+        <a href="{{ route('contact-us.view') }}" class="transform rounded-md bg-primary-500 px-5 py-3 font-medium text-white transition-colors hover:bg-primary-600">Request a quote</a>
+    </section>
+</div>
+
+
 </div>
 @endsection

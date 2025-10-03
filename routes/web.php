@@ -42,6 +42,8 @@ Route::get('create-your-own', CreateYourOwnPage::class)->name('create-your-own.v
 
 Route::get('apply-as-an-artist', ApplyAsAnArtistPage::class)->name('apply-as-an-artist.view');
 
+Route::get('contact', \App\Livewire\ContactUsPage::class)->name('contact-us.view');
+
 Route::get('about', [\App\Http\Controllers\PagesController::class, 'about'])->name('pages.about');
 Route::get('services', [\App\Http\Controllers\PagesController::class, 'services'])->name('pages.services');
 Route::get('/artists', [\App\Http\Controllers\PagesController::class, 'artists'])->name('pages.artists');
