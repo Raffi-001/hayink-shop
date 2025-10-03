@@ -43,8 +43,10 @@ class DesignerProductResource extends Resource
                         'hoodie'    => 'Hoodie',
                         'hat'       => 'Hat',
                     ])
+                    ->disableOptionWhen(fn ($value): bool => in_array($value, ['hoodie', 'hat']))
                     ->required()
-                    ->reactive(),
+                    ->reactive()
+                    ->native(false),
 
                 // Step 2: Visible only after selecting a type
                 Forms\Components\CheckboxList::make('colors')
@@ -118,11 +120,6 @@ class DesignerProductResource extends Resource
                     ->columns(1)
                     ->visible(fn (callable $get) => filled($get('tshirt_type')) && filled($get('colors'))),
 
-                // Step 4: Upload, only after everything else is ready
-                Forms\Components\SpatieMediaLibraryFileUpload::make('design')
-                    ->collection('design-images')
-                    ->required()
-                    ->visible(fn (callable $get) => filled($get('tshirt_type')) && filled($get('colors'))),
             ])
             ->columns(1);
     }
