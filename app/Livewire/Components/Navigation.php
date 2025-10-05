@@ -37,7 +37,7 @@ class Navigation extends Component
         // Filter collections that have at least one product
         return $group->collections()
             // ->whereHas('products') // Only collections with products
-            ->with('defaultUrl', 'products') // Eager load if needed
+            // ->with('defaultUrl', 'products') // Eager load if needed
             ->get()
             ->toTree();
     }
