@@ -130,7 +130,7 @@
                                 Your idea, your print. Upload your design and we’ll craft it on premium t-shirts, hoodies, and more — made locally, just for you.
                             </p>
                         </div>
-                        <a href="/create-your-own-product"
+                        <a href="/create-your-own"
                            class="shrink-0 px-4 py-2 text-sm font-medium text-center text-white border border-white/70 hover:border-white hover:bg-white/10 rounded-md transition-all whitespace-nowrap">
                             Custom Products
                         </a>
