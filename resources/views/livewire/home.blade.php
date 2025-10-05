@@ -60,6 +60,7 @@
 
     <div class="px-4 sm:px-6 lg:px-8 pb-16">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- CTA 1 -->
             <div class="relative aspect-square overflow-hidden">
                 <img
                     src="/images/front-sections-1.png"
@@ -69,11 +70,19 @@
                     decoding="async"
                 />
                 <div class="absolute inset-0 bg-black/50"></div>
-                <div class="absolute bottom-0 left-0 z-10 text-white flex flex-col gap-4 p-8">
-                    <h2 class="text-5xl font-accent">Limited Edition Drops</h2>
-                    <p class="text-2xl">
-                        One-of-a-kind fashion pieces from silk scarves and linen shirts to bold kimonos...
-                    </p>
+                <div class="absolute bottom-0 left-0 z-10 text-white w-full p-8">
+                    <div class="flex items-center justify-between gap-4">
+                        <div class="flex flex-col">
+                            <h2 class="text-2xl font-accent">Limited Edition Drops</h2>
+                            <p class="text-md">
+                                One-of-a-kind fashion pieces from silk scarves and linen shirts to bold kimonos...
+                            </p>
+                        </div>
+                        <a href="/collections/t-shirts"
+                           class="shrink-0 px-4 py-2 text-sm font-medium text-center text-white border border-white/70 hover:border-white hover:bg-white/10 rounded-md transition-all whitespace-nowrap">
+                            View Collection
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -87,11 +96,19 @@
                     decoding="async"
                 />
                 <div class="absolute inset-0 bg-black/50"></div>
-                <div class="absolute bottom-0 left-0 z-10 text-white flex flex-col gap-4 p-8">
-                    <h2 class="text-5xl font-accent">Premium Merch for Your Business</h2>
-                    <p class="text-2xl">
-                        Custom apparel your team will actually want to wear. High-quality prints, premium fabrics, and tailored designs for companies, studios, and organizations in Armenia.
-                    </p>
+                <div class="absolute bottom-0 left-0 z-10 text-white w-full p-8">
+                    <div class="flex items-center justify-between gap-4">
+                        <div class="flex flex-col">
+                            <h2 class="text-2xl font-accent">Premium Merch for Your Business</h2>
+                            <p class="text-md">
+                                Custom apparel your team will actually want to wear. High-quality prints, premium fabrics, and tailored designs for companies, studios, and organizations in Armenia.
+                            </p>
+                        </div>
+                        <a href="/services"
+                           class="shrink-0 px-4 py-2 text-sm font-medium text-center text-white border border-white/70 hover:border-white hover:bg-white/10 rounded-md transition-all whitespace-nowrap">
+                            More About Our Services
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -105,11 +122,19 @@
                     decoding="async"
                 />
                 <div class="absolute inset-0 bg-black/50"></div>
-                <div class="absolute bottom-0 left-0 z-10 text-white flex flex-col gap-4 p-8">
-                    <h2 class="text-5xl font-accent">Make Your Own Design</h2>
-                    <p class="text-2xl">
-                        Your idea, your print. Upload your design and we’ll craft it on premium t-shirts, hoodies, and more — made locally, just for you.
-                    </p>
+                <div class="absolute bottom-0 left-0 z-10 text-white w-full p-8">
+                    <div class="flex items-center justify-between gap-4">
+                        <div class="flex flex-col">
+                            <h2 class="text-2xl font-accent">Make Your Own Design</h2>
+                            <p class="text-md">
+                                Your idea, your print. Upload your design and we’ll craft it on premium t-shirts, hoodies, and more — made locally, just for you.
+                            </p>
+                        </div>
+                        <a href="/create-your-own-product"
+                           class="shrink-0 px-4 py-2 text-sm font-medium text-center text-white border border-white/70 hover:border-white hover:bg-white/10 rounded-md transition-all whitespace-nowrap">
+                            Custom Products
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -123,15 +148,25 @@
                     decoding="async"
                 />
                 <div class="absolute inset-0 bg-black/50"></div>
-                <div class="absolute bottom-0 left-0 z-10 text-white flex flex-col gap-4 p-8">
-                    <h2 class="text-5xl font-accent">Become a Creator with Us</h2>
-                    <p class="text-2xl">
-                        Turn your art into wearable merch. We partner with Armenian artists and creators, bringing their designs to life on premium apparel and helping them sell globally.
-                    </p>
+                <div class="absolute bottom-0 left-0 z-10 text-white w-full p-8">
+                    <div class="flex items-center justify-between gap-4">
+                        <div class="flex flex-col">
+                            <h2 class="text-2xl font-accent">Become a Creator with Us</h2>
+                            <p class="text-md">
+                                Turn your art into wearable merch. We partner with Armenian artists and creators, bringing their designs to life on premium apparel and helping them sell globally.
+                            </p>
+                        </div>
+                        <a href="/apply-as-an-artist"
+                           class="shrink-0 px-4 py-2 text-sm font-medium text-center text-white border border-white/70 hover:border-white hover:bg-white/10 rounded-md transition-all whitespace-nowrap">
+                            Apply as an Artist
+                        </a>
+                    </div>
                 </div>
             </div>
-
         </div>
+
+
+
 
 
     </div>

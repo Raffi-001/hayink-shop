@@ -27,7 +27,7 @@
 
     <link
         rel="icon"
-        href="{{ asset('favicon.svg') }}"
+        href="{{ asset('favicon.png') }}"
     >
     @livewireStyles
     @filamentStyles
