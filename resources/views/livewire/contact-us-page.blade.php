@@ -29,7 +29,7 @@
                 </a>
                 <span class="hidden sm:inline text-gray-400">•</span>
                 <a href="tel:+37499390929" class="text-blue-600 hover:underline">
-                    +374&nbsp;99&nbsp;390929
+                    +374&nbsp;99&nbsp;249092
                 </a>
             </div>
         </div>
