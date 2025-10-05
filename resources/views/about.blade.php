@@ -14,7 +14,7 @@
     <section class="py-24 flex items-center justify-center bg-gray-100" style="background: linear-gradient(
           rgba(0, 0, 0, 0.7),
           rgba(0, 0, 0, 0.7)
-        ), url('/images/about-header.png'); background-size: contain;">
+        ), url('/images/about-header.png'); background-size: cover; background-position: center;">
         <div class="mx-auto max-w-[58rem]">
             <div class="text-center">
                 <p class="text-lg font-medium leading-8 text-slate-200">About HayInk</p>
