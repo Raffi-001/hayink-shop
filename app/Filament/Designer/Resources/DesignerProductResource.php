@@ -15,6 +15,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Tabs\Tab;
 
 class DesignerProductResource extends Resource
 {
@@ -60,7 +62,6 @@ class DesignerProductResource extends Resource
                     ->reactive()
                     ->visible(fn (callable $get) => filled($get('tshirt_type'))),
 
-                // Step 3: Visible only when both type + colors are set
                 Forms\Components\Fieldset::make('mockup_designs')
                     ->label('T-Shirt Designer(s)')
                     ->schema(function (callable $get) {
@@ -98,27 +99,33 @@ class DesignerProductResource extends Resource
                                 default => null,
                             };
 
-                            if ($front) {
-                                $schema[] = TDesigner::make("mockups.{$type}.{$color}.front")
-                                    ->label(ucfirst($type) . ' - ' . ucfirst($color) . ' (Front)')
-                                    ->background($front)
-                                    ->dehydrated(true)
-                                    ->default([]);
-                            }
-
-                            if ($back) {
-                                $schema[] = TDesigner::make("mockups.{$type}.{$color}.back")
-                                    ->label(ucfirst($type) . ' - ' . ucfirst($color) . ' (Back)')
-                                    ->background($back)
-                                    ->dehydrated(true)
-                                    ->default([]);
-                            }
+                            // One Tabs set per color
+                            $schema[] = Tabs::make(ucfirst($color) . ' Mockup')
+                                ->tabs([
+                                    Tab::make('Front')
+                                        ->schema([
+                                            TDesigner::make("mockups.{$type}.{$color}.front")
+                                                ->label(ucfirst($type) . ' - ' . ucfirst($color) . ' (Front)')
+                                                ->background($front)
+                                                ->dehydrated(true)
+                                                ->default([]),
+                                        ]),
+                                    Tab::make('Back')
+                                        ->schema([
+                                            TDesigner::make("mockups.{$type}.{$color}.back")
+                                                ->label(ucfirst($type) . ' - ' . ucfirst($color) . ' (Back)')
+                                                ->background($back)
+                                                ->dehydrated(true)
+                                                ->default([]),
+                                        ]),
+                                ]);
                         }
 
                         return $schema;
                     })
                     ->columns(1)
-                    ->visible(fn (callable $get) => filled($get('tshirt_type')) && filled($get('colors'))),
+                    ->visible(fn (callable $get) => filled($get('tshirt_type')) && filled($get('colors')))
+
 
             ])
             ->columns(1);
