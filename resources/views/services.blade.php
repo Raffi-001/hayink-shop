@@ -41,7 +41,7 @@
             <div class="col-span-2">
                 <div class="">
                     <h1 class="mt-3 text-[1.5rem] lg:text-[2rem] font-bold tracking-tight text-black">01.Durable Prints Premium Fabrics</h1>
-                    <p class="mt-3 text-xl lg:text-2xl leading-relaxed text-slate-400">We understand time matters — that’s why we offer quick turnaround times, even for custom and bulk orders. From first sketch to delivery, we move fast without compromising on quality. Perfect for events, campaigns, and seasonal drops.</p>
+                    <p class="mt-3 text-xl lg:text-2xl leading-relaxed text-slate-400">We work with trusted materials and high-quality inks to make sure your merch not only looks great but lasts. Whether it’s cotton tees or silky scarves, we choose fabrics and printing methods that keep their color and shape wash after wash, wear after wear.</p>
                 </div>
             </div>
         </div>
