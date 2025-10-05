@@ -1,7 +1,7 @@
-<footer aria-labelledby="footer-heading" class="bg-gray-50 mt-8">
+<footer aria-labelledby="footer-heading" class="bg-gray-50">
     <h2 id="footer-heading" class="sr-only">Footer</h2>
     <div class="px-4 sm:px-6 lg:px-8">
-        <div class="border-t border-gray-200">
+        <div class="border-t border-gray-100">
             <div class="pb-20 pt-16">
                 <div class="md:flex md:justify-center">
                     <x-brand.logo class="w-auto h-8 text-indigo-600" />

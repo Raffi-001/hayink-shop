@@ -330,21 +330,32 @@
 
 
     </section>
-<div class="bg-primary-400">
-    <section class="py-24 flex flex-col items-center gap-8 max-w-7xl mx-auto text-white">
-        <div class="font-accent text-5xl max-w-4xl text-center">We Don’t Just Print. <br />We Deliver.</div>
-        <div class="text-2xl text-center max-w-4xl">
-            <p>
-                With over 30 years of industry experience, we’ve worked with hundreds of teams, NGOs, companies, and studios that care about quality, deadlines, and getting things done right.  This isn’t just a slick website — it’s backed by decades of real production, real clients, and real results.
-            </p>
-            <p>
-                From uniforms and event merch to branded fabric and custom partnerships, Hay Ink is built to last — and built to serve.
-            </p>
-        </div>
+    <div class="relative bg-primary-400" style="background: url('/images/bgaction.png'); background-position: center; background-size: cover;">
+        <!-- Dark overlay -->
+        <div class="absolute inset-0 bg-black/60"></div>
 
-        <a href="{{ route('contact-us.view') }}" class="transform rounded-md bg-primary-500 px-5 py-3 font-medium text-white transition-colors hover:bg-primary-600">Request a quote</a>
-    </section>
-</div>
+        <section class="relative py-24 flex flex-col items-center gap-8 max-w-7xl mx-auto text-white">
+            <div class="font-accent text-5xl max-w-4xl text-center">
+                We Don’t Just Print. <br />We Deliver.
+            </div>
+
+            <div class="text-2xl text-center max-w-4xl">
+                <p>
+                    With over 30 years of industry experience, we’ve worked with hundreds of teams, NGOs, companies, and studios that care about quality, deadlines, and getting things done right. 
+                    This isn’t just a slick website — it’s backed by decades of real production, real clients, and real results.
+                </p>
+                <p>
+                    From uniforms and event merch to branded fabric and custom partnerships, Hay Ink is built to last — and built to serve.
+                </p>
+            </div>
+
+            <a href="{{ route('contact-us.view') }}"
+               class="transform rounded-md bg-primary-500 px-5 py-3 font-medium text-white transition-colors hover:bg-primary-600">
+                Request a quote
+            </a>
+        </section>
+    </div>
+
 
 
 </div>
