@@ -42,6 +42,9 @@
                                     <li class="text-sm">
                                         <a href="/about" class="text-gray-500 hover:text-gray-600">About Us</a>
                                     </li>
+                                    <li class="text-sm">
+                                        <a href="https://hayink.com/designer" class="text-gray-500 hover:text-gray-600">Artist Login</a>
+                                    </li>
                                 </ul>
                             </div>
                             <div>
