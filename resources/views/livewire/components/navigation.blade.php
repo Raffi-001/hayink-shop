@@ -25,16 +25,32 @@
 
                     <!-- Dropdown Menu -->
                     <div
-                        class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 z-50"
+                        class="absolute left-0 mt-2 w-72 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 z-50"
                     >
-                        @foreach ($this->collections as $collection)
-                            <a href="{{ route('collection.view', $collection->defaultUrl->slug) }}"
-                               wire:navigate
+
+                        <a href="/collections/t-shirts"
+                           class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-200 uppercase"
+                        >
+                            T-shirts
+                        </a>
+
+                            <a href="/collections/scarves"
                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-200 uppercase"
                             >
-                                {{ $collection->translateAttribute('name') }}
+                                Scarves
                             </a>
-                        @endforeach
+
+                            <a href="#"
+                               class="block px-4 py-2 text-sm text-gray-400 hover:bg-primary-200 uppercase"
+                            >
+                                Hoodies <span class="text-xs">(coming soon)</span>
+                            </a>
+
+                            <a href="#"
+                               class="block px-4 py-2 text-sm text-gray-400 hover:bg-primary-200 uppercase"
+                            >
+                                Limited Editions <span class="text-xs">(coming soon)</span>
+                            </a>
                     </div>
                 </div>
 
