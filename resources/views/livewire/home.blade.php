@@ -1,202 +1,108 @@
 <div>
     <x-welcome-banner />
 
-
-
     <div class="pt-16">
-    @if (data_get($this, 'frontPageCollections'))
-        @foreach($this->frontPageCollections as $collection)
-            <section class="bg-white">
-                <div class="px-4 sm:px-6 lg:px-8 pb-16">
-                    <div class="sm:flex sm:items-baseline sm:justify-between">
-                        <h2 class="text-2xl font-bold tracking-tight text-gray-900">
-                            {{ $collection->translateAttribute('name') }}
-                        </h2>
-                        <a href="/collections/{{ $collection->defaultUrl->slug }}" class="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block">
-                            Browse all
-                            <span aria-hidden="true"> &rarr;</span>
-                        </a>
-                    </div>
-
-
-                    <div x-data="carousel({ total: {{ $collection->products->count() }}, perView: 5 })" class="relative mt-8">
-                        <!-- Carousel container -->
-                        <div class="overflow-hidden">
-                            <div class="flex transition-transform duration-300"
-                                 :style="'transform: translateX(-' + (currentIndex * (100 / perView)) + '%)'">
-                                @foreach ($collection->products as $product)
-                                    <div class="flex-shrink-0 w-1/2 lg:w-1/5 p-1">
-                                        <x-product-card :product="$product" />
-                                    </div>
-                                @endforeach
-                            </div>
+        @if (data_get($this, 'frontPageCollections'))
+            @foreach($this->frontPageCollections as $collection)
+                <section class="bg-white">
+                    <div class="px-4 sm:px-6 lg:px-8 pb-16">
+                        <div class="sm:flex sm:items-baseline sm:justify-between">
+                            <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-gray-900">
+                                {{ $collection->translateAttribute('name') }}
+                            </h2>
+                            <a href="/collections/{{ $collection->defaultUrl->slug }}"
+                               class="hidden text-xs sm:text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block">
+                                Browse all <span aria-hidden="true">&rarr;</span>
+                            </a>
                         </div>
 
-                        <!-- Previous button -->
-                        <button @click="prev"
-                                class="absolute top-1/2 left-0 -translate-y-1/2 bg-white rounded-full shadow p-2 hover:bg-gray-100">
-                            &#10094;
-                        </button>
+                        <div x-data="carousel({ total: {{ $collection->products->count() }}, perView: 5 })" class="relative mt-6 sm:mt-8">
+                            <div class="overflow-hidden">
+                                <div class="flex transition-transform duration-300"
+                                     :style="'transform: translateX(-' + (currentIndex * (100 / perView)) + '%)'">
+                                    @foreach ($collection->products as $product)
+                                        <div class="flex-shrink-0 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-1">
+                                            <x-product-card :product="$product" />
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
 
-                        <!-- Next button -->
-                        <button @click="next"
-                                class="absolute top-1/2 right-0 -translate-y-1/2 bg-white rounded-full shadow p-2 hover:bg-gray-100">
-                            &#10095;
-                        </button>
+                            <!-- Prev/Next Buttons -->
+                            <button @click="prev"
+                                    class="absolute top-1/2 left-0 -translate-y-1/2 bg-white rounded-full shadow p-2 hover:bg-gray-100">
+                                &#10094;
+                            </button>
+                            <button @click="next"
+                                    class="absolute top-1/2 right-0 -translate-y-1/2 bg-white rounded-full shadow p-2 hover:bg-gray-100">
+                                &#10095;
+                            </button>
+                        </div>
+
+                        <div class="mt-4 sm:hidden">
+                            <a href="#" class="block text-sm font-semibold text-indigo-600 hover:text-indigo-500">
+                                Browse all <span aria-hidden="true">&rarr;</span>
+                            </a>
+                        </div>
                     </div>
-
-
-                    <div class="mt-6 sm:hidden">
-                        <a href="#" class="block text-sm font-semibold text-indigo-600 hover:text-indigo-500">
-                            Browse all
-                            <span aria-hidden="true"> &rarr;</span>
-                        </a>
-                    </div>
-                </div>
-            </section>
-        @endforeach
-    @endif
+                </section>
+            @endforeach
+        @endif
     </div>
 
+    <!-- CTA Grid -->
     <div class="px-4 sm:px-6 lg:px-8 pb-16">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <!-- CTA 1 -->
-            <div class="relative aspect-square overflow-hidden">
-                <img
-                    src="/images/front-sections-1.png"
-                    alt="Limited Edition Drops"
-                    class="absolute inset-0 w-full h-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                />
-                <div class="absolute inset-0 bg-black/50"></div>
-                <div class="absolute bottom-0 left-0 z-10 text-white w-full p-8">
-                    <div class="flex items-center justify-between gap-4">
-                        <div class="flex flex-col">
-                            <h2 class="text-2xl font-accent">Limited Edition Drops</h2>
-                            <p class="text-md">
-                                One-of-a-kind fashion pieces from silk scarves and linen shirts to bold kimonos...
-                            </p>
+            @foreach ([
+                ['img' => '/images/front-sections-1.png', 'title' => 'Limited Edition Drops', 'text' => 'One-of-a-kind fashion pieces from silk scarves and linen shirts to bold kimonos...', 'link' => '/collections/t-shirts', 'btn' => 'View Collection'],
+                ['img' => '/images/front-sections-2.png', 'title' => 'Premium Merch for Your Business', 'text' => 'Custom apparel your team will actually want to wear. High-quality prints, premium fabrics, and tailored designs for companies, studios, and organizations in Armenia.', 'link' => '/services', 'btn' => 'More About Our Services'],
+                ['img' => '/images/front-sections-3.png', 'title' => 'Make Your Own Design', 'text' => 'Your idea, your print. Upload your design and we’ll craft it on premium t-shirts, hoodies, and more — made locally, just for you.', 'link' => '/create-your-own', 'btn' => 'Custom Products'],
+                ['img' => '/images/front-sections-4.png', 'title' => 'Become a Creator with Us', 'text' => 'Turn your art into wearable merch. We partner with Armenian artists and creators, bringing their designs to life on premium apparel and helping them sell globally.', 'link' => '/apply-as-an-artist', 'btn' => 'Apply as an Artist'],
+            ] as $cta)
+                <div class="relative aspect-square overflow-hidden rounded-lg">
+                    <img src="{{ $cta['img'] }}" alt="{{ $cta['title'] }}" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
+                    <div class="absolute inset-0 bg-black/50"></div>
+                    <div class="absolute bottom-0 left-0 z-10 text-white w-full p-4 sm:p-6 lg:p-8">
+                        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                            <div class="flex flex-col">
+                                <h2 class="text-lg sm:text-2xl lg:text-3xl font-accent leading-snug">{{ $cta['title'] }}</h2>
+                                <p class="text-sm sm:text-base lg:text-lg mt-1 max-w-md">{{ $cta['text'] }}</p>
+                            </div>
+                            <a href="{{ $cta['link'] }}"
+                               class="px-4 py-2 text-xs sm:text-sm lg:text-base font-medium text-center text-white border border-white/70 hover:border-white hover:bg-white/10 rounded-md transition-all whitespace-nowrap self-start sm:self-auto">
+                                {{ $cta['btn'] }}
+                            </a>
                         </div>
-                        <a href="/collections/t-shirts"
-                           class="shrink-0 px-4 py-2 text-sm font-medium text-center text-white border border-white/70 hover:border-white hover:bg-white/10 rounded-md transition-all whitespace-nowrap">
-                            View Collection
-                        </a>
                     </div>
                 </div>
-            </div>
-
-            <!-- CTA 2 -->
-            <div class="relative aspect-square overflow-hidden">
-                <img
-                    src="/images/front-sections-2.png"
-                    alt="Premium Merch for Your Business"
-                    class="absolute inset-0 w-full h-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                />
-                <div class="absolute inset-0 bg-black/50"></div>
-                <div class="absolute bottom-0 left-0 z-10 text-white w-full p-8">
-                    <div class="flex items-center justify-between gap-4">
-                        <div class="flex flex-col">
-                            <h2 class="text-2xl font-accent">Premium Merch for Your Business</h2>
-                            <p class="text-md">
-                                Custom apparel your team will actually want to wear. High-quality prints, premium fabrics, and tailored designs for companies, studios, and organizations in Armenia.
-                            </p>
-                        </div>
-                        <a href="/services"
-                           class="shrink-0 px-4 py-2 text-sm font-medium text-center text-white border border-white/70 hover:border-white hover:bg-white/10 rounded-md transition-all whitespace-nowrap">
-                            More About Our Services
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CTA 3 -->
-            <div class="relative aspect-square overflow-hidden">
-                <img
-                    src="/images/front-sections-3.png"
-                    alt="Make Your Own Design"
-                    class="absolute inset-0 w-full h-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                />
-                <div class="absolute inset-0 bg-black/50"></div>
-                <div class="absolute bottom-0 left-0 z-10 text-white w-full p-8">
-                    <div class="flex items-center justify-between gap-4">
-                        <div class="flex flex-col">
-                            <h2 class="text-2xl font-accent">Make Your Own Design</h2>
-                            <p class="text-md">
-                                Your idea, your print. Upload your design and we’ll craft it on premium t-shirts, hoodies, and more — made locally, just for you.
-                            </p>
-                        </div>
-                        <a href="/create-your-own"
-                           class="shrink-0 px-4 py-2 text-sm font-medium text-center text-white border border-white/70 hover:border-white hover:bg-white/10 rounded-md transition-all whitespace-nowrap">
-                            Custom Products
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CTA 4 -->
-            <div class="relative aspect-square overflow-hidden">
-                <img
-                    src="/images/front-sections-4.png"
-                    alt="Become a Creator with Us"
-                    class="absolute inset-0 w-full h-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                />
-                <div class="absolute inset-0 bg-black/50"></div>
-                <div class="absolute bottom-0 left-0 z-10 text-white w-full p-8">
-                    <div class="flex items-center justify-between gap-4">
-                        <div class="flex flex-col">
-                            <h2 class="text-2xl font-accent">Become a Creator with Us</h2>
-                            <p class="text-md">
-                                Turn your art into wearable merch. We partner with Armenian artists and creators, bringing their designs to life on premium apparel and helping them sell globally.
-                            </p>
-                        </div>
-                        <a href="/apply-as-an-artist"
-                           class="shrink-0 px-4 py-2 text-sm font-medium text-center text-white border border-white/70 hover:border-white hover:bg-white/10 rounded-md transition-all whitespace-nowrap">
-                            Apply as an Artist
-                        </a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
-
-
-
-
-
     </div>
 
+    <!-- Artists Section -->
     <div class="px-4 sm:px-6 lg:px-8 pb-16">
         <div class="sm:flex sm:items-baseline sm:justify-between">
-            <h2 class="text-2xl font-bold tracking-tight text-gray-900">
+            <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-gray-900">
                 Artists
             </h2>
-            <a href="/artists" class="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block">
-                Browse all
-                <span aria-hidden="true"> &rarr;</span>
+            <a href="/artists" class="hidden text-xs sm:text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block">
+                Browse all <span aria-hidden="true">&rarr;</span>
             </a>
         </div>
 
-        <section class="pt-8 flex flex-wrap justify-center gap-8 bg-white max-w-7xl mx-auto px-4">
+        <section class="pt-8 flex flex-wrap justify-center gap-6 sm:gap-8 bg-white max-w-7xl mx-auto px-4">
             @foreach ($this->artists as $collection)
-                <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex justify-center">
+                <div class="w-1/2 sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex justify-center">
                     <a href="/collections/{{ $collection->translateAttribute('name') }}" class="w-full">
-                        <div class="flex flex-col items-center gap-4 border border-primary-200 p-6 rounded-lg hover:shadow-md transition">
-                            <div class="flex justify-center">
-                                <img src="/storage/{{ $collection->translateAttribute('profile-photo') }}"
-                                     class="w-32 h-32 object-cover rounded-full"
-                                     alt="{{ $collection->translateAttribute('name') }}" />
-                            </div>
+                        <div class="flex flex-col items-center gap-4 border border-primary-200 p-4 sm:p-6 rounded-lg hover:shadow-md transition">
+                            <img src="/storage/{{ $collection->translateAttribute('profile-photo') }}"
+                                 class="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-full"
+                                 alt="{{ $collection->translateAttribute('name') }}" />
                             <div class="flex flex-col items-center text-center gap-1">
-                                <div class="font-bold text-base">
+                                <div class="font-bold text-sm sm:text-base lg:text-lg">
                                     {{ $collection->translateAttribute('name') }}
                                 </div>
-                                <div class="text-sm text-slate-500">
+                                <div class="text-xs sm:text-sm text-slate-500">
                                     {{ $collection->products->count() }} Designs
                                 </div>
                             </div>
@@ -205,91 +111,5 @@
                 </div>
             @endforeach
         </section>
-
     </div>
-
-
-
-
-    @if(false)
-    <section aria-labelledby="collections-heading">
-        <div class="">
-            <div class="mx-auto max-w-2xl lg:max-w-none">
-                <h2 id="collections-heading" class="text-2xl font-bold text-gray-900">
-                    <marquee class="uppercase">More Collections</marquee>
-                </h2>
-
-                <div class="mt-3 space-y-12 lg:grid lg:grid-cols-3 lg:space-y-0">
-                    <article class="group relative">
-                        <div class="relative h-80 w-full overflow-hidden rounded-lg lg:rounded-none bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64 md:h-128">
-                            <img src="images/men-6.jpg" alt="Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant." class="h-full w-full object-cover object-center" />
-                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
-                            <h3 class="absolute bottom-4 w-full text-center text-lg text-white">
-                                <a href="#" class="relative">
-                                    <span class="absolute inset-0"></span>
-                                    Luxury Hoodies
-                                </a>
-                            </h3>
-                        </div>
-                    </article>
-                    <article class="group relative">
-                        <div class="relative h-80 w-full overflow-hidden rounded-lg lg:rounded-none bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64 md:h-128">
-                            <img src="images/men-1.jpg" alt="Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant." class="h-full w-full object-cover object-center" />
-                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
-                            <h3 class="absolute bottom-4 w-full text-center text-lg text-white">
-                                <a href="#" class="relative">
-                                    <span class="absolute inset-0"></span>
-                                    Premium Suits
-                                </a>
-                            </h3>
-                        </div>
-                    </article>
-                    <article class="group relative">
-                        <div class="relative h-80 w-full overflow-hidden rounded-lg lg:rounded-none bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64 md:h-128">
-                            <img src="images/men-5.jpg" alt="Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant." class="h-full w-full object-cover object-center" />
-                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
-                            <h3 class="absolute bottom-4 w-full text-center text-lg text-white">
-                                <a href="#" class="relative">
-                                    <span class="absolute inset-0"></span>
-                                    Exclusive T-Shirts
-                                </a>
-                            </h3>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-
-    <x-collection-sale />
-
-    <x-testimonials />
-
-    @endif
-
-
-
-
-    <script>
-        function carousel({ total, perView }) {
-            return {
-                currentIndex: 0,
-                total,
-                perView,
-                prev() {
-                    this.currentIndex = Math.max(this.currentIndex - 1, 0);
-                },
-                next() {
-                    this.currentIndex = Math.min(this.currentIndex + 1, this.total - this.perView);
-                },
-            }
-        }
-    </script>
-
-
 </div>
-
-
