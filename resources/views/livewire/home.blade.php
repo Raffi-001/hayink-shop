@@ -182,27 +182,30 @@
             </a>
         </div>
 
-    <section class="pt-8 flex gap-8 bg-white max-w-full mx-auto">
-        @foreach ($this->artists as $collection)
-            <div>
-                <a href="/collections/{{ $collection->translateAttribute('name') }}">
-                    <div class="flex flex-col gap-4 border border-primary-200 p-4">
-                        <div>
-                            <img src="/storage/{{ $collection->translateAttribute('profile-photo') }}" class="max-w-40 max-h-40 rounded-full"/>
-                        </div>
-                        <div class="flex flex-col gap-2">
-                            <div class="text-center font-bold">
-                                {{ $collection->translateAttribute('name') }} <br />
+        <section class="pt-8 flex flex-wrap justify-center gap-8 bg-white max-w-7xl mx-auto px-4">
+            @foreach ($this->artists as $collection)
+                <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex justify-center">
+                    <a href="/collections/{{ $collection->translateAttribute('name') }}" class="w-full">
+                        <div class="flex flex-col items-center gap-4 border border-primary-200 p-6 rounded-lg hover:shadow-md transition">
+                            <div class="flex justify-center">
+                                <img src="/storage/{{ $collection->translateAttribute('profile-photo') }}"
+                                     class="w-32 h-32 object-cover rounded-full"
+                                     alt="{{ $collection->translateAttribute('name') }}" />
                             </div>
-                            <div class="text-center text-sm">
-                                {{ $collection->products->count() }} Designs
+                            <div class="flex flex-col items-center text-center gap-1">
+                                <div class="font-bold text-base">
+                                    {{ $collection->translateAttribute('name') }}
+                                </div>
+                                <div class="text-sm text-slate-500">
+                                    {{ $collection->products->count() }} Designs
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-        @endforeach
-    </section>
+                    </a>
+                </div>
+            @endforeach
+        </section>
+
     </div>
 
 
