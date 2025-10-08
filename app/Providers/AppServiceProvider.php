@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Filament\Resources\ArtistApplicationResource;
 use App\Filament\Resources\ArtistResource;
 use App\Filament\Resources\CustomProductRequestResource;
+use App\Filament\Resources\PageResource;
 use App\Filament\Resources\ProductInfoBlockResource;
 use App\Livewire\CustomFields\SelectArtistField;
 use App\Livewire\CustomFields\SelectArtistFieldType;
@@ -38,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
                     CustomProductRequestResource::class,
                     ArtistApplicationResource::class,
                     ArtistResource::class,
+                    PageResource::class,
                 ]);
         })->register();
 

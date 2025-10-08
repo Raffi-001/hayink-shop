@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use App\Livewire\ApplyAsAnArtistPage;
 use App\Livewire\CheckoutPage;
 use App\Livewire\CreateYourOwnPage;
@@ -51,6 +52,8 @@ Route::get('/artists', [\App\Http\Controllers\PagesController::class, 'artists']
 Route::get('/thanks-1', [\App\Http\Controllers\ThanksController::class, 'thanks1'])->name('thanks.thanks1');
 Route::get('/thanks-2', [\App\Http\Controllers\ThanksController::class, 'thanks2'])->name('thanks.thanks2');
 Route::get('/thanks-3', [\App\Http\Controllers\ThanksController::class, 'thanks3'])->name('thanks.thanks3');
+
+Route::get('/p/{slug}', [PageController::class, 'show'])->name('page.show');
 
 
 Route::get('/ameria-hook', function (Request $request) {
