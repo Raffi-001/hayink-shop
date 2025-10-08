@@ -45,6 +45,9 @@
                                         <a href="/about" class="text-gray-500 hover:text-gray-600">About Us</a>
                                     </li>
                                     <li class="text-sm">
+                                        <a href="/p/how-it-works" class="text-gray-500 hover:text-gray-600">How it Works</a>
+                                    </li>
+                                    <li class="text-sm">
                                         <a href="https://hayink.com/designer" class="text-gray-500 hover:text-gray-600">Artist Login</a>
                                     </li>
                                 </ul>
@@ -54,6 +57,9 @@
                                 <ul role="list" class="mt-6 space-y-6">
                                     <li class="text-sm">
                                         <a href="/p/terms-and-conditions" class="text-gray-500 hover:text-gray-600">Terms of Service</a>
+                                    </li>
+                                    <li class="text-sm">
+                                        <a href="/p/cookie-policy" class="text-gray-500 hover:text-gray-600">Cookie Policy</a>
                                     </li>
                                 </ul>
                             </div>
