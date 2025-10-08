@@ -53,7 +53,7 @@
                                 <h3 class="text-sm font-medium text-gray-900">Legal</h3>
                                 <ul role="list" class="mt-6 space-y-6">
                                     <li class="text-sm">
-                                        <a href="#" class="text-gray-500 hover:text-gray-600">Terms of Service</a>
+                                        <a href="/p/terms-and-conditions" class="text-gray-500 hover:text-gray-600">Terms of Service</a>
                                     </li>
                                 </ul>
                             </div>
