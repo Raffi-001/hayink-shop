@@ -48,6 +48,10 @@ Route::get('about', [\App\Http\Controllers\PagesController::class, 'about'])->na
 Route::get('services', [\App\Http\Controllers\PagesController::class, 'services'])->name('pages.services');
 Route::get('/artists', [\App\Http\Controllers\PagesController::class, 'artists'])->name('pages.artists');
 
+Route::get('/thanks-1', [\App\Http\Controllers\ThanksController::class, 'thanks1'])->name('thanks.thanks1');
+Route::get('/thanks-2', [\App\Http\Controllers\ThanksController::class, 'thanks2'])->name('thanks.thanks2');
+Route::get('/thanks-3', [\App\Http\Controllers\ThanksController::class, 'thanks3'])->name('thanks.thanks3');
+
 
 Route::get('/ameria-hook', function (Request $request) {
     $paymentId = $request->input('paymentID');

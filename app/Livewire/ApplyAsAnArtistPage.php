@@ -52,7 +52,7 @@ class ApplyAsAnArtistPage extends Component implements HasForms
 
         // 3. Flash message + redirect
         session()->flash('success', 'Your application has been submitted successfully!');
-        return redirect('/'); // 👈 adjust route name if needed
+        return redirect('/thanks-2');
     }
 
     public function render(): View

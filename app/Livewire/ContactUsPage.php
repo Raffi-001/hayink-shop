@@ -34,7 +34,10 @@ class ContactUsPage extends Component implements HasForms
         // });
 
         session()->flash('success', 'Your message has been sent!');
+
         $this->form->fill(); // reset form
+
+        return redirect('/thanks-3');
     }
 
     public function render(): View

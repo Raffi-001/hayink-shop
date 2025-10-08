@@ -142,6 +142,6 @@ class CreateYourOwnPage extends Component implements HasForms
         // $data['design'] contains the uploaded file path
         session()->flash('success', 'Your order has been submitted!');
 
-        return redirect('/');
+        return redirect('/thanks-1');
     }
 }
