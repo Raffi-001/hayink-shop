@@ -87,6 +87,10 @@ return [
                 'postmark',
             ],
         ],
+
+        'mailpot' => [
+            'transport' => 'mailpot',
+        ],
     ],
 
     /*

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Mail\ContactMessageReceived;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -36,6 +37,9 @@ class ContactUsPage extends Component implements HasForms
         session()->flash('success', 'Your message has been sent!');
 
         $this->form->fill(); // reset form
+
+        Mail::to('hovhannesian@gmail.com')
+            ->queue(new ContactMessageReceived($data['name'], $data['email'], $data['message']));
 
         return redirect('/thanks-3');
     }

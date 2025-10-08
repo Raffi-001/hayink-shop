@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "433d3bd996b00819b3cb1b6ab6cb3bd3",
+    "content-hash": "adc5b89518c49df38a982f51585243d0",
     "packages": [
         {
             "name": "amphp/amp",
@@ -12679,6 +12679,59 @@
                 }
             ],
             "time": "2025-03-07T07:31:03+00:00"
+        },
+        {
+            "name": "rulr/laravel-mailpot",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rulr-dev/laravel-mailpot.git",
+                "reference": "c7c0cee12565b8955dda6923f16d28aa8d74c620"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rulr-dev/laravel-mailpot/zipball/c7c0cee12565b8955dda6923f16d28aa8d74c620",
+                "reference": "c7c0cee12565b8955dda6923f16d28aa8d74c620",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^10.0|^11.0|^12.0",
+                "php": "^8.1",
+                "symfony/mailer": "^6.0 || ^7.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^8.0 || ^9.0 || ^10.0",
+                "phpunit/phpunit": "^12.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rulr\\Mailpot\\MailpotServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rulr\\Mailpot\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A local mail inbox for Laravel",
+            "keywords": [
+                "email",
+                "laravel",
+                "mail",
+                "mailtrap"
+            ],
+            "support": {
+                "issues": "https://github.com/rulr-dev/laravel-mailpot/issues",
+                "source": "https://github.com/rulr-dev/laravel-mailpot/tree/v1.0.2"
+            },
+            "time": "2025-07-11T11:37:59+00:00"
         },
         {
             "name": "sebastian/cli-parser",

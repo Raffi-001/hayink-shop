@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Mail\ApplyAsArtistReceived;
 use App\Models\ArtistApplication;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
@@ -10,6 +11,7 @@ use Filament\Forms\Components\Wizard;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 use Livewire\Component;
 use Illuminate\Support\HtmlString;
@@ -52,6 +54,10 @@ class ApplyAsAnArtistPage extends Component implements HasForms
 
         // 3. Flash message + redirect
         session()->flash('success', 'Your application has been submitted successfully!');
+
+        Mail::to('team@hayink.com')
+            ->queue(new ApplyAsArtistReceived($data));
+
         return redirect('/thanks-2');
     }
 

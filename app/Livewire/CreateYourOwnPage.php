@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Mail\CreateYourOwnProductReceived;
 use App\Models\CustomProductRequest;
 use Awcodes\Palette\Forms\Components\ColorPicker;
 use Filament\Forms\Components\Select;
@@ -9,6 +10,7 @@ use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\ToggleButtons;
 use http\Env\Request;
 use IbrahimBougaoua\RadioButtonImage\Actions\RadioButtonImage;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Illuminate\View\View;
 use Filament\Forms\Form;
@@ -141,6 +143,9 @@ class CreateYourOwnPage extends Component implements HasForms
 
         // $data['design'] contains the uploaded file path
         session()->flash('success', 'Your order has been submitted!');
+
+        Mail::to('team@hayink.com')
+            ->queue(new CreateYourOwnProductReceived($data));
 
         return redirect('/thanks-1');
     }
