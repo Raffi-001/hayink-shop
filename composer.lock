@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "adc5b89518c49df38a982f51585243d0",
+    "content-hash": "679caf0294683c95480639ed41bc9a36",
     "packages": [
         {
             "name": "amphp/amp",
@@ -7935,6 +7935,88 @@
                 }
             ],
             "time": "2024-04-27T21:32:50+00:00"
+        },
+        {
+            "name": "redberry/page-builder-plugin",
+            "version": "v1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RedberryProducts/filament-page-builder-plugin.git",
+                "reference": "ee1fa27a0b6fd5c9d201c92a557806ce06ef0e7f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RedberryProducts/filament-page-builder-plugin/zipball/ee1fa27a0b6fd5c9d201c92a557806ce06ef0e7f",
+                "reference": "ee1fa27a0b6fd5c9d201c92a557806ce06ef0e7f",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^3.",
+                "php": "^8.1|^8.2|^8.3|^8.4",
+                "spatie/laravel-package-tools": "^1.15.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^7.9||^8.0",
+                "nunomaduro/larastan": "^2.0.1||^3.0",
+                "orchestra/testbench": "^10.0.0||^9.0||^8.35",
+                "pestphp/pest": "^3.1||^2.0",
+                "pestphp/pest-plugin-arch": "^3.0||^2.0",
+                "pestphp/pest-plugin-laravel": "^3.0||^2.0",
+                "pestphp/pest-plugin-livewire": "^2.1||^3.0",
+                "phpstan/extension-installer": "^1.1||^2.0",
+                "phpstan/phpstan-deprecation-rules": "^2.0||^1.0",
+                "phpstan/phpstan-phpunit": "^2.0||^1.0",
+                "spatie/laravel-ray": "^1.26"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "PageBuilderPlugin": "Redberry\\PageBuilderPlugin\\Facades\\PageBuilderPlugin"
+                    },
+                    "providers": [
+                        "Redberry\\PageBuilderPlugin\\PageBuilderPluginServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Redberry\\PageBuilderPlugin\\": "src/",
+                    "Redberry\\PageBuilderPlugin\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "redberry",
+                    "email": "hello@redberry.ge",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Page builder plugin for filamentphp admin panel to build pages using blocks.",
+            "homepage": "https://github.com/redberryproducts/page-builder-plugin",
+            "keywords": [
+                "filament",
+                "filamnetphp",
+                "laravel",
+                "page-builder-plugin",
+                "redberry"
+            ],
+            "support": {
+                "issues": "https://github.com/redberryproducts/page-builder-plugin/issues",
+                "source": "https://github.com/redberryproducts/page-builder-plugin"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/RedberryProducts",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-09-11T11:50:21+00:00"
         },
         {
             "name": "revolt/event-loop",

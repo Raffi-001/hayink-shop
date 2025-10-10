@@ -13,4 +13,7 @@ class TshirtDesigner extends Page
     protected static ?string $navigationLabel = 'T-Shirt Designer';
     protected static ?string $slug = 'tshirt-designer';
     protected static ?int $navigationSort = 10; // adjust menu order
+
+    protected static bool $shouldRegisterNavigation = false;
 }
+

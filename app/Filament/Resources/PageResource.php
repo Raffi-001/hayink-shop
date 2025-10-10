@@ -12,6 +12,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Lunar\Admin\Filament\Clusters\Taxes\Blocks\Header;
+use App\Lunar\Admin\Filament\Clusters\Taxes\Blocks\CallToAction1;
+use Redberry\PageBuilderPlugin\Components\Forms\PageBuilder;
 
 class PageResource extends Resource
 {
@@ -31,6 +34,11 @@ class PageResource extends Resource
                     ->maxLength(255),
                 Forms\Components\Textarea::make('body')
                     ->columnSpanFull(),
+                PageBuilder::make('page_content')
+                    ->blocks([
+                        Header::class,
+                        CallToAction1::class,
+                    ]),
             ]);
     }
 

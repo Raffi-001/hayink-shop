@@ -14,5 +14,7 @@ class DesignerProduct extends Model implements HasMedia
 
     protected $casts = [
         'data' => 'array',
+        'colors' => 'array',
+        'mockups' => 'array',
     ];
 }
