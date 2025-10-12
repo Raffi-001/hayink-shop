@@ -170,7 +170,13 @@ class ProductPage extends Component
                 'collectionUrl' => config('app.url') . '/collections/' . Str::slug($artist->name, '-'),
             ];
         } else {
-            return [];
+            return [
+                'name' => '',
+                'image' => '',
+                'description' => '',
+                'collectionLabel' => '',
+                'collectionUrl' => '',
+            ];
         }
     }
 
