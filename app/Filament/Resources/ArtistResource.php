@@ -39,7 +39,7 @@ class ArtistResource extends Resource
                         Forms\Components\TextInput::make('slug')
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\Textarea::make('about')
+                        Forms\Components\RichEditor::make('about')
                             ->columnSpanFull(),
                         Forms\Components\TextInput::make('instagram_url')
                             ->maxLength(255),
