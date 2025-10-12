@@ -157,21 +157,21 @@ class ProductPage extends Component
     {
         $artistObject = data_get($this, 'product.attribute_data.artist');
 
-        $artist = [];
-
         if($artistObject) {
             $artistId = $artistObject->getValue();
 
             $artist = Artist::find($artistId);
-        }
 
-        return [
-            'name' => data_get($artist, 'name'),
-            'image' => $artist->getFirstMediaUrl('artist-avatars'),
-            'description' => data_get($artist, 'about'),
-            'collectionLabel' => 'Browse All Products by ' . data_get($artist, 'name'),
-            'collectionUrl' => config('app.url') . '/collections/' . Str::slug($artist->name, '-'),
-        ];
+            return [
+                'name' => data_get($artist, 'name'),
+                'image' => $artist->getFirstMediaUrl('artist-avatars'),
+                'description' => data_get($artist, 'about'),
+                'collectionLabel' => 'Browse All Products by ' . data_get($artist, 'name'),
+                'collectionUrl' => config('app.url') . '/collections/' . Str::slug($artist->name, '-'),
+            ];
+        } else {
+            return [];
+        }
     }
 
     public function getSizeChartProperty(): string|null
