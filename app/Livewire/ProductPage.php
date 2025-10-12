@@ -157,7 +157,8 @@ class ProductPage extends Component
     {
         $artistObject = data_get($this, 'product.attribute_data.artist');
 
-        if($artistObject) {
+
+        if($artistObject instanceof \App\Livewire\CustomFields\SelectArtistField) {
             $artistId = $artistObject->getValue();
 
             $artist = Artist::find($artistId);
