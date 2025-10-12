@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Filament\Resources\DesignerProductResource;
 use App\Filament\Resources\ArtistApplicationResource;
 use App\Filament\Resources\ArtistResource;
 use App\Filament\Resources\CustomProductRequestResource;
@@ -36,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
                 ])
                 ->resources([
                     ProductInfoBlockResource::class,
+                    DesignerProductResource::class,
                     CustomProductRequestResource::class,
                     ArtistApplicationResource::class,
                     ArtistResource::class,

@@ -1,32 +1,26 @@
 <?php
 
-namespace App\Filament\Designer\Resources;
+namespace App\Filament\Resources;
 
-use App\Filament\Designer\Resources\DesignerProductResource\Pages;
-use App\Filament\Designer\Resources\DesignerProductResource\RelationManagers;
 use App\Filament\Forms\Components\TDesigner;
+use App\Filament\Resources\DesignerProductResource\Pages;
+use App\Filament\Resources\DesignerProductResource\RelationManagers;
 use App\Models\DesignerProduct;
 use Filament\Forms;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Filament\Forms\Components\Tabs;
-use Filament\Forms\Components\Tabs\Tab;
 
 class DesignerProductResource extends Resource
 {
     protected static ?string $model = DesignerProduct::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    protected static ?string $navigationLabel = 'My Products';
-
-    protected static ?string $label = 'Product';
 
     public static function form(Form $form): Form
     {
@@ -129,10 +123,8 @@ class DesignerProductResource extends Resource
                     ->visible(fn (callable $get) => filled($get('tshirt_type')) && filled($get('colors')))
 
 
-            ])
-            ->columns(1);
+            ]);
     }
-
 
     public static function table(Table $table): Table
     {
@@ -140,8 +132,9 @@ class DesignerProductResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('description')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('status')
-                    ->badge()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -151,20 +144,14 @@ class DesignerProductResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('tshirt_type')
+                    ->searchable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                // Tables\Actions\Action::make('Design')
-                //     ->button()
-                //     ->color('success')
-                //     ->url(Pages\DesignTool::getUrl())
-                //     ->icon('heroicon-o-sparkles'),
-                Tables\Actions\EditAction::make()
-                    ->color('success')
-                    ->icon('heroicon-o-sparkles'),
-                // Tables\Actions\DeleteAction::make(),
+                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -173,11 +160,19 @@ class DesignerProductResource extends Resource
             ]);
     }
 
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageDesignerProducts::route('/'),
-            // 'design' => Pages\DesignTool::route('/design'),
+            'index' => Pages\ListDesignerProducts::route('/'),
+            'create' => Pages\CreateDesignerProduct::route('/create'),
+            'edit' => Pages\EditDesignerProduct::route('/{record}/edit'),
         ];
     }
 }
