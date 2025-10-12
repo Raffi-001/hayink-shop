@@ -157,11 +157,13 @@ class ProductPage extends Component
     {
         $artistObject = data_get($this, 'product.attribute_data.artist');
 
+        $artist = collect([]);
+
         if($artistObject) {
             $artistId = $artistObject->getValue();
-        }
 
-        $artist = Artist::find($artistId);
+            $artist = Artist::find($artistId);
+        }
 
         return [
             'name' => data_get($artist, 'name'),
