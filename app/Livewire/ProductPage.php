@@ -155,7 +155,11 @@ class ProductPage extends Component
 
     public function getDesignerInfoProperty(): array
     {
-        $artistId = data_get($this, 'product.attribute_data.artist')->getValue();
+        $artistObject = data_get($this, 'product.attribute_data.artist');
+
+        if($artistObject) {
+            $artistId = $artistObject->getValue();
+        }
 
         $artist = Artist::find($artistId);
 
