@@ -20,6 +20,7 @@ use Illuminate\Support\ServiceProvider;
 use Lunar\Admin\Support\Facades\AttributeData;
 use Lunar\Admin\Support\Facades\LunarPanel;
 use Lunar\Base\ShippingModifiers;
+use Lunar\Facades\FieldTypeManifest;
 use Lunar\Shipping\ShippingPlugin;
 use Lunar\Facades\Payments;
 
@@ -57,9 +58,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(ShippingModifiers $shippingModifiers): void
     {
-	if($this->app->environment('production')) {
-	    \URL::forceScheme('https');
-	}
+        if($this->app->environment('production')) {
+            \URL::forceScheme('https');
+        }
 
         $shippingModifiers->add(
             ShippingModifier::class
@@ -69,7 +70,9 @@ class AppServiceProvider extends ServiceProvider
             \Lunar\Models\Contracts\Product::class,
             \App\Models\Product::class,
             // \App\Models\CustomProduct::class,
+
         );
+
 
         FilamentAsset::register([
             // Css::make('custom', __DIR__ . '/../../resources/fpd-js/dist/css/FancyProductDesigner.min.css'),

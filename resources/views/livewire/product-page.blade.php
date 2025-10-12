@@ -148,7 +148,7 @@
                     </div>
 
                     <div class="md:col-span-2">
-                        <h3 class="text-lg font-semibold">{{ $this->product->translateAttribute('designer-name') }}</h3>
+                        <h3 class="text-lg font-semibold">{{ data_get($this, 'designerInfo.name') }}</h3>
                         {!! data_get($this, 'designerInfo.description') !!}
 
 

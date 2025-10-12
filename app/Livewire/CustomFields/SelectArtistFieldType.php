@@ -9,11 +9,16 @@ use Lunar\Models\Attribute;
 
 class SelectArtistFieldType extends BaseFieldType
 {
+    protected static string $synthesizer = SelectArtistFieldSynth::class;
+
     public static function getFilamentComponent(Attribute $attribute): Component
     {
         $options = Artist::all()->pluck('name', 'id');
 
         return Select::make($attribute->handle)
+            ->label($attribute->name)
             ->options($options);
+
+
     }
 }

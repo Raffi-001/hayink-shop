@@ -2,9 +2,11 @@
 
 namespace App\Livewire;
 
+use App\Models\Artist;
 use App\Models\ProductInfoBlock;
 use App\Traits\FetchesUrls;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Livewire\Component;
 use Lunar\Models\Product;
@@ -153,18 +155,16 @@ class ProductPage extends Component
 
     public function getDesignerInfoProperty(): array
     {
-        $imageUrl = (string) data_get($this, 'product.attribute_data.designer-image');
-        $name = data_get($this, 'product.attribute_data.designer-name');
-        $description = data_get($this, 'product.attribute_data.about-the-designer');
-        $collectionLabel = data_get($this, 'product.attribute_data.collection');
-        $collectionUrl = data_get($this, 'product.attribute_data.collection-url');
+        $artistId = data_get($this, 'product.attribute_data.artist')->getValue();
+
+        $artist = Artist::find($artistId);
 
         return [
-            'name' => $name,
-            'image' => config('app.url') . '/' . $imageUrl,
-            'description' => $description,
-            'collectionLabel' => $collectionLabel,
-            'collectionUrl' => config('app.url') . '/collections/' . $collectionUrl,
+            'name' => data_get($artist, 'name'),
+            'image' => $artist->getFirstMediaUrl('artist-avatars'),
+            'description' => data_get($artist, 'about'),
+            'collectionLabel' => 'Browse All Products by ' . data_get($artist, 'name'),
+            'collectionUrl' => config('app.url') . '/collections/' . Str::slug($artist->name, '-'),
         ];
     }
 
