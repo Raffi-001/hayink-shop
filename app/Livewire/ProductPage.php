@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Livewire\CustomFields\SelectArtistField;
 use App\Models\Artist;
 use App\Models\ProductInfoBlock;
 use App\Traits\FetchesUrls;
