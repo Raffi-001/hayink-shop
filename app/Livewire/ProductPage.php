@@ -163,7 +163,7 @@ class ProductPage extends Component
             $artistObject instanceof SelectArtistField
             && $artistObject->getValue() !== null
             && $artistObject->getValue() !== ''
-        )
+        ) {
             $artistId = $artistObject->getValue();
 
             $artist = Artist::find($artistId);
