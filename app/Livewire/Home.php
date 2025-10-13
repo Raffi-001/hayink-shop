@@ -54,6 +54,11 @@ class Home extends Component
         return $collections->inRandomOrder()->first()?->element;
     }
 
+    public function getLatestProductsProperty()
+    {
+        return Product::orderBy('id', 'desc')->limit(20)->get();
+    }
+
     public function getFrontPageCollectionsProperty()
     {
         return CollectionGroup::where('handle', 'front-page-collections')->first()->collections()->with(['defaultUrl'])->get();
