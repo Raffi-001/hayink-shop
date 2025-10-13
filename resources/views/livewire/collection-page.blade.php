@@ -1,7 +1,7 @@
 <section>
     <div class="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
         <div class="flex gap-8 bg-blue-50 p-8">
-            @if($this->collection->translateAttribute('profile-photo'))
+            @if(data_get($this, 'designer.image'))
             <div class="">
                 <img src="{{ data_get($this, 'designer.image') }}" class="max-w-40 rounded-full"/>
             </div>
