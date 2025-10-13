@@ -160,6 +160,7 @@
         </div>
 
 
+        @if(false)
         <div class="mt-12">
             <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-4">
                 Other Designs by Jane Doe
@@ -170,6 +171,7 @@
             @endforeach
             </div>
         </div>
+        @endif
 
     </div>
 
