@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Artist;
 use App\Traits\FetchesUrls;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
@@ -24,6 +25,7 @@ class CollectionPage extends Component
             ]
         );
 
+
         if (! $this->url) {
             abort(404);
         }
@@ -35,6 +37,28 @@ class CollectionPage extends Component
     public function getCollectionProperty(): mixed
     {
         return $this->url->element;
+    }
+
+    public function getDesignerProperty(): mixed
+    {
+        $collectionSlug = $this->url->attributesToArray()['slug'];
+
+        $designer = Artist::where('slug', $collectionSlug)->first();
+
+        if($designer) {
+            return [
+                'name' => $designer->name,
+                'about' => $designer->about,
+                'image' => $designer->getFirstMediaUrl('artist-avatars'),
+            ];
+        }
+
+        return [
+            'name' => null,
+            'about' => null,
+            'image' => null,
+        ];
+
     }
 
     public function render(): View

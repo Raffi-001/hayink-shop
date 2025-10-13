@@ -3,7 +3,7 @@
         <div class="flex gap-8 bg-blue-50 p-8">
             @if($this->collection->translateAttribute('profile-photo'))
             <div class="">
-                <img src="/storage/{{ $this->collection->translateAttribute('profile-photo') }}" class="max-w-40 rounded-full"/>
+                <img src="{{ data_get($this, 'designer.image') }}" class="max-w-40 rounded-full"/>
             </div>
             @endif
             <div class="flex flex-col gap-8">
@@ -13,7 +13,7 @@
                 </h1>
 
                 <div class="">
-                    {!! $this->collection->translateAttribute('description') !!}
+                    {!! data_get($this, 'designer.about') !!}
                 </div>
 
             </div>
