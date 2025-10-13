@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Actions\GetArtists;
 use App\Models\Artist;
 use Illuminate\View\View;
 use Livewire\Component;
@@ -58,16 +59,9 @@ class Home extends Component
         return CollectionGroup::where('handle', 'front-page-collections')->first()->collections()->with(['defaultUrl'])->get();
     }
 
-    public function getArtistsProperty()
+    public function getArtistsProperty(GetArtists $getArtists)
     {
-        return Artist::all()->map(function ($artist) {
-            return (object) [
-                'name' => $artist->name,
-                'avatar' => $artist->getFirstMediaUrl('artist-avatars'),
-                'collection' => '/collections/' . $artist->slug,
-                'product_count' => Product::whereJsonContains('attribute_data->artist->value', (string) $artist->id)->get()->count(),
-            ];
-        });
+        return $getArtists->run();
     }
 
     public function render(): View

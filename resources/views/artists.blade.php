@@ -26,19 +26,19 @@
 
 
     <section class="py-8 flex gap-8 bg-white max-w-7xl mx-auto">
-        @foreach ($collections as $collection)
+        @foreach ($artists as $artist)
             <div>
-            <a href="/collections/{{ $collection->translateAttribute('name') }}">
+            <a href="{{ $artist->collection }}">
             <div class="flex flex-col gap-4 border border-primary-200 p-4">
                 <div>
-                    <img src="/storage/{{ $collection->translateAttribute('profile-photo') }}" class="max-w-40 max-h-40 w-40 h-40 rounded-full"/>
+                    <img src="{{ $artist->avatar }}" class="max-w-40 max-h-40 w-40 h-40 rounded-full"/>
                 </div>
                 <div class="flex flex-col gap-2">
                     <div class="text-center font-bold">
-                        {{ $collection->translateAttribute('name') }} <br />
+                        {{ $artist->name }} <br />
                     </div>
                     <div class="text-center text-sm">
-                        {{ $collection->products->count() }} Designs
+                        {{ $artist->product_count }} Designs
                     </div>
                 </div>
             </div>

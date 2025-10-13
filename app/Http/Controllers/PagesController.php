@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\GetArtists;
 use Illuminate\Http\Request;
 use Lunar\Models\CollectionGroup;
 
@@ -27,25 +28,12 @@ class PagesController extends Controller
 
     }
 
-    public function artists()
+    public function artists(GetArtists $getArtists)
     {
-        $artists = [
-            [
-                'name' => 'Evolve',
-                'image' => '',
-                'about' => ''
-            ],
-            [
-                'name' => 'Chechu',
-                'image' => '',
-                'about' => ''
-            ],
-        ];
-
         $group = CollectionGroup::where('handle', 'artists-collections')->first();
 
         return view('artists', [
-            'collections' => $group->collections,
+            'artists' => $getArtists->run(),
         ]);
     }
 }
