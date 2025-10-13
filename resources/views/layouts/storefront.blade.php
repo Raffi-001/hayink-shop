@@ -32,6 +32,7 @@
     @livewireStyles
     @filamentStyles
     @vite('resources/css/app.css')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 </head>
 
 <body class="antialiased text-gray-900 font-primary">
@@ -50,47 +51,71 @@
     @livewireScripts
     @filamentScripts
 
-<script src="https://cdn.jsdelivr.net/npm/embla-carousel@8.1.6/embla-carousel.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.embla').forEach((emblaEl) => {
-            const api = EmblaCarousel(emblaEl, {
-                align: 'start',
-                loop: true,
-                slidesToScroll: 1,
-                containScroll: 'trimSnaps',
-            });
+    (function () {
+        function initSwipers() {
+            document.querySelectorAll('.mySwiper').forEach((el) => {
+                if (el.swiper) return; // prevent double init
+                new Swiper(el, {
+                    slidesPerView: 1.3,
+                    spaceBetween: 0,
+                    loop: true,
+                    breakpoints: {
+                        640: { slidesPerView: 2.3 },
+                        768: { slidesPerView: 3.3 },
+                        1024: { slidesPerView: 4.3 },
+                    },
+                    pagination: {
+                        el: el.querySelector('.swiper-pagination'),
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: el.querySelector('.swiper-button-next'),
+                        prevEl: el.querySelector('.swiper-button-prev'),
+                    },
+                    autoplay: {
+                        delay: 3500,
+                        disableOnInteraction: false,
+                    },
+                    on: {
+                        touchStart(swiper, e) {
+                            swiper.allowClick = true
+                        },
+                        touchMove(swiper, e) {
+                            swiper.allowClick = false
+                        },
+                        touchEnd(swiper, e) {
+                            if (swiper.allowClick) {
+                                const link = e.target.closest('a')
+                                if (link) link.click()
+                            }
+                        },
+                    },
 
-            // Arrows
-            const root = emblaEl.closest('.relative') || emblaEl.parentElement;
-            root.querySelector('.embla__prev')?.addEventListener('click', () => api.scrollPrev());
-            root.querySelector('.embla__next')?.addEventListener('click', () => api.scrollNext());
+                    // noSwiping: true,
+                    // noSwipingClass: 'swiper-no-swiping',
+                    // grabCursor: true,
 
-            // Pagination
-            const dotsContainer = root.querySelector('.embla__dots');
-            if (dotsContainer) {
-                const slides = api.slideNodes();
-                slides.forEach((_, i) => {
-                    const dot = document.createElement('button');
-                    dot.className = 'w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-gray-400 transition-colors';
-                    dot.addEventListener('click', () => api.scrollTo(i));
-                    dotsContainer.appendChild(dot);
+                    // ✅ Fix link click issue
+                    // allowTouchMove: true,
+                    // preventClicks: false,
+                    // preventClicksPropagation: false,
                 });
+            });
+        }
 
-                const updateDots = () => {
-                    const selected = api.selectedScrollSnap();
-                    [...dotsContainer.children].forEach((dot, i) => {
-                        dot.classList.toggle('bg-gray-800', i === selected);
-                        dot.classList.toggle('bg-gray-300', i !== selected);
-                    });
-                };
-
-                api.on('select', updateDots);
-                updateDots();
-            }
-        });
-    });
+        document.addEventListener('DOMContentLoaded', initSwipers);
+        document.addEventListener('livewire:load', initSwipers);
+        document.addEventListener('livewire:navigated', initSwipers);
+        document.addEventListener('filament:page-loaded', initSwipers);
+    })();
 </script>
+
+
+
+
+
 
 
 
