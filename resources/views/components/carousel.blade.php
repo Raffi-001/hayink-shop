@@ -20,7 +20,7 @@
             <div class="swiper mySwiper items-bottom">
                 <div class="swiper-wrapper mb-12">
                     @foreach ($items as $item)
-                        <div class="swiper-slide w-auto p-2">
+                        <div class="swiper-slide w-auto p-1">
                             <x-product-card :product="$item" />
                         </div>
                     @endforeach
