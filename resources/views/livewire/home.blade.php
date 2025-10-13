@@ -135,7 +135,7 @@
         <section class="pt-8 flex flex-wrap justify-center gap-6 sm:gap-8 bg-white max-w-7xl mx-auto px-4">
             @foreach ($this->artists as $artist)
                 <div class="w-1/2 sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex justify-center">
-                    <a href="/collections/{{ $artist->slug }}" class="w-full">
+                    <a href="/collections/{{ data_get($artist, 'slug') }}" class="w-full">
                         <div class="flex flex-col items-center gap-4 border border-primary-200 p-4 sm:p-6 rounded-lg hover:shadow-md transition">
                             <img src="{{ $artist->avatar }}"
                                  class="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-full"
