@@ -8,7 +8,7 @@ use Illuminate\View\View;
 use Livewire\Component;
 use Lunar\Models\Collection;
 use Lunar\Models\CollectionGroup;
-use Lunar\Models\Product;
+use App\Models\Product;
 use Lunar\Models\Url;
 
 class Home extends Component

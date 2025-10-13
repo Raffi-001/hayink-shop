@@ -30,12 +30,11 @@
         </h3>
         <p class="mt-1">
             By:
-            <a href="/collections/{{ $product->translateAttribute('collection-url') }}" class="hover:underline text-secondary-500">
+            <a href="/collections/{{ data_get($product, 'artist.slug') }}" class="hover:underline text-secondary-500">
             <span class="sr-only">
                 Designer Name
             </span>
-
-            {{ $product->translateAttribute('designer-name') }}
+                {{ data_get($product, 'artist.name') }}
             </a>
         </p>
         <p class="mt-1 text-sm text-gray-600">
