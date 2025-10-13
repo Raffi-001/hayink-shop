@@ -1,95 +1,20 @@
 <div>
     <x-welcome-banner />
 
-    <div class="pt-16">
-        <section class="bg-white">
-            <div class="px-4 sm:px-6 lg:px-8 pb-16">
-                <div class="sm:flex sm:items-baseline sm:justify-between">
-                    <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-gray-900">
-                        Latest Products
-                    </h2>
-                    <a href="/product-all"
-                       class="hidden text-xs sm:text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block">
-                        Browse all <span aria-hidden="true">&rarr;</span>
-                    </a>
-                </div>
+    <div class="mt-8">
 
-                <div x-data="carousel({ total: {{ $this->latestProducts->count() }}, perView: 5 })" class="relative mt-6 sm:mt-8">
-                    <div class="overflow-hidden">
-                        <div class="flex transition-transform duration-300"
-                             :style="'transform: translateX(-' + (currentIndex * (100 / perView)) + '%)'">
-                            @foreach ($this->latestProducts as $product)
-                                <div class="flex-shrink-0 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-1">
-                                    <x-product-card :product="$product" />
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
+    <x-carousel :items="$this->latestProducts"
+                title="Latest Products"
+                browse-link="/product-all"
+                per-view="5" />
 
-                    <!-- Prev/Next Buttons -->
-                    <button @click="prev"
-                            class="absolute top-1/2 left-0 -translate-y-1/2 bg-white rounded-full shadow p-2 hover:bg-gray-100">
-                        &#10094;
-                    </button>
-                    <button @click="next"
-                            class="absolute top-1/2 right-0 -translate-y-1/2 bg-white rounded-full shadow p-2 hover:bg-gray-100">
-                        &#10095;
-                    </button>
-                </div>
 
-                <div class="mt-4 sm:hidden">
-                    <a href="#" class="block text-sm font-semibold text-indigo-600 hover:text-indigo-500">
-                        Browse all <span aria-hidden="true">&rarr;</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-        @if (data_get($this, 'frontPageCollections'))
-            @foreach($this->frontPageCollections as $collection)
-                <section class="bg-white">
-                    <div class="px-4 sm:px-6 lg:px-8 pb-16">
-                        <div class="sm:flex sm:items-baseline sm:justify-between">
-                            <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-gray-900">
-                                {{ $collection->translateAttribute('name') }}
-                            </h2>
-                            <a href="/collections/{{ $collection->defaultUrl->slug }}"
-                               class="hidden text-xs sm:text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block">
-                                Browse all <span aria-hidden="true">&rarr;</span>
-                            </a>
-                        </div>
-
-                        <div x-data="carousel({ total: {{ $collection->products->count() }}, perView: 5 })" class="relative mt-6 sm:mt-8">
-                            <div class="overflow-hidden">
-                                <div class="flex transition-transform duration-300"
-                                     :style="'transform: translateX(-' + (currentIndex * (100 / perView)) + '%)'">
-                                    @foreach ($collection->products as $product)
-                                        <div class="flex-shrink-0 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-1">
-                                            <x-product-card :product="$product" />
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-
-                            <!-- Prev/Next Buttons -->
-                            <button @click="prev"
-                                    class="absolute top-1/2 left-0 -translate-y-1/2 bg-white rounded-full shadow p-2 hover:bg-gray-100">
-                                &#10094;
-                            </button>
-                            <button @click="next"
-                                    class="absolute top-1/2 right-0 -translate-y-1/2 bg-white rounded-full shadow p-2 hover:bg-gray-100">
-                                &#10095;
-                            </button>
-                        </div>
-
-                        <div class="mt-4 sm:hidden">
-                            <a href="#" class="block text-sm font-semibold text-indigo-600 hover:text-indigo-500">
-                                Browse all <span aria-hidden="true">&rarr;</span>
-                            </a>
-                        </div>
-                    </div>
-                </section>
-            @endforeach
-        @endif
+    @foreach($this->frontPageCollections as $collection)
+        <x-carousel :items="$collection->products"
+                    :title="$collection->translateAttribute('name')"
+                    :browse-link="url('/collections/' . $collection->defaultUrl->slug)"
+                    per-view="5" />
+    @endforeach
     </div>
 
     <!-- CTA Grid -->

@@ -49,6 +49,52 @@
 
     @livewireScripts
     @filamentScripts
+
+<script src="https://cdn.jsdelivr.net/npm/embla-carousel@8.1.6/embla-carousel.umd.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.embla').forEach((emblaEl) => {
+            const api = EmblaCarousel(emblaEl, {
+                align: 'start',
+                loop: true,
+                slidesToScroll: 1,
+                containScroll: 'trimSnaps',
+            });
+
+            // Arrows
+            const root = emblaEl.closest('.relative') || emblaEl.parentElement;
+            root.querySelector('.embla__prev')?.addEventListener('click', () => api.scrollPrev());
+            root.querySelector('.embla__next')?.addEventListener('click', () => api.scrollNext());
+
+            // Pagination
+            const dotsContainer = root.querySelector('.embla__dots');
+            if (dotsContainer) {
+                const slides = api.slideNodes();
+                slides.forEach((_, i) => {
+                    const dot = document.createElement('button');
+                    dot.className = 'w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-gray-400 transition-colors';
+                    dot.addEventListener('click', () => api.scrollTo(i));
+                    dotsContainer.appendChild(dot);
+                });
+
+                const updateDots = () => {
+                    const selected = api.selectedScrollSnap();
+                    [...dotsContainer.children].forEach((dot, i) => {
+                        dot.classList.toggle('bg-gray-800', i === selected);
+                        dot.classList.toggle('bg-gray-300', i !== selected);
+                    });
+                };
+
+                api.on('select', updateDots);
+                updateDots();
+            }
+        });
+    });
+</script>
+
+
+
+
 </body>
 
 </html>
