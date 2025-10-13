@@ -7,6 +7,7 @@ use Illuminate\View\View;
 use Livewire\Component;
 use Lunar\Models\Collection;
 use Lunar\Models\CollectionGroup;
+use Lunar\Models\Product;
 use Lunar\Models\Url;
 
 class Home extends Component
@@ -64,7 +65,7 @@ class Home extends Component
                 'name' => $artist->name,
                 'avatar' => $artist->getFirstMediaUrl('artist-avatars'),
                 'collection' => '/collections/' . $artist->slug,
-                'product_count' => 4,
+                'product_count' => Product::whereJsonContains('attribute_data->artist->value', (string) $artist->id)->get()->count(),
             ];
         });
     }

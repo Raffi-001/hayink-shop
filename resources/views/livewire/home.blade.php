@@ -103,7 +103,7 @@
                                     {{ $artist->name }}
                                 </div>
                                 <div class="text-xs sm:text-sm text-slate-500">
-                                    3 Designs
+                                    {{ $artist->product_count }} Designs
                                 </div>
                             </div>
                         </div>
