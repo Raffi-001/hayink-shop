@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Artist;
 use Illuminate\View\View;
 use Livewire\Component;
 use Lunar\Models\Collection;
@@ -58,7 +59,14 @@ class Home extends Component
 
     public function getArtistsProperty()
     {
-        return CollectionGroup::where('handle', 'artists-collections')->first()->collections;
+        return Artist::all()->map(function ($artist) {
+            return (object) [
+                'name' => $artist->name,
+                'avatar' => $artist->getFirstMediaUrl('artist-avatars'),
+                'collection' => '/collections/' . $artist->slug,
+                'product_count' => 4,
+            ];
+        });
     }
 
     public function render(): View
