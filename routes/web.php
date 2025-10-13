@@ -29,7 +29,8 @@ Route::get('/', Home::class)->name('home');
 
 Route::get('/collections/{slug}', CollectionPage::class)->name('collection.view');
 
-Route::get('/products', [\App\Http\Controllers\PagesController::class, 'products'])->name('products.index');
+Route::get('/product-types/{productType}', \App\Livewire\ProductsPage::class)->name('products.index');
+Route::get('/product-all', \App\Livewire\ProductsAll::class)->name('products.index');
 
 Route::get('/products/{slug}', ProductPage::class)->name('product.view');
 

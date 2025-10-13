@@ -27,7 +27,20 @@
                     <div
                         class="absolute left-0 mt-2 w-72 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 z-50"
                     >
+                        <a href="/product-all"
+                           class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-200 uppercase"
+                        >
+                            All
+                        </a>
 
+                        @foreach($this->productTypes as $type)
+                        <a href="/product-types/{{ $type->id }}"
+                           class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-200 uppercase"
+                        >
+                            {{ $type->name }}
+                        </a>
+                        @endforeach
+                        <!--
                         <a href="/collections/t-shirts"
                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-200 uppercase"
                         >
@@ -51,6 +64,7 @@
                             >
                                 Limited Editions <span class="text-xs">(coming soon)</span>
                             </a>
+                            -->
                     </div>
                 </div>
 

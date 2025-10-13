@@ -6,6 +6,7 @@ use Illuminate\View\View;
 use Livewire\Component;
 use Lunar\Models\Collection;
 use Lunar\Models\CollectionGroup;
+use Lunar\Models\ProductType;
 
 class Navigation extends Component
 {
@@ -28,6 +29,7 @@ class Navigation extends Component
      */
     public function getCollectionsProperty()
     {
+
         $group = CollectionGroup::where('handle', 'main')->first();
 
         if (!$group) {
@@ -40,6 +42,11 @@ class Navigation extends Component
             // ->with('defaultUrl', 'products') // Eager load if needed
             ->get()
             ->toTree();
+    }
+
+    public function getProductTypesProperty()
+    {
+        return ProductType::all();
     }
 
     public function render(): View
