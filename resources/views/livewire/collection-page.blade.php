@@ -3,7 +3,7 @@
         <div class="flex gap-8 bg-blue-50 p-8">
             @if(data_get($this, 'designer.image'))
             <div class="">
-                <img src="{{ data_get($this, 'designer.image') }}" class="max-w-40 rounded-full"/>
+                <img src="{{ data_get($this, 'designer.image') }}" class="max-w-40 max-h-40 w-40 h-40 rounded-full"/>
             </div>
             @endif
             <div class="flex flex-col gap-8">
