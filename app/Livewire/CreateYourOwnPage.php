@@ -144,7 +144,7 @@ class CreateYourOwnPage extends Component implements HasForms
         // $data['design'] contains the uploaded file path
         session()->flash('success', 'Your order has been submitted!');
 
-        Mail::to('team@hayink.com')
+        Mail::to('kh.hagop@gmail.com')
             ->queue(new CreateYourOwnProductReceived($data));
 
         return redirect('/thanks-1');

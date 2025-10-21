@@ -47,12 +47,6 @@
                                       required />
                     </x-input.group>
 
-                    <x-input.group class="col-span-6"
-                                   label="Company name"
-                                   :errors="$errors->get($type . '.company_name')">
-                        <x-input.text wire:model.live="{{ $type }}.company_name" />
-                    </x-input.group>
-
                     <x-input.group class="col-span-6 sm:col-span-3"
                                    label="Contact phone"
                                    :errors="$errors->get($type . '.contact_phone')">
@@ -72,24 +66,12 @@
                         <hr class="h-px my-4 bg-gray-100 border-none">
                     </div>
 
-                    <x-input.group class="col-span-3 sm:col-span-2"
-                                   label="Address line 1"
+                    <x-input.group class="col-span-6 sm:col-span-6"
+                                   label="Address"
                                    :errors="$errors->get($type . '.line_one')"
                                    required>
                         <x-input.text wire:model.live="{{ $type }}.line_one"
                                       required />
-                    </x-input.group>
-
-                    <x-input.group class="col-span-3 sm:col-span-2"
-                                   label="Address line 2"
-                                   :errors="$errors->get($type . '.line_two')">
-                        <x-input.text wire:model.live="{{ $type }}.line_two" />
-                    </x-input.group>
-
-                    <x-input.group class="col-span-3 sm:col-span-2"
-                                   label="Address line 3"
-                                   :errors="$errors->get($type . '.line_three')">
-                        <x-input.text wire:model.live="{{ $type }}.line_three" />
                     </x-input.group>
 
                     <x-input.group class="col-span-3 sm:col-span-2"
@@ -100,18 +82,14 @@
                                       required />
                     </x-input.group>
 
-                    <x-input.group class="col-span-3 sm:col-span-2"
-                                   label="State / Province"
-                                   :errors="$errors->get($type . '.state')">
-                        <x-input.text wire:model.live="{{ $type }}.state" />
-                    </x-input.group>
-
-                    <x-input.group class="col-span-3 sm:col-span-2"
+                    <x-input.group class="col-span-3 sm:col-span-2 hidden"
                                    label="Postcode"
                                    :errors="$errors->get($type . '.postcode')"
-                                   required>
+                                   required >
                         <x-input.text wire:model.live="{{ $type }}.postcode"
-                                      required />
+                                      type="hidden"
+                                      x-init="$wire.set('{{ $type }}.postcode', '0000')"
+                                      />
                     </x-input.group>
 
                     <x-input.group class="col-span-6"
