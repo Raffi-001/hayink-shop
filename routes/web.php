@@ -407,7 +407,7 @@ Route::get('/ameria-pay', function () {
 
     $data = $response->json();
 
-    Log::info('Ameria InitPayment Response', $data);
+    // Log::info('Ameria InitPayment Response', $data);
 
     if (($data['ResponseCode'] ?? 0) == 1 && !empty($data['PaymentID'])) {
         // Update order with payment ID for webhook lookup
