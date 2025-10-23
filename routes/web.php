@@ -92,8 +92,8 @@ Route::match(['get', 'post'], '/ameria-hook', function (Request $request) {
             'Content-Type' => 'application/json',
         ])->post(config('services.ameria.base_url') . '/GetPaymentDetails', [
         'PaymentID' => $paymentId,
-        'Username'  => '3d19541048',
-        'Password'  => 'lazY2k',
+        'Username'  => config('services.ameria.username'),
+        'Password'  => config('services.ameria.password'),
     ]);
 
     $data = $response->json();
