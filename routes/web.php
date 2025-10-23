@@ -149,7 +149,7 @@ Route::match(['get', 'post'], '/ameria-hook', function (Request $request) {
                         'ameria_payment_id' => $paymentId,
                         'ameria_payment_confirmed' => true,
                         'ameria_payment_confirmed_at' => now(),
-                        'ameria_response_data' => $data,
+                        'ameria_response_data' => json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE),
                     ])
                 ]);
 
