@@ -35,5 +35,10 @@ return [
         'public_key' => env('STRIPE_KEY'),
         'key' => env('STRIPE_SECRET'),
     ],
+    'ameria' => [
+        'client_id' => env('AMERIABANK_CLIENT_ID'),
+        'username' => env('AMERIABANK_USERNAME'),
+        'password' => env('AMERIABANK_PASSWORD'),
+    ],
 
 ];

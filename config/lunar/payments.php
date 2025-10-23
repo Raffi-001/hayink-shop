@@ -10,8 +10,8 @@ return [
             'authorized' => 'payment-offline',
         ],
         'ameria-payment' => [
-            'dirver' => 'offline',
-            'authorized' => 'payment-offline',
+            'driver' => 'ameriabank',
+            'authorized' => 'payment-received',
         ]
     ],
 

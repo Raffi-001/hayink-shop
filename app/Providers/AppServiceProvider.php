@@ -46,7 +46,7 @@ class AppServiceProvider extends ServiceProvider
                 ]);
         })->register();
 
-        Payments::extend('custom', function ($app) {
+        Payments::extend('ameriabank', function ($app) {
             return $app->make(AmeriaPayment::class);
         });
 

@@ -57,7 +57,7 @@ class CheckoutPage extends Component
     /**
      * The payment type we want to use.
      */
-    public string $paymentType = 'cash-in-hand';
+    public string $paymentType = 'ameria-payment';
 
     /**
      * {@inheritDoc}
@@ -246,6 +246,11 @@ class CheckoutPage extends Component
 
     public function checkout()
     {
+        // For Ameria payment, redirect to the payment initiation
+        if ($this->paymentType === 'ameria-payment') {
+            return redirect()->route('ameria-pay');
+        }
+
         $payment = Payments::cart($this->cart)->withData([
             'payment_intent_client_secret' => $this->payment_intent_client_secret,
             'payment_intent' => $this->payment_intent,
