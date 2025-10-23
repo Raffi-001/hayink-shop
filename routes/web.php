@@ -311,7 +311,7 @@ Route::get('/ameria-pay', function () {
     // Create the order using raw database insert to ensure all fields are included
     $orderId = DB::table('lunar_orders')->insertGetId([
         'status' => 'awaiting-payment',
-        'reference' => 'AMERIA-' . time(),
+        'reference' => 'HAYINK-' . time(),
         'sub_total' => $cart->subTotal->value,
         'total' => $cart->total->value,
         'channel_id' => $channel->id,
@@ -413,7 +413,7 @@ Route::get('/ameria-pay', function () {
         // Update order with payment ID for webhook lookup
         $existingMeta = (array) $order->meta;
         $order->update([
-            'reference' => "AMERIA-{$orderId}",
+            'reference' => "HAYINK-{$orderId}",
             'meta' => array_merge($existingMeta, [
                 'ameria_payment_id' => $data['PaymentID'],
                 'ameria_initiated_at' => now(),
