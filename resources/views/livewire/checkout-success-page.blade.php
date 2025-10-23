@@ -20,9 +20,7 @@
                 Your order reference number is
 
                 <strong>
-
-                    2324324
-
+                    {{ $order->reference ?? $order->id }}
                 </strong>
             </p>
 

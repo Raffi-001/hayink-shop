@@ -135,7 +135,8 @@ Route::match(['get', 'post'], '/ameria-hook', function (Request $request) {
         if ($order->status === 'payment-received') {
             \Log::info('Order already processed', ['order_id' => $order->id, 'payment_id' => $paymentId]);
             return redirect()->route('checkout-success.view')
-                ->with('success', 'Your payment was already processed successfully!');
+                ->with('success', 'Your payment was already processed successfully!')
+                ->with('completed_order_id', $order->id);
         }
 
         if ($order) {
@@ -174,7 +175,8 @@ Route::match(['get', 'post'], '/ameria-hook', function (Request $request) {
                 ]);
 
                 return redirect()->route('checkout-success.view')
-                    ->with('success', 'Your payment was successful!');
+                    ->with('success', 'Your payment was successful!')
+                    ->with('completed_order_id', $order->id);
 
             } catch (\Exception $e) {
                 \Log::error('Failed to update order', [
@@ -260,7 +262,8 @@ Route::match(['get', 'post'], '/ameria-hook', function (Request $request) {
                     ]);
 
                     return redirect()->route('checkout-success.view')
-                        ->with('success', 'Your payment was successful!');
+                        ->with('success', 'Your payment was successful!')
+                        ->with('completed_order_id', $order->id);
 
                 } catch (\Exception $e) {
                     \Log::error('Failed to update order after payment success', [

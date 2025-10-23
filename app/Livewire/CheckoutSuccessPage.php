@@ -16,15 +16,24 @@ class CheckoutSuccessPage extends Component
 
     public function mount(): void
     {
-        // $this->cart = CartSession::current();
-        // if (! $this->cart || ! $this->cart->completedOrder) {
-        //     $this->redirect('/');
-
-        //     return;
-        // }
-        // $this->order = $this->cart->completedOrder;
-
-        // CartSession::forget();
+        // Get the order ID from session or redirect to home if not found
+        $orderId = session('completed_order_id');
+        
+        if (!$orderId) {
+            $this->redirect('/');
+            return;
+        }
+        
+        // Find the order
+        $this->order = Order::find($orderId);
+        
+        if (!$this->order) {
+            $this->redirect('/');
+            return;
+        }
+        
+        // Clear the session
+        session()->forget('completed_order_id');
     }
 
     public function render(): View
