@@ -111,7 +111,7 @@ Route::match(['get', 'post'], '/ameria-hook', function (Request $request) {
     if ($isPaymentApproved) {
         // Find order by payment ID (order should already exist from /ameria-pay)
         //$order = \Lunar\Models\Order::whereJsonContains('meta->ameria_payment_id', $paymentId)->first();
-        $order = \Lunar\Models\Order::where('reference', 'AMERIA-' . $orderId)->first();
+        $order = \Lunar\Models\Order::where('reference', 'HAYINK-' . $orderId)->first();
 
         \Log::info('Webhook order lookup', [
             'payment_id' => $paymentId,
