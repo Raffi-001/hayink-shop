@@ -80,17 +80,17 @@ Route::match(['get', 'post'], '/ameria-hook', function (Request $request) {
     }
 
     $payload = [
-        "ClientID"  => "90d85bde-cc63-4ff2-b57d-1f2a6b4cdf22",
-        "Username"  => "3d19541048",
-        "Password"  => "lazY2k",
+        "ClientID"  => config('services.ameria.client_id'),
+        "Username"  => config('services.ameria.username'),
+        "Password"  => config('services.ameria.password'),
         "PaymentID" => $paymentId,
     ];
 
-    // Use GetPaymentDetails instead of ConfirmPayment to get actual payment information
-    $response = Http::withHeaders([
-        'Accept'       => 'application/json',
-        'Content-Type' => 'application/json',
-    ])->post('https://servicestest.ameriabank.am/VPOS/api/VPOS/GetPaymentDetails', [
+        // Use GetPaymentDetails instead of ConfirmPayment to get actual payment information
+        $response = Http::withHeaders([
+            'Accept'       => 'application/json',
+            'Content-Type' => 'application/json',
+        ])->post(config('services.ameria.base_url') . '/GetPaymentDetails', [
         'PaymentID' => $paymentId,
         'Username'  => '3d19541048',
         'Password'  => 'lazY2k',
@@ -400,7 +400,7 @@ Route::get('/ameria-pay', function () {
     ];
 
     $response = Http::acceptJson()
-        ->post('https://servicestest.ameriabank.am/VPOS/api/VPOS/InitPayment', $payload);
+        ->post(config('services.ameria.base_url') . '/InitPayment', $payload);
 
     $data = $response->json();
 
@@ -423,7 +423,7 @@ Route::get('/ameria-pay', function () {
             'order_reference' => $order->reference,
         ]);
 
-        $paymentUrl = "https://servicestest.ameriabank.am/VPOS/Payments/Pay?id={$data['PaymentID']}&lang=en";
+        $paymentUrl = config('services.ameria.payment_url') . "?id={$data['PaymentID']}&lang=en";
         return redirect()->away($paymentUrl);
     }
 

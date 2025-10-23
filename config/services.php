@@ -36,6 +36,8 @@ return [
         'key' => env('STRIPE_SECRET'),
     ],
     'ameria' => [
+        'base_url' => env('AMERIABANK_BASE_URL', 'https://servicestest.ameriabank.am/VPOS/api/VPOS'),
+        'payment_url' => env('AMERIABANK_PAYMENT_URL', 'https://servicestest.ameriabank.am/VPOS/Payments/Pay'),
         'client_id' => env('AMERIABANK_CLIENT_ID'),
         'username' => env('AMERIABANK_USERNAME'),
         'password' => env('AMERIABANK_PASSWORD'),
