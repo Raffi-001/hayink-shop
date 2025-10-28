@@ -1,21 +1,24 @@
 <section>
     <div class="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
-        <div class="flex gap-8 bg-blue-50 p-8">
+        <div class="flex gap-8 bg-blue-50 p-8 items-start">
             @if(data_get($this, 'designer.image'))
-            <div class="">
-                <img src="{{ data_get($this, 'designer.image') }}" class="max-w-40 max-h-40 w-40 h-40 rounded-full"/>
-            </div>
+                <div class="w-40 h-40 rounded-full bg-white overflow-hidden flex items-center justify-center shrink-0">
+                    <img
+                        src="{{ data_get($this, 'designer.image') }}"
+                        class="object-cover"
+                        alt="Designer Image"
+                    />
+                </div>
             @endif
-            <div class="flex flex-col gap-8">
 
+            <div class="flex flex-col gap-8">
                 <h1 class="text-3xl font-bold">
                     {{ $this->collection->translateAttribute('name') }}
                 </h1>
 
-                <div class="">
+                <div>
                     {!! data_get($this, 'designer.about') !!}
                 </div>
-
             </div>
         </div>
 
@@ -25,6 +28,6 @@
             @empty
             @endforelse
         </div>
-
     </div>
 </section>
+
