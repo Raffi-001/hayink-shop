@@ -3,16 +3,15 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ArtistResource\Pages;
-use App\Filament\Resources\ArtistResource\RelationManagers;
 use App\Models\Artist;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class ArtistResource extends Resource
@@ -30,24 +29,42 @@ class ArtistResource extends Resource
 
                 Forms\Components\Section::make('Artist Info')
                     ->schema([
-
                         Forms\Components\TextInput::make('name')
                             ->live(onBlur: true)
                             ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))
                             ->required()
                             ->maxLength(255),
+
                         Forms\Components\TextInput::make('slug')
                             ->required()
                             ->maxLength(255),
+
                         Forms\Components\RichEditor::make('about')
                             ->columnSpanFull(),
+
                         Forms\Components\TextInput::make('instagram_url')
                             ->maxLength(255),
 
-                    ]),
+                        Forms\Components\Section::make('user')
+                            ->relationship('user')
+                            ->schema([
+                                Forms\Components\TextInput::make('name'),
 
+                                Forms\Components\TextInput::make('email')
+                                    ->email(),
+
+                                Forms\Components\TextInput::make('password')
+                                    ->password()
+                                    ->dehydrateStateUsing(fn (?string $state) =>
+                                    filled($state) ? Hash::make($state) : null
+                                    )
+                                    ->dehydrated(fn (?string $state) => filled($state))
+                                    ->required(fn (Get $get) => $get('id') === null),
+                            ]),
+                    ]),
             ]);
     }
+
 
     public static function table(Table $table): Table
     {
