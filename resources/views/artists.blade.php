@@ -34,7 +34,7 @@
                     <img
                         src="{{ $artist->avatar }}"
                         alt="Artist Avatar"
-                        class="max-w-full max-h-full object-contain"
+                        class="max-w-full max-h-full object-cover"
                     />
                 </div>
                 <div class="flex flex-col gap-2">
