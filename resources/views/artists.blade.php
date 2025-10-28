@@ -31,11 +31,19 @@
             <a href="{{ $artist->collection }}">
             <div class="flex flex-col gap-4 border border-primary-200 p-4">
                 <div class="w-40 h-40 rounded-full overflow-hidden shrink-0">
+                    @if(! $artist->avatar)
+                        <img
+                            src="https://api.dicebear.com/7.x/bottts/png?seed={{ urlencode($artist->name) }}&scale=85"
+                            alt="Artist Avatar"
+                            class="w-full h-full object-cover object-center"
+                        />
+                    @else
                     <img
                         src="{{ $artist->avatar }}"
                         alt="Artist Avatar"
                         class="w-full h-full object-cover object-center"
                     />
+                    @endif
                 </div>
                 <div class="flex flex-col gap-2">
                     <div class="text-center font-bold">
