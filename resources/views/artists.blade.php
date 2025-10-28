@@ -30,11 +30,11 @@
             <div>
             <a href="{{ $artist->collection }}">
             <div class="flex flex-col gap-4 border border-primary-200 p-4">
-                <div class="w-40 h-40 rounded-full bg-white overflow-hidden flex items-center justify-center shrink-0">
+                <div class="w-40 h-40 rounded-full overflow-hidden shrink-0">
                     <img
                         src="{{ $artist->avatar }}"
                         alt="Artist Avatar"
-                        class="max-w-full max-h-full object-cover"
+                        class="w-full h-full object-cover object-center"
                     />
                 </div>
                 <div class="flex flex-col gap-2">
