@@ -6,9 +6,6 @@ use App\Mail\CreateYourOwnProductReceived;
 use App\Models\CustomProductRequest;
 use Awcodes\Palette\Forms\Components\ColorPicker;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Forms\Components\ToggleButtons;
-use http\Env\Request;
 use IbrahimBougaoua\RadioButtonImage\Actions\RadioButtonImage;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
@@ -17,30 +14,35 @@ use Filament\Forms\Form;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Radio;
+use Filament\Forms\Get;
 
 class CreateYourOwnPage extends Component implements HasForms
 {
     use InteractsWithForms;
 
-    // Livewire properties
     public $name;
     public $phone_number;
     public $email;
     public $design;       // For FileUpload
     public $regions = []; // For multi-region selection
     public $sizes = [];   // For Repeater
+    public $product_type = 'tshirt';
 
-    // Image positions
-    public $positions = [
+    public $tshirtPositions = [
         'medium_back' => 'images/positioning-1.png',
         'full_front' => 'images/positioning-2.png',
         'left_chest' => 'images/positioning-3.png',
         'left_sleeve' => 'images/positioning-4.png',
         'right_sleeve' => 'images/positioning-5.png',
         'full_back' => 'images/positioning-6.png',
+    ];
+
+    public $hoodiePositions = [
+        'front' => 'images/hoodie-positioning-front.png',
+        'back' => 'images/hoodie-positioning-back.png',
     ];
 
     public function mount(): void
@@ -78,16 +80,26 @@ class CreateYourOwnPage extends Component implements HasForms
                 ->directory('designs')
                 ->required(),
 
-            // SpatieMediaLibraryFileUpload::make('design')
-            //     ->label('Upload Your Design')
-            //     ->collection('custom-product-requests')
-            //     ->image()
-            //     ->required(),
+            Radio::make('product_type')
+                ->label('Product Type')
+                ->options([
+                    'tshirt' => 'T-Shirt',
+                    'hoodie' => 'Hoodie',
+                ])
+                ->default('tshirt')
+                ->live(),
+                // ->afterStateUpdated(fn ($state, callable $set) => $set('regions', null))
 
-            // Region Selection (multi-select)
             RadioButtonImage::make('regions')
                 ->label('Select T-Shirt Region(s)')
-                ->options($this->positions)
+                ->options($this->tshirtPositions)
+                ->visible(fn (Get $get): bool=> $get('product_type') === 'tshirt')
+                ->required(),
+
+            RadioButtonImage::make('regions')
+                ->label('Select Hoodie Region(s)')
+                ->options($this->hoodiePositions)
+                ->visible(fn (Get $get): bool => $get('product_type') === 'hoodie')
                 ->required(),
 
             // Sizes & quantities
@@ -121,6 +133,13 @@ class CreateYourOwnPage extends Component implements HasForms
                     ])->toArray();
                 }),
         ]);
+    }
+
+    protected function mutateFormDataBeforeFill(array $data): array
+    {
+        $data['product_type'] = 'tshirt';
+
+        return $data;
     }
 
     public function submit()
