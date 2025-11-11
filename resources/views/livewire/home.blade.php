@@ -30,10 +30,10 @@
                     <img src="{{ $cta['img'] }}" alt="{{ $cta['title'] }}" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
                     <div class="absolute inset-0 bg-black/50"></div>
                     <div class="absolute bottom-0 left-0 z-10 text-white w-full p-4 sm:p-6 lg:p-8">
-                        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
                             <div class="flex flex-col">
-                                <h2 class="text-lg sm:text-2xl lg:text-3xl font-accent leading-snug">{{ $cta['title'] }}</h2>
-                                <p class="text-sm sm:text-base lg:text-lg mt-1 max-w-md">{{ $cta['text'] }}</p>
+                                <h2 class="text-lg md:text-2xl lg:text-3xl font-accent leading-snug">{{ $cta['title'] }}</h2>
+                                <p class="text-sm md:text-base lg:text-lg mt-1 max-w-md">{{ $cta['text'] }}</p>
                             </div>
                             <a href="{{ $cta['link'] }}"
                                class="px-4 py-2 text-xs sm:text-sm lg:text-base font-medium text-center text-white border border-white/70 hover:border-white hover:bg-white/10 rounded-md transition-all whitespace-nowrap self-start sm:self-auto">
