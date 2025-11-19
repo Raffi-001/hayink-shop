@@ -10,10 +10,11 @@ use Lunar\Models\Language;
 use Lunar\Models\Url;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Symfony\Contracts\Translation\TranslatorTrait;
 
 class Artist extends Model implements HasMedia
 {
-    use InteractsWithMedia;
+    use InteractsWithMedia, TranslatorTrait;
 
     protected $guarded = [];
 

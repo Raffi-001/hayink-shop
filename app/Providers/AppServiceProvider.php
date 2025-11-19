@@ -17,6 +17,7 @@ use Filament\Support\Assets\Css;
 use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
 use Lunar\Admin\Support\Facades\AttributeData;
 use Lunar\Admin\Support\Facades\LunarPanel;
 use Lunar\Base\ShippingModifiers;
@@ -79,6 +80,10 @@ class AppServiceProvider extends ServiceProvider
             // Js::make('fabric', __DIR__ . '/../../resources/fpd-js/dist/js/fabric.js'),
             // Js::make('fancyproductdesigner', __DIR__ . '/../../resources/fpd-js/dist/js/FancyProductDesigner.js'),
             // Js::make('fpdinit', __DIR__ . '/../../resources/fpd-js/dist/js/fpdinit.js'),
+        ]);
+
+        Livewire::addPersistentMiddleware([
+            \App\Http\Middleware\SetLocale::class,
         ]);
 
 

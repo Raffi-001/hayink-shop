@@ -16,7 +16,7 @@
                     <button
                         class="text-sm font-medium transition hover:opacity-75 uppercase hover:bg-primary-200 p-3 flex items-center gap-1"
                     >
-                        Shop
+                        {{ __('livewire.components.navigation.shop') }}
                         <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M19 9l-7 7-7-7"/>
@@ -73,13 +73,13 @@
                    href="{{ route('pages.artists') }}"
                    wire:navigate
                 >
-                    Meet the Artists
+                    {{ __('livewire.components.navigation.meet-the-artists') }}
                 </a>
                 <a class="text-sm font-medium transition hover:opacity-75 uppercase hover:bg-primary-200 p-3"
                    href="{{ route('pages.services') }}"
                    wire:navigate
                 >
-                    Services
+                    {{ __('livewire.components.navigation.services') }}
                 </a>
             </nav>
 
@@ -88,12 +88,14 @@
         <div class="flex items-center justify-between flex-1 ml-4 lg:justify-end">
             <div class="lg:hidden">&nbsp;</div>
 
+            <livewire:components.language-switcher />
+
             <a href="{{ route('apply-as-an-artist.view') }}" type="submit" class="px-4 py-2 text-sm font-medium text-center text-white bg-primary-500 hover:bg-primary-600 mr-4 hidden lg:inline-block">
-                Apply as an Artist
+                {{ __('livewire.components.navigation.apply-as-an-artist') }}
             </a>
 
             <a href="{{ route('create-your-own.view') }}" type="submit" class="px-4 py-2 text-sm font-medium text-center text-white bg-primary-500 hover:bg-primary-600 mr-4 hidden lg:inline-block">
-                Create Your Own Product
+                {{ __('livewire.components.navigation.create-your-product') }}
             </a>
 
             @if(false)
