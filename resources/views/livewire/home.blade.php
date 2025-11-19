@@ -4,7 +4,7 @@
     <div class="mt-8">
 
     <x-carousel :items="$this->latestProducts"
-                title="Latest Products"
+                :title="__('Latest Products')"
                 browse-link="/product-all"
                 per-view="5" />
 
