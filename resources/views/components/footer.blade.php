@@ -11,27 +11,27 @@
                     <div class="grid grid-cols-2 gap-8 xl:col-span-2">
                         <div class="space-y-12 md:grid md:grid-cols-2 md:gap-8 md:space-y-0">
                             <div>
-                                <h3 class="text-sm font-medium text-gray-900">Products</h3>
+                                <h3 class="text-sm font-medium text-gray-900">{{ __('footer.products') }}</h3>
                                 <ul role="list" class="mt-6 space-y-6">
                                     <li class="text-sm">
-                                        <a href="/collections/t-shirts" class="text-gray-500 hover:text-gray-600">T-Shirts</a>
+                                        <a href="/collections/t-shirts" class="text-gray-500 hover:text-gray-600">{{ __('footer.tshirts') }}</a>
                                     </li>
                                     <li class="text-sm">
-                                        <a href="/collections/scarves" class="text-gray-500 hover:text-gray-600">Scarves</a>
+                                        <a href="/collections/scarves" class="text-gray-500 hover:text-gray-600">{{ __('footer.scarves') }}</a>
                                     </li>
                                 </ul>
                             </div>
                             <div>
-                                <h3 class="text-sm font-medium text-gray-900">Customer Service</h3>
+                                <h3 class="text-sm font-medium text-gray-900">{{ __('footer.customer-services') }}</h3>
                                 <ul role="list" class="mt-6 space-y-6">
                                     <li class="text-sm">
-                                        <a href="{{ route('contact-us.view') }}" class="text-gray-500 hover:text-gray-600">Contact</a>
+                                        <a href="{{ route('contact-us.view') }}" class="text-gray-500 hover:text-gray-600">{{ __('footer.contact') }}</a>
                                     </li>
                                     <li class="text-sm">
-                                        <a href="#" class="text-gray-500 hover:text-gray-600">Shipping</a>
+                                        <a href="#" class="text-gray-500 hover:text-gray-600">{{ __('footer.shipping') }}</a>
                                     </li>
                                     <li class="text-sm">
-                                        <a href="#" class="text-gray-500 hover:text-gray-600">Returns</a>
+                                        <a href="#" class="text-gray-500 hover:text-gray-600">{{ __('footer.returns') }}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -39,27 +39,27 @@
 
                         <div class="space-y-12 md:grid md:grid-cols-2 md:gap-8 md:space-y-0">
                             <div>
-                                <h3 class="text-sm font-medium text-gray-900">Company</h3>
+                                <h3 class="text-sm font-medium text-gray-900">{{ __('footer.company') }}</h3>
                                 <ul role="list" class="mt-6 space-y-6">
                                     <li class="text-sm">
-                                        <a href="/about" class="text-gray-500 hover:text-gray-600">About Us</a>
+                                        <a href="/about" class="text-gray-500 hover:text-gray-600">{{ __('footer.about-us') }}</a>
                                     </li>
                                     <li class="text-sm">
-                                        <a href="/p/how-it-works" class="text-gray-500 hover:text-gray-600">How it Works</a>
+                                        <a href="/p/how-it-works" class="text-gray-500 hover:text-gray-600">{{ __('footer.how-it-works') }}</a>
                                     </li>
                                     <li class="text-sm">
-                                        <a href="https://hayink.com/designer" class="text-gray-500 hover:text-gray-600">Artist Login</a>
+                                        <a href="https://hayink.com/designer" class="text-gray-500 hover:text-gray-600">{{ __('footer.artist-login') }}</a>
                                     </li>
                                 </ul>
                             </div>
                             <div>
-                                <h3 class="text-sm font-medium text-gray-900">Legal</h3>
+                                <h3 class="text-sm font-medium text-gray-900">{{ __('footer.legal') }}</h3>
                                 <ul role="list" class="mt-6 space-y-6">
                                     <li class="text-sm">
-                                        <a href="/p/terms-and-conditions" class="text-gray-500 hover:text-gray-600">Terms of Service</a>
+                                        <a href="/p/terms-and-conditions" class="text-gray-500 hover:text-gray-600">{{ __('footer.terms-of-service') }}</a>
                                     </li>
                                     <li class="text-sm">
-                                        <a href="/p/cookie-policy" class="text-gray-500 hover:text-gray-600">Cookie Policy</a>
+                                        <a href="/p/cookie-policy" class="text-gray-500 hover:text-gray-600">{{ __('footer.cookie-policy') }}</a>
                                     </li>
                                 </ul>
                             </div>

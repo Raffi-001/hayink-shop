@@ -9,7 +9,7 @@
                 @if ($browseLink)
                     <a href="{{ $browseLink }}"
                        class="hidden text-xs sm:text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block">
-                        Browse all <span aria-hidden="true">&rarr;</span>
+                        {{ __('global.browse-all') }} <span aria-hidden="true">&rarr;</span>
                     </a>
                 @endif
             </div>

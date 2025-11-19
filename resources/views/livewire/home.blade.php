@@ -21,10 +21,10 @@
     <div class="px-4 sm:px-6 lg:px-8 pb-16">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             @foreach ([
-                ['img' => '/images/front-sections-1.png', 'title' => 'Limited Edition Drops', 'text' => 'One-of-a-kind fashion pieces from silk scarves and linen shirts to bold kimonos...', 'link' => '/collections/t-shirts', 'btn' => 'View Collection'],
-                ['img' => '/images/front-sections-2.png', 'title' => 'Premium Merch for Your Business', 'text' => 'Custom apparel your team will actually want to wear. High-quality prints, premium fabrics, and tailored designs for companies, studios, and organizations in Armenia.', 'link' => '/services', 'btn' => 'More About Our Services'],
-                ['img' => '/images/front-sections-3.png', 'title' => 'Make Your Own Design', 'text' => 'Your idea, your print. Upload your design and we’ll craft it on premium t-shirts, hoodies, and more — made locally, just for you.', 'link' => '/create-your-own', 'btn' => 'Custom Products'],
-                ['img' => '/images/front-sections-4.png', 'title' => 'Become a Creator with Us', 'text' => 'Turn your art into wearable merch. We partner with Armenian artists and creators, bringing their designs to life on premium apparel and helping them sell globally.', 'link' => '/apply-as-an-artist', 'btn' => 'Apply as an Artist'],
+                ['img' => '/images/front-sections-1.png', 'title' => __('Limited Edition Drops'), 'text' => __('One-of-a-kind fashion pieces from silk scarves and linen shirts to bold kimonos...'), 'link' => '/collections/t-shirts', 'btn' => __('View Collection')],
+                ['img' => '/images/front-sections-2.png', 'title' => __('Premium Merch for Your Business'), 'text' => __('Custom apparel your team will actually want to wear. High-quality prints, premium fabrics, and tailored designs for companies, studios, and organizations in Armenia.'), 'link' => '/services', 'btn' => __('More About Our Services')],
+                ['img' => '/images/front-sections-3.png', 'title' => __('Make Your Own Design'), 'text' => __('Your idea, your print. Upload your design and we’ll craft it on premium t-shirts, hoodies, and more — made locally, just for you.'), 'link' => '/create-your-own', 'btn' => __('Custom Products')],
+                ['img' => '/images/front-sections-4.png', 'title' => __('Become a Creator with Us'), 'text' => __('Turn your art into wearable merch. We partner with Armenian artists and creators, bringing their designs to life on premium apparel and helping them sell globally.'), 'link' => '/apply-as-an-artist', 'btn' => __('Apply as an Artist')],
             ] as $cta)
                 <div class="relative aspect-square overflow-hidden rounded-lg">
                     <img src="{{ $cta['img'] }}" alt="{{ $cta['title'] }}" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
@@ -53,7 +53,7 @@
                 Artists
             </h2>
             <a href="/artists" class="hidden text-xs sm:text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block">
-                Browse all <span aria-hidden="true">&rarr;</span>
+                {{ __('global.browse-all') }} <span aria-hidden="true">&rarr;</span>
             </a>
         </div>
 
