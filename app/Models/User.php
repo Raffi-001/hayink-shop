@@ -46,4 +46,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(DesignImage::class);
     }
+
+    protected static function booted()
+    {
+        static::creating(function ($user) {
+            if (empty($user->password)) {
+                $user->password = bcrypt(Str::random(12));
+            }
+        });
+    }
 }
