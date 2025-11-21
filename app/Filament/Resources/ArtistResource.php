@@ -48,9 +48,11 @@ class ArtistResource extends Resource
                         Forms\Components\Section::make('user')
                             ->relationship('user')
                             ->schema([
-                                Forms\Components\TextInput::make('name'),
+                                Forms\Components\TextInput::make('name')
+                                    ->required(),
 
                                 Forms\Components\TextInput::make('email')
+                                    ->required()
                                     ->email(),
 
                                 // Forms\Components\TextInput::make('password')
