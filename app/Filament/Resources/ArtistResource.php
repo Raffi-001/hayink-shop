@@ -53,13 +53,13 @@ class ArtistResource extends Resource
                                 Forms\Components\TextInput::make('email')
                                     ->email(),
 
-                                Forms\Components\TextInput::make('password')
-                                    ->password()
-                                    ->dehydrateStateUsing(fn (?string $state) =>
-                                    filled($state) ? Hash::make($state) : null
-                                    )
-                                    ->dehydrated(fn (?string $state) => filled($state))
-                                    ->required(fn (Get $get) => $get('id') === null),
+                                // Forms\Components\TextInput::make('password')
+                                //     ->password()
+                                //     ->dehydrateStateUsing(fn (?string $state) =>
+                                //     filled($state) ? Hash::make($state) : null
+                                //     )
+                                //     ->dehydrated(fn (?string $state) => filled($state))
+                                //     ->required(fn (Get $get) => $get('id') === null),
                             ]),
                     ]),
             ]);
