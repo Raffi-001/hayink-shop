@@ -14,6 +14,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Lunar\Facades\CartSession;
+use App\Services\Ehdm\Ehdm;
+use App\Services\Ehdm\Transformers\OrderToHdmPayload;
+use Lunar\Models\Order;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,11 +89,11 @@ Route::match(['get', 'post'], '/ameria-hook', function (Request $request) {
         "PaymentID" => $paymentId,
     ];
 
-        // Use GetPaymentDetails instead of ConfirmPayment to get actual payment information
-        $response = Http::withHeaders([
-            'Accept'       => 'application/json',
-            'Content-Type' => 'application/json',
-        ])->post(config('services.ameria.base_url') . '/GetPaymentDetails', [
+    // Use GetPaymentDetails instead of ConfirmPayment to get actual payment information
+    $response = Http::withHeaders([
+        'Accept'       => 'application/json',
+        'Content-Type' => 'application/json',
+    ])->post(config('services.ameria.base_url') . '/GetPaymentDetails', [
         'PaymentID' => $paymentId,
         'Username'  => config('services.ameria.username'),
         'Password'  => config('services.ameria.password'),
@@ -106,7 +109,7 @@ Route::match(['get', 'post'], '/ameria-hook', function (Request $request) {
 
     // Check if payment is successful (response code 00 means approved)
     $isPaymentApproved = ($request->input('resposneCode') === '00' || $request->input('responseCode') === '00') ||
-                        (isset($data['ResponseCode']) && $data['ResponseCode'] == '00');
+        (isset($data['ResponseCode']) && $data['ResponseCode'] == '00');
 
     if ($isPaymentApproved) {
         // Find order by payment ID (order should already exist from /ameria-pay)
@@ -173,6 +176,38 @@ Route::match(['get', 'post'], '/ameria-hook', function (Request $request) {
                     'payment_id' => $paymentId,
                     'status' => 'payment-received'
                 ]);
+
+                try {
+                    // It's safe to let the transformer load its own relations,
+                    // but if you want you can load here as well.
+                    $payload = OrderToHdmPayload::make($order);
+
+                    $ehdmClient = Ehdm::create($payload);
+
+                    // Optional: send fiscal receipt to customer email, if you have it
+                    $customerEmail = $order->meta['email'] ?? null; // or from a customer relation
+                    if ($customerEmail) {
+                        $ehdmClient->sendEmail($customerEmail, 1); // 1 = English, 0 = Armenian
+                    }
+
+                    // Optional: store receipt info on order meta
+                    $ehdmResponse = $ehdmClient->getResponse();
+                    $meta = (array) $order->meta;
+                    $order->update([
+                        'meta' => array_merge($meta, [
+                            'ehdm_receipt_id'   => $ehdmClient->getReceiptId(),
+                            'ehdm_history_id'   => $ehdmClient->getHistoryId(),
+                            'ehdm_receipt_link' => $ehdmResponse['link'] ?? null,
+                        ]),
+                    ]);
+                } catch (\Throwable $ehdmException) {
+                    \Log::error('EHdM receipt generation failed', [
+                        'order_id' => $order->id,
+                        'payment_id' => $paymentId,
+                        'error' => $ehdmException->getMessage(),
+                    ]);
+                    // you probably don't want to block the user here
+                }
 
                 return redirect()->route('checkout-success.view')
                     ->with('success', 'Your payment was successful!')
@@ -436,28 +471,29 @@ Route::get('/ameria-pay', function () {
         ->with('error', 'Failed to initiate payment. Please try again later.');
 })->name('ameria-pay');
 
-function createImageFromFile(string $filePath)
-{
-    if (!file_exists($filePath)) {
-        throw new Exception("File not found: $filePath");
-    }
+if(! function_exists('createImageFromFile')) {
+    function createImageFromFile(string $filePath)
+    {
+        if (!file_exists($filePath)) {
+            throw new Exception("File not found: $filePath");
+        }
 
-    $imageType = exif_imagetype($filePath);
+        $imageType = exif_imagetype($filePath);
 
-    switch ($imageType) {
-        case IMAGETYPE_JPEG:
-            return imagecreatefromjpeg($filePath);
-        case IMAGETYPE_PNG:
-            return imagecreatefrompng($filePath);
-        case IMAGETYPE_GIF:
-            return imagecreatefromgif($filePath);
-        case IMAGETYPE_WEBP:
-            return imagecreatefromwebp($filePath);
-        default:
-            throw new Exception("Unsupported image type: $filePath");
+        switch ($imageType) {
+            case IMAGETYPE_JPEG:
+                return imagecreatefromjpeg($filePath);
+            case IMAGETYPE_PNG:
+                return imagecreatefrompng($filePath);
+            case IMAGETYPE_GIF:
+                return imagecreatefromgif($filePath);
+            case IMAGETYPE_WEBP:
+                return imagecreatefromwebp($filePath);
+            default:
+                throw new Exception("Unsupported image type: $filePath");
+        }
     }
 }
-
 
 Route::post('/art/upload-design', function (Request $request) {
     $design = new \App\Models\DesignImage();
@@ -522,3 +558,4 @@ Route::get('/designs-catalog', function (Request $request) {
 
     return response()->json($payload);
 });
+
