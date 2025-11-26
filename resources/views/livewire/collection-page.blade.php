@@ -1,8 +1,8 @@
 <section>
     <div class="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
-        <div class="flex gap-8 bg-blue-50 p-8 items-start">
+        <div class="flex flex-col md:flex-row gap-8 bg-blue-50 p-8 items-start">
             @if(data_get($this, 'designer.image'))
-                <div class="w-40 h-40 rounded-full bg-white overflow-hidden flex items-center justify-center shrink-0">
+                <div class="w-20 h-20 md:w-40 md:h-40 rounded-full bg-white overflow-hidden flex items-center justify-center shrink-0">
                     <img
                         src="{{ data_get($this, 'designer.image') }}"
                         class="object-cover"
@@ -11,8 +11,8 @@
                 </div>
             @endif
 
-            <div class="flex flex-col gap-8">
-                <h1 class="text-3xl font-bold">
+            <div class="flex flex-col gap-2 md:gap-8">
+                <h1 class="text-xl md:text-3xl font-bold">
                     {{ $this->collection->translateAttribute('name') }}
                 </h1>
 

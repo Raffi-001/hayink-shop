@@ -59,8 +59,6 @@ class OrderToHdmPayload
             ];
         }
 
-        dd($products);
-
         return $products;
     }
 

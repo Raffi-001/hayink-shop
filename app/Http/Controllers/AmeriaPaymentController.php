@@ -1,23 +1,65 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use App\PaymentTypes\AmeriaPayment;
 use Illuminate\Http\Request;
-use Lunar\Models\Order;
+use Lunar\Facades\CartSession;
+use App\Services\AmeriaPaymentService;
+use App\Services\AmeriaOrderService;
+use Illuminate\Support\Facades\Log;
 
 class AmeriaPaymentController extends Controller
 {
-    public function pay(Request $request, AmeriaPayment $ameria)
+    public function pay()
     {
-        $payment = $ameria->authorize();
+        $cart = CartSession::current();
 
-        if ($payment->success) {
-            $order = $ameria->getOrder();
-
-            // Redirect user to AmeriaBank secure page
-            return redirect()->away($order->meta['ameria_redirect_url']);
+        if (!$cart || $cart->lines->isEmpty()) {
+            return redirect()->route('checkout.view')
+                ->with('error', 'Your cart is empty.');
         }
 
-        return back()->withErrors(['payment' => $payment->message]);
+        // Create the order using the pipeline
+        $order = app(AmeriaOrderService::class)->createFromCart($cart);
+
+        // Request payment URL from Ameria
+        $paymentUrl = app(AmeriaPaymentService::class)->initPayment($order);
+
+        return redirect()->away($paymentUrl);
+    }
+
+    public function hook(Request $request)
+    {
+        Log::info('Ameria webhook received', $request->all());
+
+        $paymentId = $request->input('paymentID');
+        $orderId   = $request->input('orderID');
+
+        if (!$paymentId) {
+            Log::warning('Missing paymentID');
+            return redirect()->route('checkout.view')
+                ->with('error', 'Payment ID missing.');
+        }
+
+        // Validate payment with Ameria
+        $details = app(AmeriaPaymentService::class)->getPaymentDetails($paymentId);
+
+        $approved =
+            ($request->input('resposneCode') === '00' ||
+                $request->input('responseCode') === '00' ||
+                ($details['ResponseCode'] ?? null) == '00');
+
+        if (!$approved) {
+            Log::warning("Payment not approved", $details);
+            return redirect()->route('checkout.view')
+                ->with('error', 'Payment failed.');
+        }
+
+        // Attach payment to order + generate EHdM
+        $result = app(AmeriaOrderService::class)->capturePayment($paymentId, $orderId, $details);
+
+        return redirect()->route('checkout-success.view')
+            ->with('success', 'Your payment was successful!')
+            ->with('completed_order_id', $result->id);
     }
 }
