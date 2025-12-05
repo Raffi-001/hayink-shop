@@ -2,7 +2,7 @@
       class="bg-white border border-gray-100 rounded-xl">
     <div class="flex items-center justify-between h-16 px-6 border-b border-gray-100">
         <h3 class="text-lg font-medium">
-            {{ ucfirst($type) }} Details
+            {{ __('partials.type_details', ['type' => ucfirst($type)]) }}
         </h3>
 
         @if ($type == 'shipping' && $step == $currentStep)
@@ -13,7 +13,7 @@
                        wire:model.live="shippingIsBilling" />
 
                 <span class="ml-2 text-xs font-medium">
-                    Same as billing
+                    {{ __('partials.same_as_billing') }}
                 </span>
             </label>
         @endif
@@ -32,7 +32,7 @@
             @if ($step == $currentStep)
                 <div class="grid grid-cols-6 gap-4">
                     <x-input.group class="col-span-3"
-                                   label="First name"
+                                   label="{{ __('partials.address.first_name') }}"
                                    :errors="$errors->get($type . '.first_name')"
                                    required>
                         <x-input.text wire:model.live="{{ $type }}.first_name"
@@ -40,7 +40,7 @@
                     </x-input.group>
 
                     <x-input.group class="col-span-3"
-                                   label="Last name"
+                                   label="{{ __('partials.address.last_name') }}"
                                    :errors="$errors->get($type . '.last_name')"
                                    required>
                         <x-input.text wire:model.live="{{ $type }}.last_name"
@@ -48,13 +48,13 @@
                     </x-input.group>
 
                     <x-input.group class="col-span-6 sm:col-span-3"
-                                   label="Contact phone"
+                                   label="{{ __('partials.address.contact_phone') }}"
                                    :errors="$errors->get($type . '.contact_phone')">
                         <x-input.text wire:model.live="{{ $type }}.contact_phone" />
                     </x-input.group>
 
                     <x-input.group class="col-span-6 sm:col-span-3"
-                                   label="Contact email"
+                                   label="{{ __('partials.address.contact_email') }}"
                                    :errors="$errors->get($type . '.contact_email')"
                                    required>
                         <x-input.text wire:model.live="{{ $type }}.contact_email"
@@ -67,7 +67,7 @@
                     </div>
 
                     <x-input.group class="col-span-6 sm:col-span-6"
-                                   label="Address"
+                                   label="{{ __('partials.address.address_line_one') }}"
                                    :errors="$errors->get($type . '.line_one')"
                                    required>
                         <x-input.text wire:model.live="{{ $type }}.line_one"
@@ -75,7 +75,7 @@
                     </x-input.group>
 
                     <x-input.group class="col-span-3 sm:col-span-2"
-                                   label="City"
+                                   label="{{ __('partials.address.city') }}"
                                    :errors="$errors->get($type . '.city')"
                                    required>
                         <x-input.text wire:model.live="{{ $type }}.city"
@@ -83,7 +83,7 @@
                     </x-input.group>
 
                     <x-input.group class="col-span-3 sm:col-span-2 hidden"
-                                   label="Postcode"
+                                   label="{{ __('partials.address.postcode') }}"
                                    :errors="$errors->get($type . '.postcode')"
                                    required >
                         <x-input.text wire:model.live="{{ $type }}.postcode"

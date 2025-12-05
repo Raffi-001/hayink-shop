@@ -2,12 +2,14 @@
     <!-- Button -->
     <button
         @click="open = !open"
-        class="lg:flex items-center gap-2 px-4 w-md py-1 text-sm font-medium text-center text-white bg-primary-500 hover:bg-primary-600 mr-4 hidden"
+        class="lg:flex items-center gap-2 px-4 w-md py-1 text-sm font-medium text-center text-primary bg-white hover:bg-white hidden"
     >
         <span class="text-xl">
             {{ $languages[$current]['flag'] }}
         </span>
+        <!--
         <span>{{ $languages[$current]['label'] }}</span>
+        -->
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
              viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round"

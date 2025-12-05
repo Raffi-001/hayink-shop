@@ -88,7 +88,6 @@
         <div class="flex items-center justify-between flex-1 ml-4 lg:justify-end">
             <div class="lg:hidden">&nbsp;</div>
 
-            <livewire:components.language-switcher />
 
             <a href="{{ route('apply-as-an-artist.view') }}" type="submit" class="px-4 py-2 text-sm font-medium text-center text-white bg-primary-500 hover:bg-primary-600 mr-4 hidden lg:inline-block">
                 {{ __('livewire.components.navigation.apply-as-an-artist') }}
@@ -98,9 +97,11 @@
                 {{ __('livewire.components.navigation.create-your-product') }}
             </a>
 
-            @if(false)
+            <livewire:components.language-switcher />
+
+            <!--
             <x-header.search class="max-w-sm mr-4" />
-            @endif
+            -->
 
             <div class="flex items-center -mr-4 sm:-mr-6 lg:mr-0">
                 @livewire('components.cart')
