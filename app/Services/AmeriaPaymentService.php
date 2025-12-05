@@ -30,6 +30,8 @@ class AmeriaPaymentService
             'Currency' => '051',
         ];
 
+        \Log::debug($payload);
+
         $response = Http::acceptJson()->post(
             config('services.ameria.base_url') . '/InitPayment',
             $payload
