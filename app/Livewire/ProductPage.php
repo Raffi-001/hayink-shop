@@ -211,7 +211,7 @@ class ProductPage extends Component
         if($care) {
             $careValue = $care->getValue();
 
-            $block = ProductInfoBlock::where('type', 'size_chart')->where('title', $careValue)->first();
+            $block = ProductInfoBlock::where('type', 'care')->where('title', $careValue)->first();
 
             if($block) {
                 return $block->body;
