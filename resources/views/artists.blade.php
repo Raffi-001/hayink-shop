@@ -17,8 +17,8 @@
         ), url('/images/about-header.png'); background-size: cover; background-position: center;">
         <div class="mx-auto max-w-[58rem]">
             <div class="text-center">
-                <h1 class="mt-3 text-[3.5rem] font-bold leading-[4rem] tracking-tight text-white">Our Artists</h1>
-                <p class="mt-3 text-lg leading-relaxed text-slate-200">People who help the magic happen</p>
+                <h1 class="mt-3 text-[3.5rem] font-bold leading-[4rem] tracking-tight text-white">{{ __('artists.page_title') }}</h1>
+                <p class="mt-3 text-lg leading-relaxed text-slate-200">{{ __('artists.page_subtitle') }}</p>
             </div>
         </div>
     </section>

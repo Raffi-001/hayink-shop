@@ -10,6 +10,7 @@ use App\Filament\Resources\PageResource;
 use App\Filament\Resources\ProductInfoBlockResource;
 use App\Livewire\CustomFields\SelectArtistField;
 use App\Livewire\CustomFields\SelectArtistFieldType;
+use App\Lunar\Admin\Filament\Extensions\ProductListExtension;
 use App\Models\CustomProductRequest;
 use App\Modifiers\ShippingModifier;
 use App\PaymentTypes\AmeriaPayment;
@@ -18,6 +19,8 @@ use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
+use Lunar\Admin\Filament\Resources\ProductResource;
+use Lunar\Admin\Filament\Resources\ProductResource\Pages\ListProducts;
 use Lunar\Admin\Support\Facades\AttributeData;
 use Lunar\Admin\Support\Facades\LunarPanel;
 use Lunar\Base\ShippingModifiers;
@@ -84,6 +87,10 @@ class AppServiceProvider extends ServiceProvider
 
         Livewire::addPersistentMiddleware([
             \App\Http\Middleware\SetLocale::class,
+        ]);
+
+        LunarPanel::extensions([
+            ProductResource::class => ProductListExtension::class,
         ]);
 
 
