@@ -31,25 +31,30 @@
         <div class="p-6">
             @if ($step == $currentStep)
                 <div class="grid grid-cols-6 gap-4">
-                    <x-input.group class="col-span-3"
-                                   label="{{ __('partials.address.first_name') }}"
+                    <x-input.group class="col-span-6"
+                                   label="Full Name"
                                    :errors="$errors->get($type . '.first_name')"
                                    required>
                         <x-input.text wire:model.live="{{ $type }}.first_name"
                                       required />
                     </x-input.group>
 
-                    <x-input.group class="col-span-3"
+                    <!-- <input  wire:model.live="{{ $type }}.last_name" x-init="$wire.set('{{ $type }}.last_name', 'no-surname')" /> -->
+
+                    <x-input.group class="col-span-3 hidden"
                                    label="{{ __('partials.address.last_name') }}"
                                    :errors="$errors->get($type . '.last_name')"
                                    required>
                         <x-input.text wire:model.live="{{ $type }}.last_name"
+                                      x-init="$wire.set('{{ $type }}.last_name', 'no-lastname')"
+                                      data-defaulttext="abc"
                                       required />
                     </x-input.group>
 
                     <x-input.group class="col-span-6 sm:col-span-3"
                                    label="{{ __('partials.address.contact_phone') }}"
-                                   :errors="$errors->get($type . '.contact_phone')">
+                                   :errors="$errors->get($type . '.contact_phone')"
+                                    required>
                         <x-input.text wire:model.live="{{ $type }}.contact_phone" />
                     </x-input.group>
 
